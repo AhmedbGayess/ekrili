@@ -4,15 +4,19 @@ require("./db/mongoose");
 const cors = require("cors");
 const passport = require("passport");
 
+const userRouter = require("./routes/users");
+
 const app = express();
 
 app.use(express.json());
 
 app.use(cors());
 
-// require("./config/passport")(passport);
+require("./config/passport")(passport);
 
-// app.use("/images", express.static("./uploads"));
+app.use("/images", express.static("./uploads"));
+
+app.use("/users", userRouter);
 
 // app.use(express.static(path.join(__dirname, "../client/build")));
 
