@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 require("./db/mongoose");
 const cors = require("cors");
-// const passport = require("passport");
+const passport = require("passport");
 
 const app = express();
 
@@ -12,15 +12,15 @@ app.use(cors());
 
 // require("./config/passport")(passport);
 
-app.use("/images", express.static("./uploads"));
+// app.use("/images", express.static("./uploads"));
 
-app.use(express.static(path.join(__dirname, "../client/build")));
+// app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(
-    path.resolve(__dirname + "/../", "client", "build", "index.html")
-  );
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(
+//     path.resolve(__dirname + "/../", "client", "build", "index.html")
+//   );
+// });
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is up on port ${port}`));
