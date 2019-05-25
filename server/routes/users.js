@@ -103,4 +103,65 @@ router.patch(
   }
 );
 
+router.get(
+  "/all",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      if (!req.user.admin) {
+        return res.status(401).send();
+      }
+      const skip = parseInt(req.query.skip) || 0;
+      const users = await User.find()
+        .limit(10)
+        .skip(skip)
+        .sort({ createdAt: -1 });
+      if (!users) {
+        return res.status(404).send("No users found");
+      }
+      res.send(users);
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  }
+);
+
+router.get(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      if (!req.user.admin) {
+        return res.status(401).send();
+      }
+      const user = await User.findById(req.params.id);
+      if (!user) {
+        res.status(404).send("No user found");
+      }
+      res.send(user);
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  }
+);
+
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      if (!req.user.admin) {
+        return res.status(401).send();
+      }
+      const user = await User.findByIdAndDelete(req.params.id);
+      if (!user) {
+        res.status(404).send("No user found");
+      }
+      res.send(user);
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  }
+);
+
 module.exports = router;
