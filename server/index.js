@@ -5,6 +5,7 @@ const cors = require("cors");
 const passport = require("passport");
 
 const userRouter = require("./routes/users");
+const uploadsRouter = require("./routes/uploads");
 
 const app = express();
 
@@ -17,6 +18,7 @@ require("./config/passport")(passport);
 app.use("/images", express.static("./uploads"));
 
 app.use("/users", userRouter);
+app.use("/upload", uploadsRouter);
 
 // app.use(express.static(path.join(__dirname, "../client/build")));
 
