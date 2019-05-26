@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const SubCategorySchema = new mongoose.Schema({
   name: {
     type: String,
-    required: treu
+    required: true,
+    unique: true
   },
   image: {
     type: String,
@@ -11,10 +12,11 @@ const SubCategorySchema = new mongoose.Schema({
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "categories"
+    ref: "categories",
+    required: true
   }
 });
 
-const SubCategory = mongoose.model("subCategory", SubCategorySchema);
+const SubCategory = mongoose.model("subCategories", SubCategorySchema);
 
 module.exports = SubCategory;

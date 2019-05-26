@@ -12,6 +12,12 @@ const CategorySchema = new mongoose.Schema({
   }
 });
 
+CategorySchema.virtual("subCategories", {
+  ref: "subCategories",
+  localField: "_id",
+  foreignField: "category"
+});
+
 const Category = mongoose.model("categories", CategorySchema);
 
 module.exports = Category;
