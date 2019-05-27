@@ -5,13 +5,17 @@ const RentalSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "products"
   },
-  tenant: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "users"
   },
   quantity: {
     type: Number,
     required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now()
   },
   from: {
     type: Date,
@@ -23,7 +27,7 @@ const RentalSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["On hold", "Rented", "Returned"],
+    enum: ["On hold", "Confirmed", "Shipped", "Rented", "Returned"],
     required: true
   },
   cost: {
