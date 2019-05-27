@@ -7,6 +7,7 @@ const passport = require("passport");
 const usersRouter = require("./routes/users");
 const categoriesRouter = require("./routes/categories");
 const subCategoriesRouter = require("./routes/subCategories");
+const productsRouter = require("./routes/products");
 const uploadsRouter = require("./routes/uploads");
 
 const app = express();
@@ -22,6 +23,7 @@ app.use("/images", express.static("./uploads"));
 app.use("/users", usersRouter);
 app.use("/categories", categoriesRouter);
 app.use("/sub-categories", subCategoriesRouter);
+app.use("/products", productsRouter);
 app.use("/upload", uploadsRouter);
 
 // app.use(express.static(path.join(__dirname, "../client/build")));
