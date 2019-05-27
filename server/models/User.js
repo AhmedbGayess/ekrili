@@ -59,6 +59,12 @@ UserSchema.virtual("cartItems", {
   foreignField: "user"
 });
 
+UserSchema.virtual("rentals", {
+  ref: "rentals",
+  localField: "_id",
+  foreignField: "user"
+});
+
 const User = mongoose.model("users", UserSchema);
 
 module.exports = User;

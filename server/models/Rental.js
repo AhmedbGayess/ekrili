@@ -1,4 +1,4 @@
-const mongoose = requie("mongoose");
+const mongoose = require("mongoose");
 
 const RentalSchema = new mongoose.Schema({
   product: {
@@ -27,10 +27,10 @@ const RentalSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["On hold", "Confirmed", "Shipped", "Rented", "Returned"],
+    enum: ["On hold", "Confirmed", "Shipped", "Rented", "Returned", "Canceled"],
     required: true
   },
-  cost: {
+  totalCost: {
     type: Number,
     required: true
   }
@@ -38,4 +38,4 @@ const RentalSchema = new mongoose.Schema({
 
 const Rental = mongoose.model("rentals", RentalSchema);
 
-module.exports = Renatl;
+module.exports = Rental;

@@ -9,6 +9,7 @@ const categoriesRouter = require("./routes/categories");
 const subCategoriesRouter = require("./routes/subCategories");
 const productsRouter = require("./routes/products");
 const cartRouter = require("./routes/cart");
+const rentalsRouter = require("./routes/rentals");
 const uploadsRouter = require("./routes/uploads");
 
 const app = express();
@@ -26,6 +27,7 @@ app.use("/categories", categoriesRouter);
 app.use("/sub-categories", subCategoriesRouter);
 app.use("/products", productsRouter);
 app.use("/cart", cartRouter);
+app.use("/rent", rentalsRouter);
 app.use("/upload", uploadsRouter);
 
 // app.use(express.static(path.join(__dirname, "../client/build")));
