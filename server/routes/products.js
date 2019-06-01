@@ -47,6 +47,21 @@ router.get("/single/:id", async (req, res) => {
   }
 });
 
+router.get("/find/name", async (req, res) => {
+  try {
+    const name = req.query.name.trim();
+    const products = await Product.find({
+      name: new RegExp(`.*${name}.*`, "i")
+    });
+    if (!products) {
+      return res.status(404).send("No products found");
+    }
+    res.send(products);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+});
+
 router.patch(
   "/:id",
   passport.authenticate("jwt", { session: false }),
