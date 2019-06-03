@@ -49,7 +49,7 @@ router.post(
             if (err) throw err;
             const image = `image-${uuidv4()}`;
             img
-              .resize(300, Jimp.AUTO)
+              .resize(300, 300)
               .quality(90)
               .write(`./uploads/${image}.jpeg`);
             fs.unlinkSync(`./uploads/${req.file.filename}`);
