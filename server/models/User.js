@@ -37,12 +37,6 @@ const UserSchema = new mongoose.Schema(
         }
       }
     },
-    address: {
-      type: String,
-      required: true,
-      minlength: 10,
-      maxlength: 500
-    },
     admin: {
       type: Boolean,
       default: false
@@ -53,14 +47,8 @@ const UserSchema = new mongoose.Schema(
   }
 );
 
-UserSchema.virtual("cartItems", {
-  ref: "cartItems",
-  localField: "_id",
-  foreignField: "user"
-});
-
-UserSchema.virtual("rentals", {
-  ref: "rentals",
+UserSchema.virtual("ads", {
+  ref: "ads",
   localField: "_id",
   foreignField: "user"
 });

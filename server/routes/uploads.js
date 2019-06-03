@@ -3,6 +3,8 @@ const passport = require("passport");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const Jimp = require("jimp");
+const uuidv4 = require("uuid");
 
 const router = new express.Router();
 
@@ -31,7 +33,7 @@ const upload = multer({
   fileFilter: (req, file, cb) => {
     checkFileType(file, cb);
   }
-}).single("images");
+}).single("image");
 
 router.post(
   "/",
@@ -44,7 +46,16 @@ router.post(
         if (req.file == undefined) {
           res.json({ msg: "Error: No File Selected!" });
         } else {
-          res.json({ file: `${req.file.filename}` });
+          Jimp.read(`./uploads/${req.file.filename}`, async (err, img) => {
+            if (err) throw err;
+            const image = `image-${uuidv4()}`;
+            img
+              .resize(300, Jimp.AUTO)
+              .quality(80)
+              .write(`./uploads/${image}.jpeg`);
+            fs.unlinkSync(`./uploads/${req.file.filename}`);
+            res.send({ image });
+          });
         }
       }
     });

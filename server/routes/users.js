@@ -80,8 +80,7 @@ router.patch(
     const updates = {
       email: req.body.email,
       password: req.body.password,
-      phone: req.body.phone,
-      address: req.body.address
+      phone: req.body.phone
     };
 
     bcrypt.genSalt(10, (err, salt) => {
