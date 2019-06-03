@@ -104,10 +104,25 @@ router.get(
 
 router.get("/find/title", async (req, res) => {
   const title = req.query.title.trim();
+  const match = {};
+  const sort = {};
+
+  if (req.query.region) {
+    match.region = req.query.region;
+  }
+
+  if (req.query.sortBy) {
+    const parts = req.query.sortBy.split(":");
+    sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
+  }
   try {
     const ads = await Ad.find({
-      title: new RegExp(`.*${title}.*`, "i")
-    });
+      title: new RegExp(`.*${title}.*`, "i"),
+      ...match
+    })
+      .limit(parseInt(req.query.limit))
+      .skip(parseInt(req.query.skip))
+      .sort(sort);
     if (!ads) {
       return res.status(404).send("No ads found");
     }
