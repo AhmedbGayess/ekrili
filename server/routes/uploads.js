@@ -29,7 +29,6 @@ const checkFileType = (file, cb) => {
 
 const upload = multer({
   storage,
-  limits: { fileSize: 30000000 },
   fileFilter: (req, file, cb) => {
     checkFileType(file, cb);
   }
@@ -51,7 +50,7 @@ router.post(
             const image = `image-${uuidv4()}`;
             img
               .resize(300, Jimp.AUTO)
-              .quality(80)
+              .quality(90)
               .write(`./uploads/${image}.jpeg`);
             fs.unlinkSync(`./uploads/${req.file.filename}`);
             res.send({ image });
