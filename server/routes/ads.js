@@ -14,6 +14,10 @@ router.post(
       user: req.user.id
     });
     try {
+      const subcategory = await SubCategory.findById(req.body.subCategory);
+      if (!subcategory) {
+        return res.status(404).send("Subcategory doesn't exist");
+      }
       await ad.save();
       res.send(ad);
     } catch (e) {
@@ -22,13 +26,35 @@ router.post(
   }
 );
 
-router.get("/:id", async (req, res) => {
+router.get("/subcategory/:id", async (req, res) => {
+  const match = {};
+  const sort = {};
+
+  if (req.query.region) {
+    match.region = req.query.region;
+  }
+
+  if (req.query.sortBy) {
+    const parts = req.query.sortBy.split(":");
+    sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
+  }
+
   try {
     const subCategory = await SubCategory.findById(req.params.id);
     if (!subCategory) {
       return res.status(404).send("No ads found");
     }
-    await subCategory.populate("ads").execPopulate();
+    await subCategory
+      .populate({
+        path: "ads",
+        match,
+        options: {
+          limit: parseInt(req.query.limit),
+          skip: parseInt(req.query.skip),
+          sort
+        }
+      })
+      .execPopulate();
     res.send(subCategory.ads);
   } catch (e) {
     res.status(500).send(e);
@@ -46,6 +72,35 @@ router.get("/single/:id", async (req, res) => {
     res.status(500).send(e);
   }
 });
+
+router.get(
+  "/my-ads",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const sort = {};
+
+    if (req.query.sortBy) {
+      const parts = req.query.sortBy.split(":");
+      sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
+    }
+
+    try {
+      await req.user
+        .populate({
+          path: "ads",
+          options: {
+            limit: parseInt(req.query.limit),
+            skip: parseInt(req.query.skip),
+            sort
+          }
+        })
+        .execPopulate();
+      res.send(req.user.ads);
+    } catch (e) {
+      res.status(500).send();
+    }
+  }
+);
 
 router.get("/find/title", async (req, res) => {
   const title = req.query.title.trim();

@@ -13,6 +13,10 @@ router.post(
       if (!req.user.admin) {
         return res.status(401).send();
       }
+      const category = await Category.findById(req.body.category);
+      if (!category) {
+        return res.status(404).send("No category found");
+      }
       const newSubCategory = new SubCategory(req.body);
       await newSubCategory.save();
       res.status(201).send(newSubCategory);

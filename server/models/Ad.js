@@ -30,6 +30,10 @@ const AdSchema = new mongoose.Schema(
       ref: "subCategories",
       required: true
     },
+    region: {
+      type: String,
+      required: true
+    },
     featured: {
       type: Boolean,
       default: false
