@@ -66,23 +66,23 @@ router.patch(
   }
 );
 
-router.delete(
-  "/:id",
-  passport.authenticate("jwt", { session: false }),
-  async (req, res) => {
-    try {
-      if (!req.user.admin) {
-        return res.status(401).send();
-      }
-      const category = await Category.findByIdAndDelete(req.params.id);
-      if (!category) {
-        res.status(404).send("No category found");
-      }
-      res.send(category);
-    } catch (e) {
-      res.status(500).send(e);
-    }
-  }
-);
+// router.delete(
+//   "/:id",
+//   passport.authenticate("jwt", { session: false }),
+//   async (req, res) => {
+//     try {
+//       if (!req.user.admin) {
+//         return res.status(401).send();
+//       }
+//       const category = await Category.findByIdAndDelete(req.params.id);
+//       if (!category) {
+//         res.status(404).send("No category found");
+//       }
+//       res.send(category);
+//     } catch (e) {
+//       res.status(500).send(e);
+//     }
+//   }
+// );
 
 module.exports = router;

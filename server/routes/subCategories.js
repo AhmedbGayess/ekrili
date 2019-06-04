@@ -72,23 +72,23 @@ router.patch(
   }
 );
 
-router.delete(
-  "/:id",
-  passport.authenticate("jwt", { session: false }),
-  async (req, res) => {
-    try {
-      if (!req.user.admin) {
-        return res.status(401).send();
-      }
-      const subCategory = await SubCategory.findByIdAndDelete(req.params.id);
-      if (!subCategory) {
-        res.status(404).send("No subcategory found");
-      }
-      res.send(subCategory);
-    } catch (e) {
-      res.status(500).send(e);
-    }
-  }
-);
+// router.delete(
+//   "/:id",
+//   passport.authenticate("jwt", { session: false }),
+//   async (req, res) => {
+//     try {
+//       if (!req.user.admin) {
+//         return res.status(401).send();
+//       }
+//       const subCategory = await SubCategory.findByIdAndDelete(req.params.id);
+//       if (!subCategory) {
+//         res.status(404).send("No subcategory found");
+//       }
+//       res.send(subCategory);
+//     } catch (e) {
+//       res.status(500).send(e);
+//     }
+//   }
+// );
 
 module.exports = router;
