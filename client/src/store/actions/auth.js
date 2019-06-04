@@ -1,6 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import setAuthToken from "../../lib/setAuthToken";
+import setAuthToken from "../../utils/setAuthToken";
 import { history } from "../../router/AppRouter";
 
 export const registerUser = (userData) => async () => {
@@ -17,7 +17,7 @@ export const login = (userData) => async (dispatch) => {
     const { data } = await axios.post("/users/login", userData);
     localStorage.setItem("token", data.token);
     setAuthToken(data.token);
-    const decoded = jwt_decode(token);
+    const decoded = jwt_decode(data.token);
     dispatch(setCurrentUser(decoded));
   } catch (e) {
     dispatch({
