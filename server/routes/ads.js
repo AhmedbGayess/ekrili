@@ -1,7 +1,9 @@
 const express = require("express");
 const passport = require("passport");
+const fs = require("fs");
 const Ad = require("../models/Ad");
 const SubCategory = require("../models/SubCategory");
+const User = require("../models/User");
 
 const router = express.Router();
 
@@ -11,6 +13,8 @@ router.post(
   async (req, res) => {
     const ad = new Ad({
       ...req.body,
+      name: req.user.name,
+      phone: req.user.phone,
       user: req.user.id
     });
     try {
@@ -102,6 +106,35 @@ router.get(
   }
 );
 
+router.get("/user/:id", async (req, res) => {
+  const sort = {};
+
+  if (req.query.sortBy) {
+    const parts = req.query.sortBy.split(":");
+    sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
+  }
+  try {
+    const user = await User.findById(req.params.id);
+    await user
+      .populate({
+        path: "ads",
+        options: {
+          limit: parseInt(req.query.limit),
+          skip: parseInt(req.query.skip),
+          sort
+        }
+      })
+      .execPopulate();
+    res.send({
+      name: user.name,
+      phone: user.phone,
+      ads: user.ads
+    });
+  } catch (e) {
+    res.status(500).send();
+  }
+});
+
 router.get("/find/title", async (req, res) => {
   const title = req.query.title.trim();
   const match = {};
@@ -137,7 +170,14 @@ router.patch(
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ["title", "description", "price", "images"];
+    const allowedUpdates = [
+      "title",
+      "description",
+      "price",
+      "images",
+      "governorate",
+      "delegation"
+    ];
 
     const isValidOperation = updates.every((update) =>
       allowedUpdates.includes(update)
@@ -165,8 +205,14 @@ router.delete(
   "/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    const ad = await Ad.findOne({ _id: req.params.id, user: req.user.id });
     try {
+      const ad = await Ad.findOne({ _id: req.params.id, user: req.user.id });
+      if (!ad) {
+        res.status(404).send("No ad found");
+      }
+      ad.images.forEach((image) => {
+        fs.unlinkSync(`./uploads/${image}`);
+      });
       await ad.remove();
       res.send(ad);
     } catch (e) {
@@ -183,10 +229,14 @@ router.delete(
       return res.status(401).send();
     }
     try {
-      const ad = await Ad.findByIdAndDelete(req.params.id);
+      const ad = await Ad.findById(req.params.id);
       if (!ad) {
         res.status(404).send("No ad found");
       }
+      ad.images.forEach((image) => {
+        fs.unlinkSync(`./uploads/${image}`);
+      });
+      await ad.remove();
       res.send(ad);
     } catch (e) {
       res.status(500).send(e);
