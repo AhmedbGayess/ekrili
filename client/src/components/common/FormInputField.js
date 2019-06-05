@@ -1,5 +1,6 @@
 import React from "react";
 import { Field } from "formik";
+import classnames from "classnames";
 import PropTypes from "prop-types";
 
 const FormInputField = ({ name, label, type, error, touched }) => (
@@ -11,9 +12,11 @@ const FormInputField = ({ name, label, type, error, touched }) => (
       id={name}
       type={type ? type : "text"}
       name={name}
-      className="form-input"
+      className={classnames("form-input", {
+        "form-input-error": error
+      })}
     />
-    {touched && error && <div className="input-error">{error}</div>}
+    {touched && error && <p className="input-error">{error}</p>}
   </div>
 );
 
