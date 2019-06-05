@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const CategoryImagePreview = ({ image, deleteImage }) => (
   <div className="category-image-preview">
     <MdClose className="category-image-preview-close" onClick={deleteImage} />
-    <img src={`/images/${image}`} />
+    <img src={`/images/${image}`} alt="" />
   </div>
 );
 
