@@ -1,0 +1,15 @@
+.login-form {
+  display: grid;
+  grid-template-rows: 1fr 1fr auto;
+  grid-gap: 1rem;
+}
+
+.admin-login {
+  margin: 5rem auto;
+  display: grid;
+  padding: 2rem;
+  max-width: 40rem;
+  border: 1px solid $light-color;
+  border-radius: 4px;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}

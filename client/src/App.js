@@ -11,8 +11,8 @@ const store = configureStore();
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
-  store.dispatch(setCurrentUser(localStorage.token));
   const decoded = jwt_decode(localStorage.token);
+  store.dispatch(setCurrentUser(decoded));
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
     store.dispatch(logout());
