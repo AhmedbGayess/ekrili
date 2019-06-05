@@ -11,9 +11,11 @@ class AppRouter extends React.Component {
   render() {
     return (
       <Router history={history}>
-        <Route path="/" component={Home} exact />
-        <Route path="/admin-login" component={AdminLogin} exact />
-        <Route path="/admin" component={AdminRouter} />
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <Route path="/admin-login" component={AdminLogin} exact />
+          <Route path="/admin" component={AdminRouter} />
+        </Switch>
       </Router>
     );
   }
