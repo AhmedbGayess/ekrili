@@ -1,0 +1,25 @@
+.admin-nav {
+  background-color: $light-color;
+  border-right: 1px solid $medium-color;
+  padding-top: 2rem;
+  -webkit-box-shadow: 4px -1px 5px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 4px -1px 5px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px -1px 5px 0px rgba(0, 0, 0, 0.2);
+  ul {
+    li {
+      .admin-nav-link {
+        display: block;
+        height: 100%;
+        padding: 1rem;
+        color: $dark-color;
+        cursor: pointer;
+
+        &:hover,
+        &-active {
+          color: $primary-color;
+          background: lighten($primary-color, 40%);
+        }
+      }
+    }
+  }
+}
