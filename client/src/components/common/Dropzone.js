@@ -9,6 +9,7 @@ const ImageZone = ({ onDrop, loading }) => (
     className="dropzone"
     multiple={false}
     accept="image/*"
+    disabled={loading}
   >
     {({
       getRootProps,
