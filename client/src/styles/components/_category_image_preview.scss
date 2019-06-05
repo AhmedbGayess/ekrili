@@ -1,0 +1,18 @@
+.category-image-preview {
+  width: 300px;
+  margin: 2rem auto;
+  position: relative;
+
+  &-close {
+    position: absolute;
+    color: #fff;
+    font-size: 2rem;
+    right: 0;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: red;
+    }
+  }
+}

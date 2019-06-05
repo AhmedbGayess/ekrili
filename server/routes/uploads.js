@@ -47,11 +47,11 @@ router.post(
         } else {
           Jimp.read(`./uploads/${req.file.filename}`, async (err, img) => {
             if (err) throw err;
-            const image = `image-${uuidv4()}`;
+            const image = `image-${uuidv4()}.jpeg`;
             img
               .resize(300, 300)
               .quality(90)
-              .write(`./uploads/${image}.jpeg`);
+              .write(`./uploads/${image}`);
             fs.unlinkSync(`./uploads/${req.file.filename}`);
             res.send({ image });
           });

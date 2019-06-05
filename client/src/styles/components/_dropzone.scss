@@ -1,0 +1,24 @@
+.dropzone {
+  height: 150px;
+  background: $light-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: gray;
+  outline: none;
+  border: 2px dashed $medium-color;
+  position: relative;
+  cursor: pointer;
+
+  &loader {
+    position: absolute;
+    z-index: 10;
+  }
+
+  &-icon {
+    display: block;
+    font-size: 4rem;
+    margin: 1rem auto;
+  }
+}

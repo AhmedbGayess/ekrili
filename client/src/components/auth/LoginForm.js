@@ -6,7 +6,7 @@ import { login } from "../../store/actions/auth";
 import FormInputField from "../common/FormInputField";
 const adminRoute = window.location.pathname.includes("admin") ? true : false;
 
-const Login = ({ errors, touched, isSubmitting }) => (
+const Login = ({ errors, touched }) => (
   <Form className="login-form">
     <FormInputField
       name="email"
@@ -23,7 +23,7 @@ const Login = ({ errors, touched, isSubmitting }) => (
       touched={touched.password}
     />
     <button type="submit" className="btn-primary">
-      {isSubmitting ? "chmenka" : "Connexion"}
+      Connexion
     </button>
   </Form>
 );
