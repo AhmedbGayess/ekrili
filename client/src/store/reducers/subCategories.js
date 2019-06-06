@@ -34,13 +34,17 @@ export default (state = initialState, action) => {
         subCategories: state.subCategories.map((subCategory) => {
           if (subCategory._id === action.payload._id) {
             return {
-              ...subCategory,
               ...action.payload
             };
           } else {
             return subCategory;
           }
         })
+      };
+    case "CLEAR_SUBCATEGORY":
+      return {
+        ...state,
+        subCategory: {}
       };
     default:
       return state;

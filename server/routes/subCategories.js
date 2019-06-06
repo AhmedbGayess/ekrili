@@ -67,15 +67,27 @@ router.patch(
   "/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
+    if (!req.user.admin) {
+      return res.status(401).send();
+    }
+
+    const updates = Object.keys(req.body);
+    const allowedUpdates = ["name", "image", "category"];
+
+    const isValidOperation = updates.every((update) =>
+      allowedUpdates.includes(update)
+    );
+
+    if (!isValidOperation) {
+      return res.status(400).send({ error: "Invalid updates." });
+    }
+
     try {
-      if (!req.user.admin) {
-        return res.status(401).send();
-      }
       const subCategory = await SubCategory.findById(req.params.id);
       if (!subCategory) {
         return res.status(404).send("No subcategory found");
       }
-      subCategory.name = req.body.name;
+      updates.forEach((update) => (subCategory[update] = req.body[update]));
       await subCategory.save();
       res.send(subCategory);
     } catch (e) {

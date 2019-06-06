@@ -31,6 +31,7 @@ export const getSubCategory = (id) => async (dispatch) => {
   dispatch(setSubCategoriesLoading);
   try {
     const { data } = await axios.get(`/sub-categories/single/${id}`);
+    console.log(data);
     dispatch({
       type: "SET_SUBCATEGORY",
       payload: data
@@ -46,6 +47,7 @@ export const editSubCategory = (subCategoryData, id) => async (dispatch) => {
       `/sub-categories/${id}`,
       subCategoryData
     );
+    console.log(data);
     dispatch({
       type: "EDIT_SUBCATEGORY",
       payload: data
@@ -55,6 +57,10 @@ export const editSubCategory = (subCategoryData, id) => async (dispatch) => {
     console.log(e);
   }
 };
+
+export const clearSubCategory = () => ({
+  type: "CLEAR_SUBCATEGORY"
+});
 
 const setSubCategoriesLoading = () => ({
   type: "SUBCATEGORIES_LOADING"
