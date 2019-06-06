@@ -2,9 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import PropTypes from "prop-types";
-import { addSubCategory } from "../../store/actions/subCategories";
+import {
+  addSubCategory,
+  getSubCategory,
+  editSubCategory
+} from "../../store/actions/subCategories";
 import { getCategories } from "../../store/actions/categories";
 import SubCategoryForm from "./SubCategoryForm";
+import Loader from "../common/Loader";
 
 class EditCategory extends React.Component {
   state = {
@@ -14,6 +19,15 @@ class EditCategory extends React.Component {
 
   componentDidMount() {
     this.props.getCategories();
+
+    const subCategoryId = this.props.match.params.id;
+    if (subCategoryId) {
+      Promise.resolve(this.props.getSubCategory(subCategoryId)).then(() => {
+        this.setState({
+          image: this.props.subCategories.subCategory.image
+        });
+      });
+    }
   }
 
   onDrop = async (acceptedFiles) => {
@@ -50,9 +64,31 @@ class EditCategory extends React.Component {
 
   render() {
     const { categories } = this.props.categories;
-    return (
-      <div className="container">
-        <h1 className="my-2 text-center">AJOUTER UNE SOUS-CATÉGORIE</h1>
+    const subCategoryId = this.props.match.params.id;
+    let content;
+    if (subCategoryId) {
+      const { loading, subCategory } = this.props.subCategories;
+
+      if (loading || Object.keys(subCategory).length === 0) {
+        content = <Loader />;
+      } else {
+        content = (
+          <SubCategoryForm
+            image={this.state.image}
+            onDrop={this.onDrop}
+            onSubmit={this.props.editSubCategory}
+            label="Nom de la sous-catégorie"
+            deleteImage={this.deleteImage}
+            loading={this.state.loading}
+            categories={categories}
+            subCategoryName={subCategory.name}
+            category={subCategory.category}
+            id={subCategory._id}
+          />
+        );
+      }
+    } else {
+      content = (
         <SubCategoryForm
           image={this.state.image}
           onDrop={this.onDrop}
@@ -62,21 +98,30 @@ class EditCategory extends React.Component {
           loading={this.state.loading}
           categories={categories}
         />
+      );
+    }
+    return (
+      <div className="container">
+        <h1 className="my-2 text-center">AJOUTER UNE SOUS-CATÉGORIE</h1>
+        {content}
       </div>
     );
   }
 }
 
 EditCategory.propTypes = {
-  addSubCategory: PropTypes.func,
-  getCategories: PropTypes.func.isRequired
+  addSubCategory: PropTypes.func.isRequired,
+  getCategories: PropTypes.func.isRequired,
+  editSubCategory: PropTypes.func.isRequired,
+  getSubCategory: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
+  subCategories: state.subCategories,
   categories: state.categories
 });
 
 export default connect(
   mapStateToProps,
-  { addSubCategory, getCategories }
+  { addSubCategory, getCategories, editSubCategory, getSubCategory }
 )(EditCategory);

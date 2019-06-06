@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getCategories } from "../../store/actions/categories";
 import CategoryCard from "../categories/CategoryCard";
+import Loader from "../common/Loader";
 
 class AdminCategories extends React.Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ class AdminCategories extends React.Component {
     const { categories, loading } = this.props.categories;
     let content;
     if (loading) {
-      content = <p>hi</p>;
+      content = <Loader />;
     } else {
       content = categories.map((category) => (
         <Link to={`/admin/edit-category/${category._id}`} key={category._id}>

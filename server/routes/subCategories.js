@@ -26,6 +26,18 @@ router.post(
   }
 );
 
+router.get("/", async (req, res) => {
+  try {
+    const subCategories = await SubCategory.find();
+    if (!subCategories) {
+      return res.status(404).send("No subcategories found");
+    }
+    res.send(subCategories);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const category = await Category.findById(req.params.id);

@@ -49,19 +49,29 @@ CategoryInputs.propTypes = {
   deleteImage: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  id: PropTypes.string
 };
 
 const CategoryForm = withFormik({
-  mapPropsToValues() {
+  mapPropsToValues({ categoryName }) {
     return {
-      name: ""
+      name: categoryName || ""
     };
   },
   validationSchema: Yup.object({
     name: Yup.string().required("Ce champ est obligatoire")
   }),
   handleSubmit(values, { props }) {
+    if (props.id) {
+      return props.onSubmit(
+        {
+          name: values.name,
+          image: props.image
+        },
+        props.id
+      );
+    }
     props.onSubmit({
       name: values.name,
       image: props.image

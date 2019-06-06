@@ -49,15 +49,28 @@ router.patch(
   "/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
+    if (!req.user.admin) {
+      return res.status(401).send();
+    }
+
+    const updates = Object.keys(req.body);
+    const allowedUpdates = ["name", "image"];
+
+    const isValidOperation = updates.every((update) =>
+      allowedUpdates.includes(update)
+    );
+
+    if (!isValidOperation) {
+      return res.status(400).send({ error: "Invalid updates." });
+    }
+
     try {
-      if (!req.user.admin) {
-        return res.status(401).send();
-      }
       const category = await Category.findById(req.params.id);
       if (!category) {
         return res.status(404).send("No category found");
       }
-      category.name = req.body.name;
+
+      updates.forEach((update) => (category[update] = req.body[update]));
       await category.save();
       res.send(category);
     } catch (e) {

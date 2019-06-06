@@ -59,14 +59,17 @@ SubCategoryInputs.propTypes = {
   label: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
-  categories: PropTypes.array.isRequired
+  categories: PropTypes.array.isRequired,
+  category: PropTypes.string,
+  name: PropTypes.string,
+  id: PropTypes.string
 };
 
 const SubCategoryForm = withFormik({
-  mapPropsToValues() {
+  mapPropsToValues({ subCategoryName, category }) {
     return {
-      name: "",
-      category: ""
+      name: subCategoryName || "",
+      category: category || ""
     };
   },
   validationSchema: Yup.object({
@@ -74,11 +77,22 @@ const SubCategoryForm = withFormik({
     category: Yup.string().required("Veuillez choisir une option")
   }),
   handleSubmit(values, { props }) {
-    props.onSubmit({
-      name: values.name,
-      category: values.category,
-      image: props.image
-    });
+    if (props.id) {
+      props.onSubmit(
+        {
+          name: values.name,
+          category: values.category,
+          image: props.image
+        },
+        props.id
+      );
+    } else {
+      props.onSubmit({
+        name: values.name,
+        category: values.category,
+        image: props.image
+      });
+    }
   }
 })(SubCategoryInputs);
 

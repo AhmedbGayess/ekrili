@@ -6,6 +6,7 @@ import AdminSidebar from "../components/layout/AdminSidebar";
 import AdminCategories from "../components/admin-categories/AdminCategories";
 import EditCategory from "../components/admin-categories/EditCategory";
 import EditSubCategory from "../components/admin-subcategories/EditSubCategory";
+import AdminSubCategories from "../components/admin-subcategories/AdminSubCategories";
 
 const AdminRouter = () => (
   <div className="admin-container">
@@ -15,7 +16,22 @@ const AdminRouter = () => (
       <AdminRoute path="/admin/categories" component={AdminCategories} exact />
       <AdminRoute path="/admin/add-category" component={EditCategory} exact />
       <AdminRoute
+        path="/admin/edit-category/:id"
+        component={EditCategory}
+        exact
+      />
+      <AdminRoute
+        path="/admin/subcategories"
+        component={AdminSubCategories}
+        exact
+      />
+      <AdminRoute
         path="/admin/add-subcategory"
+        component={EditSubCategory}
+        exact
+      />
+      <AdminRoute
+        path="/admin/edit-subcategory/:id"
         component={EditSubCategory}
         exact
       />
