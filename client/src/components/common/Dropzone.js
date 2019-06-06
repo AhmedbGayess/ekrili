@@ -2,6 +2,7 @@ import React from "react";
 import Dropzone from "react-dropzone";
 import { MdAddAPhoto } from "react-icons/md";
 import PropTypes from "prop-types";
+import image from "../../images/image-loader.svg";
 
 const ImageZone = ({ onDrop, loading }) => (
   <Dropzone
@@ -22,11 +23,7 @@ const ImageZone = ({ onDrop, loading }) => (
         <div {...getRootProps()} className="dropzone">
           <input {...getInputProps()} />
           {loading && (
-            <img
-              src={require("../../images/image-loader.svg")}
-              alt="Loader"
-              className="dropzone-loader"
-            />
+            <img src={image} alt="Loader" className="dropzone-loader" />
           )}
           {!loading && (
             <div>

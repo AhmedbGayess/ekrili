@@ -14,6 +14,19 @@ export const addCategory = (categoryData) => async (dispatch) => {
   }
 };
 
+export const getCategories = () => async (dispatch) => {
+  dispatch(setCategoriesLoading);
+  try {
+    const { data } = await axios.get("/categories");
+    dispatch({
+      type: "SET_CATEGORIES",
+      payload: data
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const setCategoriesLoading = () => ({
   type: "CATEGORIES_LOADING"
 });
