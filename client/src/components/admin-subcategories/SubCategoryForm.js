@@ -40,13 +40,15 @@ const SubCategoryInputs = ({
         <small>Choisir une image est nécessaire pour continuer</small>
       </div>
     )}
-    <button
-      type="submit"
-      className="btn-primary"
-      disabled={errors.name || errors.category || !image}
-    >
-      Ajouter
-    </button>
+    <div className="text-center">
+      <button
+        type="submit"
+        className="btn-primary"
+        disabled={errors.name || errors.category || !image}
+      >
+        Ajouter
+      </button>
+    </div>
   </Form>
 );
 
