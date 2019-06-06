@@ -6,7 +6,8 @@ import CategoryForm from "./CategoryForm";
 import {
   addCategory,
   getCategory,
-  editCategory
+  editCategory,
+  clearCategory
 } from "../../store/actions/categories";
 import Loader from "../common/Loader";
 
@@ -31,6 +32,10 @@ class EditCategory extends React.Component {
     if (this.props.match.params !== prevProps.match.params) {
       window.location.reload();
     }
+  }
+
+  componentWillUnmount() {
+    this.props.clearCategory();
   }
 
   onDrop = async (acceptedFiles) => {
@@ -114,6 +119,7 @@ EditCategory.propTypes = {
   addCategory: PropTypes.func.isRequired,
   getCategory: PropTypes.func.isRequired,
   editCategory: PropTypes.func.isRequired,
+  clearCategory: PropTypes.func.isRequired,
   categories: PropTypes.shape({}).isRequired
 };
 
@@ -123,5 +129,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { addCategory, getCategory, editCategory }
+  { addCategory, getCategory, editCategory, clearCategory }
 )(EditCategory);

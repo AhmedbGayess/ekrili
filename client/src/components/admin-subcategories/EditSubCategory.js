@@ -118,7 +118,8 @@ EditCategory.propTypes = {
   addSubCategory: PropTypes.func.isRequired,
   getCategories: PropTypes.func.isRequired,
   editSubCategory: PropTypes.func.isRequired,
-  getSubCategory: PropTypes.func.isRequired
+  getSubCategory: PropTypes.func.isRequired,
+  clearSubCategory: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

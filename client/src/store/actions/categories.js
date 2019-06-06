@@ -53,6 +53,10 @@ export const editCategory = (categoryData, id) => async (dispatch) => {
   }
 };
 
+export const clearCategory = () => ({
+  type: "CLEAR_CATEGORY"
+});
+
 const setCategoriesLoading = () => ({
   type: "CATEGORIES_LOADING"
 });

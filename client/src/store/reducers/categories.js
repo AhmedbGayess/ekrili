@@ -42,6 +42,11 @@ export default (state = initialState, action) => {
           }
         })
       };
+    case "CLEAR_CATEGORY":
+      return {
+        ...state,
+        category: {}
+      };
     default:
       return state;
   }
