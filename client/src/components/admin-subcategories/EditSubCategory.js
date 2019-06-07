@@ -5,8 +5,7 @@ import PropTypes from "prop-types";
 import {
   addSubCategory,
   getSubCategory,
-  editSubCategory,
-  clearSubCategory
+  editSubCategory
 } from "../../store/actions/subCategories";
 import { getCategories } from "../../store/actions/categories";
 import SubCategoryForm from "./SubCategoryForm";
@@ -31,8 +30,10 @@ class EditCategory extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    this.props.clearSubCategory();
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params !== prevProps.match.params) {
+      window.location.reload();
+    }
   }
 
   onDrop = async (acceptedFiles) => {
@@ -118,8 +119,7 @@ EditCategory.propTypes = {
   addSubCategory: PropTypes.func.isRequired,
   getCategories: PropTypes.func.isRequired,
   editSubCategory: PropTypes.func.isRequired,
-  getSubCategory: PropTypes.func.isRequired,
-  clearSubCategory: PropTypes.func.isRequired
+  getSubCategory: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -133,7 +133,6 @@ export default connect(
     addSubCategory,
     getCategories,
     editSubCategory,
-    getSubCategory,
-    clearSubCategory
+    getSubCategory
   }
 )(EditCategory);

@@ -18,6 +18,7 @@
         &-active {
           color: $primary-color;
           background: lighten($primary-color, 40%);
+          font-weight: 500;
         }
       }
     }

@@ -2,10 +2,10 @@
   position: relative;
   overflow: hidden;
   width: 170px;
-  height: 300px;
+  height: 250px;
   color: #fff;
   display: inline-block;
-  border: 2px solid #fff;
+  border: 3px solid #fff;
   border-radius: 4px;
 
   &::after {
@@ -13,7 +13,7 @@
     position: absolute;
     display: block;
     background: $dark-color;
-    opacity: 0.2;
+    opacity: 0.3;
     top: 0;
     left: 0;
     width: 100%;
@@ -21,14 +21,14 @@
   }
 
   &:hover &-image {
-    transform: scale(1.08);
+    transform: scale(1.07);
   }
 
   &-image {
     height: 100%;
     width: 300px;
     display: block;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.25s ease-in-out;
   }
 
   &-name {
@@ -36,5 +36,6 @@
     z-index: 10;
     padding: 1rem;
     bottom: 0;
+    font-weight: 500;
   }
 }

@@ -31,6 +31,7 @@ export default (state = initialState, action) => {
     case "EDIT_CATEGORY":
       return {
         ...state,
+        category: action.payload,
         categories: state.categories.map((category) => {
           if (category._id === action.payload._id) {
             return {
@@ -41,11 +42,6 @@ export default (state = initialState, action) => {
             return category;
           }
         })
-      };
-    case "CLEAR_CATEGORY":
-      return {
-        ...state,
-        category: {}
       };
     default:
       return state;

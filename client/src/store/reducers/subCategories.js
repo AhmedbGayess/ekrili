@@ -31,6 +31,7 @@ export default (state = initialState, action) => {
     case "EDIT_SUBCATEGORY":
       return {
         ...state,
+        subCategory: action.payload,
         subCategories: state.subCategories.map((subCategory) => {
           if (subCategory._id === action.payload._id) {
             return {
@@ -40,11 +41,6 @@ export default (state = initialState, action) => {
             return subCategory;
           }
         })
-      };
-    case "CLEAR_SUBCATEGORY":
-      return {
-        ...state,
-        subCategory: {}
       };
     default:
       return state;
