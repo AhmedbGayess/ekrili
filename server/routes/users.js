@@ -14,7 +14,20 @@ router.post("/register", (req, res) => {
         if (err) throw err;
         user.password = hash;
         await user.save();
-        res.status(201).send(user);
+        const payload = {
+          id: user._id,
+          email: user.email,
+          admin: user.admin
+        };
+
+        jwt.sign(
+          payload,
+          process.env.JWT_SECRET,
+          { expiresIn: 7200 },
+          (err, token) => {
+            res.json({ token });
+          }
+        );
       } catch (e) {
         res.status(500).send(e);
       }

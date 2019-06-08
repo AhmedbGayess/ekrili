@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      minlength: 5,
+      minlength: 3,
       maxlength: 200
     },
     email: {
@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       validate(value) {
-        if (!validator.isMobilePhone(value)) {
+        if (!validator.isMobilePhone(value, "ar-TN")) {
           throw new Error("Phone number is invalid");
         }
       }
