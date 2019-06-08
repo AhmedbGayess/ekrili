@@ -1,8 +1,3 @@
-.login-form {
-  display: flex;
-  flex-direction: column;
-}
-
 .admin-login {
   margin: 5rem auto;
   display: grid;
@@ -11,4 +6,16 @@
   border: 1px solid $light-color;
   border-radius: 4px;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.auth-form {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+
+  &__error {
+    margin: 10px 0;
+    color: $tertiary-color;
+    text-align: center;
+  }
 }

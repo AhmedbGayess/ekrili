@@ -1,7 +1,8 @@
 const initialState = {
   user: {},
   isAuthenticated: false,
-  error: ""
+  loginError: "",
+  signupError: ""
 };
 
 export default (state = initialState, action) => {
@@ -15,7 +16,13 @@ export default (state = initialState, action) => {
     case "SET_LOGIN_ERROR":
       return {
         ...state,
-        error: "Email ou mot de passe invalide"
+        loginError: "Email ou mot de passe invalide"
+      };
+    case "SET_SIGNUP_ERROR":
+      return {
+        ...state,
+        signupError:
+          "Désolés, un problème est survenu. Veuillez rééssayer un peu plus tard."
       };
     default:
       return state;

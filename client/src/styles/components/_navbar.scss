@@ -1,0 +1,45 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5rem;
+  position: sticky;
+  top: 0;
+
+  &-home {
+    &::after {
+      content: "";
+      background-image: linear-gradient(
+        to bottom,
+        #4629d3,
+        #7b61e3,
+        #a795ef,
+        #d3caf9,
+        #ffffff
+      );
+      opacity: 0.3;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1;
+    }
+  }
+
+  &-page {
+    background-color: $secondary-color;
+  }
+
+  &-list {
+    display: flex;
+
+    &-item {
+      margin: 1rem;
+
+      & > * {
+        font-weight: bold;
+      }
+    }
+  }
+}
