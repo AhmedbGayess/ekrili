@@ -68,7 +68,7 @@ router.delete(
     try {
       const path = "./uploads/" + req.params.filename;
       fs.unlinkSync(path);
-      res.json({ success: "Image deleted" });
+      res.json({ image: req.params.filename });
     } catch (err) {
       res.json(err);
     }

@@ -71,7 +71,7 @@ class Navbar extends React.Component {
         </div>
         <ul className="navbar-list">
           <li className="navbar-list-item">
-            <NavLink className="btn-primary" to="/">
+            <NavLink className="btn-primary" to="/create-ad">
               Créer un annonce
             </NavLink>
           </li>

@@ -63,7 +63,7 @@ class EditCategory extends React.Component {
 
   deleteImage = () => {
     axios
-      .delete(`/upload/${this.state.thumbnail}`)
+      .delete(`/upload/${this.state.image}`)
       .then(() => this.setState({ image: "" }))
       .catch((err) => console.log(err));
   };
