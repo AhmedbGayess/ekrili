@@ -27,7 +27,7 @@ class UserDropdown extends React.Component {
     return (
       <div
         ref={this.setWrapperRef}
-        className={classNames("dropdown dropdown-user", {
+        className={classNames("dropdown", {
           "dropdown-closed": !open,
           "dropdown-open": open
         })}

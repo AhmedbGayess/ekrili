@@ -27,7 +27,7 @@ class HelpDropdown extends React.Component {
     return (
       <div
         ref={this.setWrapperRef}
-        className={classNames("dropdown dropdown-help", {
+        className={classNames("dropdown", {
           "dropdown-closed": !open,
           "dropdown-open": open
         })}
