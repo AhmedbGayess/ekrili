@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 
-class UserDropdown extends React.Component {
+class HelpDropdown extends React.Component {
   componentDidMount() {
     document.addEventListener("mousedown", this.handleClickOutside);
   }
@@ -23,11 +23,11 @@ class UserDropdown extends React.Component {
   };
 
   render() {
-    const { open, close, logout } = this.props;
+    const { open, close } = this.props;
     return (
       <div
         ref={this.setWrapperRef}
-        className={classNames("dropdown dropdown-user", {
+        className={classNames("dropdown dropdown-help", {
           "dropdown-closed": !open,
           "dropdown-open": open
         })}
@@ -39,18 +39,23 @@ class UserDropdown extends React.Component {
               onClick={close}
               className="dropdown__list-item-link"
             >
-              Mon compte
+              Comment ça marche
             </Link>
           </li>
           <li className="dropdown__list-item">
             <Link to="/" onClick={close} className="dropdown__list-item-link">
-              Mes annonces
+              Conditions d'utilisation
             </Link>
           </li>
           <li className="dropdown__list-item">
-            <span to="/" onClick={logout} className="dropdown__list-item-link">
-              Se déconnecter
-            </span>
+            <Link to="/" onClick={close} className="dropdown__list-item-link">
+              Qui sommes-nous?
+            </Link>
+          </li>
+          <li className="dropdown__list-item">
+            <Link to="/" onClick={close} className="dropdown__list-item-link">
+              Nous contacter
+            </Link>
           </li>
         </ul>
       </div>
@@ -58,10 +63,9 @@ class UserDropdown extends React.Component {
   }
 }
 
-UserDropdown.propTypes = {
+HelpDropdown.propTypes = {
   open: PropTypes.bool.isRequired,
-  close: PropTypes.func.isRequired,
-  logout: PropTypes.func.isRequired
+  close: PropTypes.func.isRequired
 };
 
-export default UserDropdown;
+export default HelpDropdown;

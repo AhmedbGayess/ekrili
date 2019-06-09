@@ -1,7 +1,6 @@
 .dropdown {
   position: absolute;
-  right: 6rem;
-  top: 4.5;
+  top: 5rem;
   background: #fff;
   -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
@@ -9,14 +8,23 @@
   width: 15rem;
   transition: all 0.3s ease-in-out;
 
+  &-user {
+    right: 6rem;
+  }
+
+  &-help {
+    right: 1rem;
+  }
+
   &-open {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 
   &-closed {
     opacity: 0;
-    transform: translateY(-200%);
+    transform: translateX(200%);
+    max-height: 0;
   }
 
   &__list-item {

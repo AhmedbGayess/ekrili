@@ -5,15 +5,17 @@ import classNames from "classnames";
 import Proptypes from "prop-types";
 import SignupModal from "../auth/SignupModal";
 import LoginModal from "../auth/LoginModal";
-import { FaRegUser, FaAngleDown, FaQuestion } from "react-icons/fa";
+import { FaRegUser } from "react-icons/fa";
 import UserDropdown from "./UserDropdown";
 import { logout } from "../../store/actions/auth";
+import HelpDropdown from "./HelpDropdown";
 
 class Navbar extends React.Component {
   state = {
     singupModalOpen: false,
     loginModalOpen: false,
-    userDropdownOpen: false
+    userDropdownOpen: false,
+    helpDropdownOpen: false
   };
 
   toggleSignupModal = () => {
@@ -54,6 +56,18 @@ class Navbar extends React.Component {
     });
   };
 
+  closeHelpDropdown = () => {
+    this.setState({
+      helpDropdownOpen: false
+    });
+  };
+
+  openHelpDropdown = () => {
+    this.setState({
+      helpDropdownOpen: true
+    });
+  };
+
   logout = () => {
     this.props.logout();
     this.closeUserDropdown();
@@ -61,7 +75,12 @@ class Navbar extends React.Component {
 
   render() {
     const homePath = this.props.history.location.pathname === "/";
-    const { singupModalOpen, loginModalOpen, userDropdownOpen } = this.state;
+    const {
+      singupModalOpen,
+      loginModalOpen,
+      userDropdownOpen,
+      helpDropdownOpen
+    } = this.state;
     const loggedIn = Object.keys(this.props.user).length > 0;
     return (
       <nav
@@ -112,7 +131,16 @@ class Navbar extends React.Component {
             </li>
           )}
           <li className="navbar-list-item">
-            <button className="navbar-list-item__question">?</button>
+            <button
+              className="navbar-list-item__question"
+              onClick={this.openHelpDropdown}
+            >
+              ?
+            </button>
+            <HelpDropdown
+              open={helpDropdownOpen}
+              close={this.closeHelpDropdown}
+            />
           </li>
         </ul>
         <SignupModal
