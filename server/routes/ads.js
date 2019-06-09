@@ -12,17 +12,18 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    const ad = new Ad({
-      ...req.body,
-      name: req.user.name,
-      phone: req.user.phone,
-      user: req.user.id
-    });
     try {
       const subcategory = await SubCategory.findById(req.body.subCategory);
       if (!subcategory) {
         return res.status(404).send("Subcategory doesn't exist");
       }
+      const ad = new Ad({
+        ...req.body,
+        category: subcategory.category,
+        name: req.user.name,
+        phone: req.user.phone,
+        user: req.user.id
+      });
       await ad.save();
       res.send(ad);
     } catch (e) {
