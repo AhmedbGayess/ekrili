@@ -3,6 +3,7 @@ const passport = require("passport");
 const fs = require("fs");
 const Ad = require("../models/Ad");
 const SubCategory = require("../models/SubCategory");
+const Category = require("../models/Category");
 const User = require("../models/User");
 
 const router = express.Router();
@@ -34,8 +35,12 @@ router.get("/subcategory/:id", async (req, res) => {
   const match = {};
   const sort = {};
 
-  if (req.query.region) {
-    match.region = req.query.region;
+  if (req.query.governorate) {
+    match.governorate = req.query.governorate;
+  }
+
+  if (req.query.delegation) {
+    match.delegation = req.query.delegation;
   }
 
   if (req.query.sortBy) {
@@ -60,6 +65,46 @@ router.get("/subcategory/:id", async (req, res) => {
       })
       .execPopulate();
     res.send(subCategory.ads);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+});
+
+router.get("/category/:id", async (req, res) => {
+  const match = {};
+  const sort = {};
+
+  if (req.query.governorate) {
+    match.governorate = req.query.governorate;
+  }
+
+  if (req.query.delegation) {
+    match.delegation = req.query.delegation;
+  }
+
+  if (req.query.sortBy) {
+    const parts = req.query.sortBy.split(":");
+    sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
+  }
+
+  try {
+    const category = await Category.findById(req.params.id);
+    if (!category) {
+      return res.status(404).send("No ads found");
+    }
+
+    await category
+      .populate({
+        path: "ads",
+        match,
+        options: {
+          limit: parseInt(req.query.limit),
+          skip: parseInt(req.query.skip),
+          sort
+        }
+      })
+      .execPopulate();
+    res.send(category.ads);
   } catch (e) {
     res.status(500).send(e);
   }
@@ -140,8 +185,12 @@ router.get("/find/title", async (req, res) => {
   const match = {};
   const sort = {};
 
-  if (req.query.region) {
-    match.region = req.query.region;
+  if (req.query.governorate) {
+    match.governorate = req.query.governorate;
+  }
+
+  if (req.query.delegation) {
+    match.delegation = req.query.delegation;
   }
 
   if (req.query.sortBy) {

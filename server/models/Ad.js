@@ -39,6 +39,11 @@ const AdSchema = new mongoose.Schema(
         required: true
       }
     ],
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "categories",
+      required: true
+    },
     subCategory: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "subCategories",
