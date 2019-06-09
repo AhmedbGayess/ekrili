@@ -5,7 +5,7 @@ import classNames from "classnames";
 import Proptypes from "prop-types";
 import SignupModal from "../auth/SignupModal";
 import LoginModal from "../auth/LoginModal";
-import { FaRegUser } from "react-icons/fa";
+import { FaRegUser, FaAngleDown, FaQuestion } from "react-icons/fa";
 import UserDropdown from "./UserDropdown";
 import { logout } from "../../store/actions/auth";
 
@@ -111,6 +111,9 @@ class Navbar extends React.Component {
               </button>
             </li>
           )}
+          <li className="navbar-list-item">
+            <button className="navbar-list-item__question">?</button>
+          </li>
         </ul>
         <SignupModal
           modalOpen={singupModalOpen}

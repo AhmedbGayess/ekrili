@@ -1,7 +1,9 @@
 import React from "react";
+import image from "../../images/butterfly.jpg";
 
 const Home = () => (
-  <div className="container">
+  <div>
+    <img src={image} alt="" style={{ position: "relative", top: "-85px" }} />
     <h1>Home</h1>
     <p>Home</p>
     <p>
