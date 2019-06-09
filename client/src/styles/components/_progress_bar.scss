@@ -1,0 +1,32 @@
+.progress-bar {
+  overflow: hidden;
+  height: 5px;
+  background: transparent;
+  border: 1px solid $primary-color;
+  border-radius: 5px;
+  margin-bottom: 0.6rem;
+
+  div {
+    height: 100%;
+    color: #fff;
+    text-align: center;
+    background: $primary-color;
+    transition: width 0.2s ease-in-out;
+  }
+
+  &__quarter {
+    width: 25%;
+  }
+
+  &__half {
+    width: 50%;
+  }
+
+  &__three-quarters {
+    width: 75%;
+  }
+
+  &__full {
+    width: 100%;
+  }
+}

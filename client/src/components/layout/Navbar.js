@@ -9,39 +9,12 @@ import { FaRegUser } from "react-icons/fa";
 import UserDropdown from "./UserDropdown";
 import { logout } from "../../store/actions/auth";
 import HelpDropdown from "./HelpDropdown";
+import { history } from "../../router/AppRouter";
 
 class Navbar extends React.Component {
   state = {
-    singupModalOpen: false,
-    loginModalOpen: false,
     userDropdownOpen: false,
     helpDropdownOpen: false
-  };
-
-  toggleSignupModal = () => {
-    this.setState((prevState) => ({
-      singupModalOpen: !prevState.singupModalOpen
-    }));
-  };
-
-  toggleLoginModal = () => {
-    this.setState((prevState) => ({
-      loginModalOpen: !prevState.loginModalOpen
-    }));
-  };
-
-  switchToSignup = () => {
-    this.setState({
-      loginModalOpen: false,
-      singupModalOpen: true
-    });
-  };
-
-  switchToLogin = () => {
-    this.setState({
-      loginModalOpen: true,
-      singupModalOpen: false
-    });
   };
 
   closeUserDropdown = () => {
@@ -74,13 +47,17 @@ class Navbar extends React.Component {
   };
 
   render() {
-    const homePath = this.props.history.location.pathname === "/";
+    const homePath = history.location.pathname === "/";
+    const { userDropdownOpen, helpDropdownOpen } = this.state;
+
     const {
-      singupModalOpen,
       loginModalOpen,
-      userDropdownOpen,
-      helpDropdownOpen
-    } = this.state;
+      signupModalOpen,
+      toggleLoginModal,
+      toggleSignupModal,
+      switchToSignup,
+      switchToLogin
+    } = this.props;
     const loggedIn = Object.keys(this.props.user).length > 0;
     return (
       <nav
@@ -115,17 +92,14 @@ class Navbar extends React.Component {
           )}
           {!loggedIn && (
             <li className="navbar-list-item">
-              <button className="btn-secondary" onClick={this.toggleLoginModal}>
+              <button className="btn-secondary" onClick={toggleLoginModal}>
                 Connexion
               </button>
             </li>
           )}
           {!loggedIn && (
             <li className="navbar-list-item">
-              <button
-                className="btn-secondary"
-                onClick={this.toggleSignupModal}
-              >
+              <button className="btn-secondary" onClick={toggleSignupModal}>
                 Inscription
               </button>
             </li>
@@ -144,14 +118,14 @@ class Navbar extends React.Component {
           </li>
         </ul>
         <SignupModal
-          modalOpen={singupModalOpen}
-          toggleModal={this.toggleSignupModal}
-          switchModal={this.switchToLogin}
+          modalOpen={signupModalOpen}
+          toggleModal={toggleSignupModal}
+          switchModal={switchToLogin}
         />
         <LoginModal
           modalOpen={loginModalOpen}
-          toggleModal={this.toggleLoginModal}
-          switchModal={this.switchToSignup}
+          toggleModal={toggleLoginModal}
+          switchModal={switchToSignup}
         />
       </nav>
     );
@@ -160,7 +134,13 @@ class Navbar extends React.Component {
 
 Navbar.propTypes = {
   user: Proptypes.shape({}).isRequired,
-  logout: Proptypes.func.isRequired
+  logout: Proptypes.func.isRequired,
+  loginModalOpen: Proptypes.bool.isRequired,
+  signupModalOpen: Proptypes.bool.isRequired,
+  toggleLoginModal: Proptypes.func.isRequired,
+  toggleSignupModal: Proptypes.func.isRequired,
+  switchToSignup: Proptypes.func.isRequired,
+  switchToLogin: Proptypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

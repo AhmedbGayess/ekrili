@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
     case "SET_CURRENT_USER":
       return {
         ...state,
-        user: action.payload,
+        user: { ...action.payload },
         isAuthenticated: Object.keys(action.payload).length > 0 ? true : false
       };
     case "SET_LOGIN_ERROR":
