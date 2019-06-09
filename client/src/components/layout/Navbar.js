@@ -1,13 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 import classNames from "classnames";
+import Proptypes from "prop-types";
 import SignupModal from "../auth/SignupModal";
 import LoginModal from "../auth/LoginModal";
+import { FaUser } from "react-icons/fa";
+import UserDropdown from "./UserDropdown";
+import { logout } from "../../store/actions/auth";
 
 class Navbar extends React.Component {
   state = {
     singupModalOpen: false,
-    loginModalOpen: false
+    loginModalOpen: false,
+    userDropdownOpen: false
   };
 
   toggleSignupModal = () => {
@@ -36,9 +42,27 @@ class Navbar extends React.Component {
     });
   };
 
+  closeUserDropdown = () => {
+    this.setState({
+      userDropdownOpen: false
+    });
+  };
+
+  openUserDropdown = () => {
+    this.setState({
+      userDropdownOpen: true
+    });
+  };
+
+  logout = () => {
+    this.props.logout();
+    this.closeUserDropdown();
+  };
+
   render() {
     const homePath = this.props.history.location.pathname === "/";
-    const { singupModalOpen, loginModalOpen } = this.state;
+    const { singupModalOpen, loginModalOpen, userDropdownOpen } = this.state;
+    const loggedIn = Object.keys(this.props.user).length > 0;
     return (
       <nav
         className={classNames("navbar", {
@@ -51,15 +75,42 @@ class Navbar extends React.Component {
         </div>
         <ul className="navbar-list">
           <li className="navbar-list-item">
-            <button className="btn-secondary" onClick={this.toggleLoginModal}>
-              Connexion
-            </button>
+            <NavLink className="btn-primary" to="/">
+              Créer un annonce
+            </NavLink>
           </li>
-          <li className="navbar-list-item">
-            <button className="btn-secondary" onClick={this.toggleSignupModal}>
-              Inscription
-            </button>
-          </li>
+          {loggedIn && (
+            <li className="navbar-list-item">
+              <span
+                className="navbar-list-item__user"
+                onClick={this.openUserDropdown}
+              >
+                <FaUser className="navbar-user" />
+              </span>
+              <UserDropdown
+                open={userDropdownOpen}
+                close={this.closeUserDropdown}
+                logout={this.logout}
+              />
+            </li>
+          )}
+          {!loggedIn && (
+            <li className="navbar-list-item">
+              <button className="btn-secondary" onClick={this.toggleLoginModal}>
+                Connexion
+              </button>
+            </li>
+          )}
+          {!loggedIn && (
+            <li className="navbar-list-item">
+              <button
+                className="btn-secondary"
+                onClick={this.toggleSignupModal}
+              >
+                Inscription
+              </button>
+            </li>
+          )}
         </ul>
         <SignupModal
           modalOpen={singupModalOpen}
@@ -76,4 +127,16 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar;
+Navbar.propTypes = {
+  user: Proptypes.shape({}).isRequired,
+  logout: Proptypes.func.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  user: state.auth.user
+});
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Navbar);

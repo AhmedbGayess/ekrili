@@ -10,14 +10,11 @@
     &::after {
       content: "";
       background-image: linear-gradient(
-        to bottom,
-        #4629d3,
-        #7b61e3,
-        #a795ef,
-        #d3caf9,
-        #ffffff
+        -180deg,
+        rgba(3, 13, 84, 0.25),
+        transparent
       );
-      opacity: 0.3;
+
       top: 0;
       left: 0;
       bottom: 0;
@@ -38,8 +35,29 @@
       margin: 1rem;
 
       & > * {
-        font-weight: bold;
+        font-weight: 500;
+      }
+
+      &__user {
+        display: inline-block;
+        height: 100%;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        padding: 0 0.8rem;
+        transition: all 0.3s;
+        cursor: pointer;
+        position: relative;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.4);
+        }
       }
     }
+  }
+
+  &-user {
+    height: 100%;
+    font-size: 1.2rem;
+    color: grey;
   }
 }
