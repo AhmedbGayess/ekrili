@@ -6,6 +6,7 @@ import AdminLogin from "../components/auth/AdminLogin";
 import AdminRouter from "./AdminRouter";
 import Navbar from "../components/layout/Navbar";
 import CreateAd from "../components/ad/CreateAd";
+import PrivateRoute from "./PrivateRoute";
 
 export const history = createBrowserHistory();
 
@@ -55,13 +56,14 @@ class AppRouter extends React.Component {
               toggleSignupModal={this.toggleSignupModal}
               switchToSignup={this.switchToSignup}
               switchToLogin={this.switchToLogin}
+              location={history.location.pathname}
             />
           )}
           exact
         />
         <Switch>
           <Route path="/" component={Home} exact />
-          <Route path="/create-ad" component={CreateAd} exact />
+          <PrivateRoute path="/create-ad" component={CreateAd} exact />
           <Route path="/admin-login" component={AdminLogin} exact />
           <Route path="/admin" component={AdminRouter} />
         </Switch>

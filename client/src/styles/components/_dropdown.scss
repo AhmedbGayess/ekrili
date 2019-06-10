@@ -11,12 +11,12 @@
 
   &-open {
     opacity: 1;
-    transform: translateX(0);
+    visibility: initial;
   }
 
   &-closed {
     opacity: 0;
-    transform: translateX(200%);
+    visibility: hidden;
   }
 
   &__list-item {

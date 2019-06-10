@@ -9,7 +9,6 @@ import { FaRegUser } from "react-icons/fa";
 import UserDropdown from "./UserDropdown";
 import { logout } from "../../store/actions/auth";
 import HelpDropdown from "./HelpDropdown";
-import { history } from "../../router/AppRouter";
 
 class Navbar extends React.Component {
   state = {
@@ -47,7 +46,7 @@ class Navbar extends React.Component {
   };
 
   render() {
-    const homePath = history.location.pathname === "/";
+    const homePath = this.props.location === "/";
     const { userDropdownOpen, helpDropdownOpen } = this.state;
 
     const {
@@ -70,11 +69,13 @@ class Navbar extends React.Component {
           <NavLink to="/">Placeholder</NavLink>
         </div>
         <ul className="navbar-list">
-          <li className="navbar-list-item">
-            <NavLink className="btn-primary" to="/create-ad">
-              Créer un annonce
-            </NavLink>
-          </li>
+          {loggedIn && (
+            <li className="navbar-list-item">
+              <NavLink className="btn-primary" to="/create-ad">
+                Créer un annonce
+              </NavLink>
+            </li>
+          )}
           {loggedIn && (
             <li className="navbar-list-item">
               <span
