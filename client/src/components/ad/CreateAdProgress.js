@@ -4,8 +4,11 @@ import PropTypes from "prop-types";
 
 const CreateAdProgress = ({ step }) => {
   let subtitle;
-  if (step == 1) {
+  if (step === 1) {
     subtitle = <h3>Qu'avez-vous à louer?</h3>;
+  }
+  if (step === 2) {
+    subtitle = <h3>Décrivez votre article</h3>;
   }
   return (
     <div className="my-3">

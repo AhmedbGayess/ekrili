@@ -7,10 +7,11 @@ import { createAd } from "../../store/actions/ads";
 import CreateAdProgress from "./CreateAdProgress";
 import CreatAdTips from "./CreatAdTips";
 import CreateAdTitle from "./CreateAdTitle";
+import CreateAdDescription from "./CreateAdDescripion";
 
 class NewAd extends React.Component {
   state = {
-    step: 1,
+    step: 2,
     imageOne: "",
     imageTwo: "",
     imageThree: ""
@@ -54,6 +55,18 @@ class NewAd extends React.Component {
           removeImage={this.removeImage}
         />
       );
+    } else if (step === 2) {
+      content = (
+        <CreateAdDescription
+          descriptionError={errors.description}
+          touchedDescription={touched.description}
+          category={this.props.values.category}
+          categoryError={errors.category}
+          touchedCategory={touched.category}
+          subCategoryError={errors.subCategory}
+          touchedSubCategory={touched.subCategory}
+        />
+      );
     }
     return (
       <div className="container">
@@ -95,13 +108,23 @@ const CreateAd = withFormik({
       price: "",
       governorate: "",
       delegation: "",
+      category: "",
       subCategory: ""
     };
   },
   validationSchema: Yup.object({
     title: Yup.string()
-      .min(10, "Soyez plus déscriptifs!")
-      .required("Ce champ est obligatoire")
+      .min(10, "Soyez plus déscriptif!")
+      .required("Veuillez ajouter un titre à votre annonce"),
+    description: Yup.string()
+      .min(50, "Soyez plus déscriptif!")
+      .required("Veuillez ajouter une description à votre article"),
+    category: Yup.string().required(
+      "Veuillez choisir une catégorie pour votre article"
+    ),
+    subCategory: Yup.string().required(
+      "Veuillez choisir une sous-catégorie pour votre article"
+    )
   }),
   handleSubmit(values, { props }) {}
 })(NewAd);
