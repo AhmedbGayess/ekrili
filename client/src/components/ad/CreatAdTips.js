@@ -22,6 +22,20 @@ const CreatAdTips = ({ step }) => {
         </li>
       </ul>
     );
+  } else if (step === 2) {
+    content = (
+      <ul className="tips-list">
+        <li className="tips-list-item">
+          <span className="tips-list-item-number">1.</span> Essayez d'anticiper
+          ce qu'on va vous demander à propos de votre article et includez-le
+          dans votre déscription.
+        </li>
+        <li className="tips-list-item">
+          <span className="tips-list-item-number">2.</span> N'hésitez pas à
+          décrire l'état de votre article et tout ce qu'il inclut.
+        </li>
+      </ul>
+    );
   }
   return (
     <div className="tips">
