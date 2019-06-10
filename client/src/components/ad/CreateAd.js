@@ -5,8 +5,8 @@ import * as Yup from "yup";
 import PropTypes from "prop-types";
 import { createAd } from "../../store/actions/ads";
 import CreateAdProgress from "./CreateAdProgress";
-import CreateAdImage from "./CreateAdImage";
-import FormInputField from "../common/FormInputField";
+import CreatAdTips from "./CreatAdTips";
+import CreateAdTitle from "./CreateAdTitle";
 
 class NewAd extends React.Component {
   state = {
@@ -38,44 +38,46 @@ class NewAd extends React.Component {
 
   render() {
     const { step, imageOne, imageTwo, imageThree } = this.state;
+    const { errors, touched } = this.props;
+
+    let content;
+
+    if (step === 1) {
+      content = (
+        <CreateAdTitle
+          error={errors.title}
+          touched={touched.title}
+          imageOne={imageOne}
+          imageTwo={imageTwo}
+          imageThree={imageThree}
+          addImage={this.addImage}
+          removeImage={this.removeImage}
+        />
+      );
+    }
     return (
       <div className="container">
         <CreateAdProgress step={step} />
-        <Form>
-          {step === 1 && (
-            <div className="create-ad">
-              <div>
-                <FormInputField name="title" label="Titre de l'annonce" />
-                <div className="my-1">
-                  <h4 className="my-1">Ajoutez des images à votre annonce</h4>
-                  <div className="create-ad-images">
-                    <CreateAdImage
-                      image={imageOne}
-                      stateImage="imageOne"
-                      addImage={this.addImage}
-                      removeImage={this.removeImage}
-                    />
-                    <CreateAdImage
-                      image={imageTwo}
-                      stateImage="imageTwo"
-                      addImage={this.addImage}
-                      removeImage={this.removeImage}
-                    />
-                    <CreateAdImage
-                      image={imageThree}
-                      stateImage="imageThree"
-                      addImage={this.addImage}
-                      removeImage={this.removeImage}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div>hello</div>
+        <div className="create-ad">
+          <div>
+            <Form>{content}</Form>
+            <div className="create-ad-buttons">
+              <button
+                onClick={this.previousStep}
+                className="btn-primary"
+                disabled={step === 1}
+              >
+                Précédent
+              </button>
+              <button onClick={this.nextStep} className="btn-primary">
+                Suivant
+              </button>
             </div>
-          )}
-        </Form>
-        <button onClick={this.nextStep}>next</button>
-        <button onClick={this.previousStep}>prev</button>
+          </div>
+          <div>
+            <CreatAdTips step={step} />
+          </div>
+        </div>
       </div>
     );
   }
@@ -97,7 +99,7 @@ const CreateAd = withFormik({
     };
   },
   validationSchema: Yup.object({
-    name: Yup.string()
+    title: Yup.string()
       .min(10, "Soyez plus déscriptifs!")
       .required("Ce champ est obligatoire")
   }),

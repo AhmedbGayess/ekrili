@@ -1,9 +1,9 @@
 .create-ad {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
 
-  div {
-    flex: 1;
-
+  &-title {
     .image-preview {
       position: relative;
       transition: all 0.3s ease-in-out;
@@ -67,5 +67,12 @@
       margin-top: 1rem;
       font-size: 14px;
     }
+  }
+
+  &-buttons {
+    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
   }
 }

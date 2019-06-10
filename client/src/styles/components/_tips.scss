@@ -1,0 +1,27 @@
+.tips {
+  background: $light-color;
+  padding: 1rem;
+  position: relative;
+
+  &-bulb {
+    position: absolute;
+    font-size: 1.5rem;
+    top: 23px;
+    left: 120px;
+  }
+
+  &-list {
+    margin: 1rem 0;
+
+    &-item {
+      font-weight: 500;
+      margin: 0.5rem;
+      text-align: justify;
+
+      &-number {
+        margin-right: 5px;
+        font-weight: bold;
+      }
+    }
+  }
+}
