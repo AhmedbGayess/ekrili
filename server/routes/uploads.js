@@ -5,6 +5,7 @@ const path = require("path");
 const fs = require("fs");
 const Jimp = require("jimp");
 const uuidv4 = require("uuid");
+const Image = require("../models/Image");
 
 const router = new express.Router();
 
@@ -53,7 +54,12 @@ router.post(
               .quality(90)
               .write(`./uploads/${image}`);
             fs.unlinkSync(`./uploads/${req.file.filename}`);
-            res.send({ image });
+            const savedImage = new Image({
+              image,
+              user: req.user.id
+            });
+            savedImage.save();
+            res.send(savedImage);
           });
         }
       }
@@ -64,13 +70,20 @@ router.post(
 router.delete(
   "/:filename",
   passport.authenticate("jwt", { session: false }),
-  (req, res) => {
+  async (req, res) => {
     try {
-      const path = "./uploads/" + req.params.filename;
-      fs.unlinkSync(path);
-      res.json({ image: req.params.filename });
+      const image = await Image.findOne({
+        image: req.params.filename,
+        user: req.user.id
+      });
+      if (!image) {
+        return res.status(404).send();
+      }
+      await image.remove();
+      fs.unlinkSync(`./uploads/${req.params.filename}`);
+      res.send(image);
     } catch (err) {
-      res.json(err);
+      res.send(err);
     }
   }
 );

@@ -6,15 +6,13 @@ import Dropzone from "../common/Dropzone";
 
 class CreateAdImage extends React.Component {
   state = {
-    loading: false,
-    image: ""
+    loading: false
   };
 
   onDrop = async (acceptedFiles) => {
     const formData = new FormData();
     this.setState({
-      loading: true,
-      image: ""
+      loading: true
     });
     try {
       formData.append("image", acceptedFiles[0]);
@@ -25,10 +23,9 @@ class CreateAdImage extends React.Component {
       };
       const { data } = await axios.post("/upload", formData, config);
       this.setState({
-        loading: false,
-        image: data.image
+        loading: false
       });
-      this.props.addImage(data.image);
+      this.props.addImage(data.image, this.props.stateImage);
     } catch (e) {
       this.setState({
         loading: false
@@ -39,20 +36,22 @@ class CreateAdImage extends React.Component {
 
   deleteImage = () => {
     axios
-      .delete(`/upload/${this.state.image}`)
-      .then(({ data }) => {
+      .delete(`/upload/${this.props.image}`)
+      .then(() => {
         this.setState({ image: "" });
-        this.props.removeImage(data.image);
+        this.props.removeImage(this.props.stateImage);
       })
       .catch((err) => console.log(err));
   };
 
   render() {
-    const { loading, image } = this.state;
+    const { loading } = this.state;
     return (
       <div>
-        {!image && <Dropzone onDrop={this.onDrop} loading={loading} />}
-        {image && (
+        {!this.props.image && (
+          <Dropzone onDrop={this.onDrop} loading={loading} />
+        )}
+        {this.props.image && (
           <div className="image-preview">
             <div className="image-preview-close">
               <FaTrash
@@ -61,7 +60,7 @@ class CreateAdImage extends React.Component {
               />
               <p>Supprimer</p>
             </div>
-            <img src={`/images/${image}`} alt="" />
+            <img src={`/images/${this.props.image}`} alt="" />
           </div>
         )}
       </div>
@@ -71,7 +70,9 @@ class CreateAdImage extends React.Component {
 
 CreateAdImage.propTypes = {
   addImage: PropTypes.func.isRequired,
-  removeImage: PropTypes.func.isRequired
+  removeImage: PropTypes.func.isRequired,
+  image: PropTypes.string.isRequired,
+  stateImage: PropTypes.string.isRequired
 };
 
 export default CreateAdImage;

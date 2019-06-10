@@ -11,7 +11,9 @@ import FormInputField from "../common/FormInputField";
 class NewAd extends React.Component {
   state = {
     step: 1,
-    images: []
+    imageOne: "",
+    imageTwo: "",
+    imageThree: ""
   };
 
   nextStep = () => {
@@ -26,21 +28,16 @@ class NewAd extends React.Component {
     }
   };
 
-  addImage = (image) => {
-    this.setState((prevState) => ({
-      images: [...prevState.images, image]
-    }));
+  addImage = (image, stateImage) => {
+    this.setState({ [stateImage]: image });
   };
 
   removeImage = (deletedImage) => {
-    console.log(deletedImage);
-    this.setState((prevState) => ({
-      images: prevState.images.filter((image) => image !== deletedImage)
-    }));
+    this.setState({ [deletedImage]: "" });
   };
 
   render() {
-    const { step } = this.state;
+    const { step, imageOne, imageTwo, imageThree } = this.state;
     return (
       <div className="container">
         <CreateAdProgress step={step} />
@@ -49,19 +46,28 @@ class NewAd extends React.Component {
             <div className="create-ad">
               <div>
                 <FormInputField name="title" label="Titre de l'annonce" />
-                <div className="create-ad-images">
-                  <CreateAdImage
-                    addImage={this.addImage}
-                    removeImage={this.removeImage}
-                  />
-                  <CreateAdImage
-                    addImage={this.addImage}
-                    removeImage={this.removeImage}
-                  />
-                  <CreateAdImage
-                    addImage={this.addImage}
-                    removeImage={this.removeImage}
-                  />
+                <div className="my-1">
+                  <h4 className="my-1">Ajoutez des images à votre annonce</h4>
+                  <div className="create-ad-images">
+                    <CreateAdImage
+                      image={imageOne}
+                      stateImage="imageOne"
+                      addImage={this.addImage}
+                      removeImage={this.removeImage}
+                    />
+                    <CreateAdImage
+                      image={imageTwo}
+                      stateImage="imageTwo"
+                      addImage={this.addImage}
+                      removeImage={this.removeImage}
+                    />
+                    <CreateAdImage
+                      image={imageThree}
+                      stateImage="imageThree"
+                      addImage={this.addImage}
+                      removeImage={this.removeImage}
+                    />
+                  </div>
                 </div>
               </div>
               <div>hello</div>
