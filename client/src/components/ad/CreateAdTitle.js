@@ -47,7 +47,7 @@ const CreateAdTitle = ({
 
 CreateAdTitle.propTypes = {
   error: PropTypes.string,
-  touched: PropTypes.string,
+  touched: PropTypes.bool,
   imageOne: PropTypes.string.isRequired,
   imageTwo: PropTypes.string.isRequired,
   imageThree: PropTypes.string.isRequired,
