@@ -36,6 +36,15 @@ const CreatAdTips = ({ step }) => {
         </li>
       </ul>
     );
+  } else if (step === 3) {
+    content = (
+      <ul className="tips-list">
+        <li className="tips-list-item">
+          Préciser votre location permettra aux personnes proches de vous de
+          retrouver votre article plus facilement.
+        </li>
+      </ul>
+    );
   }
   return (
     <div className="tips">

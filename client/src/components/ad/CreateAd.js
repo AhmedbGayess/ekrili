@@ -8,10 +8,11 @@ import CreateAdProgress from "./CreateAdProgress";
 import CreatAdTips from "./CreatAdTips";
 import CreateAdTitle from "./CreateAdTitle";
 import CreateAdDescription from "./CreateAdDescripion";
+import CreateAdLocation from "./CreateAdLocation";
 
 class NewAd extends React.Component {
   state = {
-    step: 2,
+    step: 3,
     imageOne: "",
     imageTwo: "",
     imageThree: ""
@@ -66,6 +67,10 @@ class NewAd extends React.Component {
           subCategoryError={errors.subCategory}
           touchedSubCategory={touched.subCategory}
         />
+      );
+    } else if (step === 3) {
+      content = (
+        <CreateAdLocation governorate={this.props.values.governorate} />
       );
     }
     return (

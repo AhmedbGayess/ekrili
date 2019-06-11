@@ -10,6 +10,9 @@ const CreateAdProgress = ({ step }) => {
   if (step === 2) {
     subtitle = <h3>Décrivez votre article</h3>;
   }
+  if (step === 3) {
+    subtitle = <h3>Où êtes vous?</h3>;
+  }
   return (
     <div className="my-3">
       <div className="progress-bar">
