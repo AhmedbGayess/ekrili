@@ -5,7 +5,7 @@ import classNames from "classnames";
 import Proptypes from "prop-types";
 import SignupModal from "../auth/SignupModal";
 import LoginModal from "../auth/LoginModal";
-import { FaRegUser } from "react-icons/fa";
+import { FaRegUser, FaQuestion } from "react-icons/fa";
 import UserDropdown from "./UserDropdown";
 import { logout } from "../../store/actions/auth";
 import HelpDropdown from "./HelpDropdown";
@@ -79,10 +79,10 @@ class Navbar extends React.Component {
           {loggedIn && (
             <li className="navbar-list-item">
               <span
-                className="navbar-list-item__user"
+                className="navbar-list-item__drop-button"
                 onClick={this.openUserDropdown}
               >
-                <FaRegUser className="navbar-user" />
+                <FaRegUser className="navbar-icon" />
               </span>
               <UserDropdown
                 open={userDropdownOpen}
@@ -106,12 +106,12 @@ class Navbar extends React.Component {
             </li>
           )}
           <li className="navbar-list-item">
-            <button
-              className="navbar-list-item__question"
+            <span
+              className="navbar-list-item__drop-button"
               onClick={this.openHelpDropdown}
             >
-              ?
-            </button>
+              <FaQuestion className="navbar-icon" />
+            </span>
             <HelpDropdown
               open={helpDropdownOpen}
               close={this.closeHelpDropdown}
