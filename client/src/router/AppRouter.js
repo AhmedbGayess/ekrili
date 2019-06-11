@@ -3,10 +3,10 @@ import { Router, Route, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import Home from "../components/home/Home";
 import AdminLogin from "../components/auth/AdminLogin";
+import PrivateRoute from "./PrivateRoute";
 import AdminRouter from "./AdminRouter";
 import Navbar from "../components/layout/Navbar";
-import CreateAd from "../components/ad/CreateAd";
-import PrivateRoute from "./PrivateRoute";
+import CreateAd from "../components/create-ad/CreateAd";
 
 export const history = createBrowserHistory();
 
