@@ -9,13 +9,16 @@ import CreatAdTips from "./CreatAdTips";
 import CreateAdTitle from "./CreateAdTitle";
 import CreateAdDescription from "./CreateAdDescripion";
 import CreateAdLocation from "./CreateAdLocation";
+import CreateAdPrice from "./CreateAdPrice";
 
 class NewAd extends React.Component {
   state = {
-    step: 3,
+    step: 1,
     imageOne: "",
     imageTwo: "",
-    imageThree: ""
+    imageThree: "",
+    weekPrice: "",
+    monthPrice: ""
   };
 
   nextStep = () => {
@@ -38,9 +41,63 @@ class NewAd extends React.Component {
     this.setState({ [deletedImage]: "" });
   };
 
+  onSubmit = (e) => {
+    e.preventDefault();
+    const { imageOne, imageTwo, imageThree } = this.state;
+
+    const images = [imageOne, imageTwo, imageThree].filter(
+      (image) => image !== ""
+    );
+    this.props.createAd({
+      ...this.props.values,
+      images
+    });
+  };
+
   render() {
     const { step, imageOne, imageTwo, imageThree } = this.state;
-    const { errors, touched } = this.props;
+    const { errors, touched, values } = this.props;
+
+    let disabledNext = false;
+
+    const imagesLength = [imageOne, imageTwo, imageThree].filter(
+      (image) => image !== ""
+    ).length;
+
+    if (
+      step === 1 &&
+      (errors.title || values.title === "" || imagesLength === 0)
+    ) {
+      disabledNext = true;
+    }
+
+    if (
+      step === 2 &&
+      (errors.category ||
+        errors.subCategory ||
+        errors.description ||
+        values.category === "" ||
+        values.subCategory === "" ||
+        values.description === "")
+    ) {
+      disabledNext = true;
+    }
+
+    if (
+      step === 3 &&
+      (errors.governorate ||
+        errors.delegation ||
+        values.governorate === "" ||
+        values.delegation === "")
+    ) {
+      disabledNext = true;
+    }
+
+    let disabledSubmit = false;
+
+    if (errors.price || values.price === "") {
+      disabledSubmit = true;
+    }
 
     let content;
 
@@ -78,6 +135,14 @@ class NewAd extends React.Component {
           touchedDelegation={touched.delegation}
         />
       );
+    } else if (step === 4) {
+      content = (
+        <CreateAdPrice
+          price={this.props.values.price}
+          error={errors.price}
+          touched={touched.price}
+        />
+      );
     }
     return (
       <div className="container">
@@ -93,9 +158,25 @@ class NewAd extends React.Component {
               >
                 Précédent
               </button>
-              <button onClick={this.nextStep} className="btn-primary">
-                Suivant
-              </button>
+              {step !== 4 && (
+                <button
+                  onClick={this.nextStep}
+                  className="btn-primary"
+                  disabled={disabledNext}
+                >
+                  Suivant
+                </button>
+              )}
+              {step === 4 && (
+                <button
+                  type="submit"
+                  disabled={disabledSubmit}
+                  onClick={this.onSubmit}
+                  className="btn-primary"
+                >
+                  Publier
+                </button>
+              )}
             </div>
           </div>
           <div>
@@ -141,9 +222,11 @@ const CreateAd = withFormik({
     ),
     delegation: Yup.string().required(
       "Veuillez choisir dans quel délégation votre article est disponible"
-    )
-  }),
-  handleSubmit(values, { props }) {}
+    ),
+    price: Yup.string()
+      .matches(/^\d{1,}(\.\d{0,3})?$/, "Vérifiez votre prix")
+      .required("Vous devez spécifier le prix de location par jour")
+  })
 })(NewAd);
 
 export default connect(

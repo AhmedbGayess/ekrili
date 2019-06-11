@@ -45,6 +45,22 @@ const CreatAdTips = ({ step }) => {
         </li>
       </ul>
     );
+  } else if (step === 4) {
+    content = (
+      <ul className="tips-list">
+        <li className="tips-list-item">
+          <span className="tips-list-item-number">1.</span> Fixez le prix de
+          location par jour de votre article. Vous pouvez parcourir la liste des
+          articles dans la même catégorie que le votre pour avoir une idée de
+          combien les autres utilisateurs chargent pour leur articles.
+        </li>
+        <li className="tips-list-item">
+          <span className="tips-list-item-number">2.</span> Nous calculons pour
+          vous le coût de location par semaine et par mois en arrondissant le
+          montant.
+        </li>
+      </ul>
+    );
   }
   return (
     <div className="tips">

@@ -33,6 +33,14 @@ const AdSchema = new mongoose.Schema(
       type: Number,
       required: true
     },
+    weekPrice: {
+      type: Number,
+      required: true
+    },
+    monthPrice: {
+      type: Number,
+      required: true
+    },
     images: [
       {
         type: String,

@@ -22,7 +22,9 @@ router.post(
         category: subcategory.category,
         name: req.user.name,
         phone: req.user.phone,
-        user: req.user.id
+        user: req.user.id,
+        weekPrice: Math.floor(req.body.price * 7),
+        monthPrice: Math.floor(req.body.price * 30)
       });
       await ad.save();
       res.send(ad);

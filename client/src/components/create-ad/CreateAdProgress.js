@@ -12,6 +12,8 @@ const CreateAdProgress = ({ step }) => {
   }
   if (step === 3) {
     subtitle = <h3>Où êtes vous?</h3>;
+  } else if (step === 4) {
+    subtitle = <h3>Combien chargez-vous pour votre article?</h3>;
   }
   return (
     <div className="my-3">
