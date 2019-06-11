@@ -70,7 +70,13 @@ class NewAd extends React.Component {
       );
     } else if (step === 3) {
       content = (
-        <CreateAdLocation governorate={this.props.values.governorate} />
+        <CreateAdLocation
+          governorate={this.props.values.governorate}
+          governorateError={errors.governorate}
+          touchedGovernorate={touched.governorate}
+          delegationError={errors.delegation}
+          touchedDelegation={touched.delegation}
+        />
       );
     }
     return (
@@ -129,6 +135,12 @@ const CreateAd = withFormik({
     ),
     subCategory: Yup.string().required(
       "Veuillez choisir une sous-catégorie pour votre article"
+    ),
+    governorate: Yup.string().required(
+      "Veuillez choisir dans quel gouvernorat votre article est disponible"
+    ),
+    delegation: Yup.string().required(
+      "Veuillez choisir dans quel délégation votre article est disponible"
     )
   }),
   handleSubmit(values, { props }) {}
