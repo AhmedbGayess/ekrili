@@ -35,9 +35,10 @@
       }
       &-close {
         position: absolute;
+        height: 40%;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -20%);
+        transform: translate(-50%, -40%);
         color: #fff;
         font-size: 2rem;
         cursor: pointer;
