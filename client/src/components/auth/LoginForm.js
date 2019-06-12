@@ -56,7 +56,7 @@ const LoginForm = withFormik({
     const success = await props.login(values);
     if (success && adminRoute) {
       history.push("/admin");
-    } else if (success) {
+    } else if (!adminRoute && success) {
       props.closeModal();
     }
   }
