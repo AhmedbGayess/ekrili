@@ -50,7 +50,7 @@ router.post(
             if (err) throw err;
             const image = `image-${uuidv4()}.jpeg`;
             img
-              .resize(300, 300)
+              .cover(350, 280)
               .quality(90)
               .write(`./uploads/${image}`);
             fs.unlinkSync(`./uploads/${req.file.filename}`);
