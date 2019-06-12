@@ -62,7 +62,11 @@ class AppRouter extends React.Component {
           exact
         />
         <Switch>
-          <Route path="/" component={Home} exact />
+          <Route
+            path="/"
+            render={() => <Home toggleSignupModal={this.toggleSignupModal} />}
+            exact
+          />
           <PrivateRoute path="/create-ad" component={CreateAd} exact />
           <Route path="/admin-login" component={AdminLogin} exact />
           <Route path="/admin" component={AdminRouter} />

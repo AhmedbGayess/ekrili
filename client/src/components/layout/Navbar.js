@@ -5,7 +5,7 @@ import classNames from "classnames";
 import Proptypes from "prop-types";
 import SignupModal from "../auth/SignupModal";
 import LoginModal from "../auth/LoginModal";
-import { FaRegUser, FaQuestion } from "react-icons/fa";
+import { FaRegUser } from "react-icons/fa";
 import UserDropdown from "./UserDropdown";
 import { logout } from "../../store/actions/auth";
 import HelpDropdown from "./HelpDropdown";
@@ -110,7 +110,7 @@ class Navbar extends React.Component {
               className="navbar-list-item__drop-button"
               onClick={this.openHelpDropdown}
             >
-              <FaQuestion className="navbar-icon" />
+              <span className="navbar-icon">?</span>
             </span>
             <HelpDropdown
               open={helpDropdownOpen}

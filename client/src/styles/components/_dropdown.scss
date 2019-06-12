@@ -29,7 +29,6 @@
       color: $dark-color;
 
       &:hover {
-        background: lighten($secondary-color, 30%);
         color: $primary-color;
       }
     }
