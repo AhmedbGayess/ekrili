@@ -113,3 +113,48 @@
     font-weight: bold;
   }
 }
+
+@media (max-width: 1400px) {
+  .home-search {
+    &-form {
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 0.5rem;
+    }
+
+    &-title {
+      font-size: 2.5rem;
+    }
+  }
+  &-input {
+  }
+
+  .react-select {
+    &-container {
+      border-right: none;
+    }
+    &__control {
+      border-radius: 4px !important;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .home-search {
+    &-title {
+      font-size: 2rem;
+    }
+    &-post {
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .home-search {
+    &-center {
+      width: 90%;
+    }
+  }
+}
