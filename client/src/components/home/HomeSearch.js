@@ -1,12 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { IoIosSearch } from "react-icons/io";
 import PropTypes from "prop-types";
 import { governorates } from "../../utils/locations.js";
 import setDelegation from "../../utils/setDelegation.js";
-import HomeSelectInput from "./HomeSelectInput.js";
 import HomeSearchForm from "./HomeSearchForm.js";
+import {
+  setSearchName,
+  setSearchGovernorate,
+  setSearchDelegation
+} from "../../store/actions/search";
 
 class HomeSearch extends React.Component {
   state = {
@@ -27,6 +30,7 @@ class HomeSearch extends React.Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+    this.props.setSearchName(e.target.value);
   };
 
   onGovernorateChange = (governorate) => {
@@ -37,20 +41,12 @@ class HomeSearch extends React.Component {
       label: option.name
     }));
     this.setState({ delegations, delegation: "" });
+    this.props.setSearchGovernorate(governorate.value);
   };
 
   onDelegationChange = (delegation) => {
     this.setState({ delegation });
-  };
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    const { search, governorate, delegation } = this.state;
-    console.log({
-      search,
-      governorate: governorate.value,
-      delegation: delegation.value
-    });
+    this.props.setSearchDelegation(delegation.value);
   };
 
   render() {
@@ -109,4 +105,7 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps)(HomeSearch);
+export default connect(
+  mapStateToProps,
+  { setSearchName, setSearchDelegation, setSearchGovernorate }
+)(HomeSearch);

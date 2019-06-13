@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import PropTypes from "prop-types";
 import HomeSelectInput from "./HomeSelectInput.js";
@@ -14,7 +15,7 @@ const HomeSearchForm = ({
   delegation,
   onSubmit
 }) => (
-  <form className="home-search-form" onSubmit={onSubmit}>
+  <form className="home-search-form">
     <div className="home-search-container">
       <input
         name="search"
@@ -43,7 +44,9 @@ const HomeSearchForm = ({
       value={delegation}
       placeholder="Délégation"
     />
-    <button className="btn-primary">Chercher</button>
+    <Link className="btn-primary home-search-button" to="/">
+      Chercher
+    </Link>
   </form>
 );
 
@@ -52,7 +55,6 @@ HomeSearchForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   onGovernorateChange: PropTypes.func.isRequired,
   onDelegationChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
   governorates: PropTypes.array.isRequired,
   delegations: PropTypes.array.isRequired
 };
