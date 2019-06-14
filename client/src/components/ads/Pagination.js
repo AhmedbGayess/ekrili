@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const Pagination = ({ count, link, pageNumber }) => {
-  const pagesNumber = Math.ceil(count / 3);
+  const pagesNumber = Math.ceil(count / 20);
   let pages = [];
 
   if (pagesNumber <= 5) {
@@ -11,10 +11,13 @@ const Pagination = ({ count, link, pageNumber }) => {
       pages.push(i);
     }
   } else if (pageNumber === pagesNumber) {
-    pages = [1, pageNumber - 2, pageNumber - 1, pageNumber];
+    pages = [1, pageNumber - 2, pageNumber - 1, pagesNumber];
   } else {
-    const arr = [1, pageNumber - 1, pageNumber, pageNumber + 1, pageNumber];
-    pages = [...new Set(arr)].filter((num) => num !== 0);
+    const middlePages = [pageNumber - 1, pageNumber, pageNumber + 1]
+      .filter((page) => page !== 0)
+      .filter((page) => page !== 1)
+      .filter((page) => page !== pagesNumber);
+    pages = [1, ...middlePages, pagesNumber];
   }
 
   const pagination = pages.map((page, i) => (
@@ -31,6 +34,34 @@ const Pagination = ({ count, link, pageNumber }) => {
       {page}
     </NavLink>
   ));
+
+  if (pageNumber === pagesNumber && pagesNumber > 5) {
+    pagination.splice(
+      pagination.length - 3,
+      0,
+      <span className="pagination__dots" key="end-dots">
+        ...
+      </span>
+    );
+  } else if (pagination.length <= 5 && pageNumber < pagesNumber - 2) {
+    pagination.splice(
+      pagination.length - 1,
+      0,
+      <span className="pagination__dots" key="end-dots">
+        ...
+      </span>
+    );
+  }
+
+  if (pagesNumber >= 5 && pageNumber >= 4 && pageNumber !== pagesNumber) {
+    pagination.splice(
+      1,
+      0,
+      <span className="pagination__dots" key="start-dots">
+        ...
+      </span>
+    );
+  }
 
   const previousLink = `/browse-ads/${pageNumber - 1}/${link}`;
   const nextLink = `/browse-ads/${pageNumber + 1}/${link}`;

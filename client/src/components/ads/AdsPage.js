@@ -8,9 +8,10 @@ import Pagination from "./Pagination";
 class AdsPage extends React.Component {
   componentDidMount() {
     const query = this.props.location.search
-      ? `${this.props.location.search}&skip=${this.props.match.params.page * 3 -
-          3}&limit=3`
-      : `?skip=${this.props.match.params.page * 3 - 3}&limit=3`;
+      ? `${this.props.location.search}&skip=${this.props.match.params.page *
+          20 -
+          20}&limit=20`
+      : `?skip=${this.props.match.params.page * 20 - 20}&limit=20`;
     this.props.getAds(query);
   }
 
@@ -21,9 +22,9 @@ class AdsPage extends React.Component {
     ) {
       const query = this.props.location.search
         ? `${this.props.location.search}&skip=${this.props.match.params.page -
-            3 -
-            3}&limit=3`
-        : `?skip=${this.props.match.params.page * 3 - 3}&limit=3`;
+            20 -
+            20}&limit=20`
+        : `?skip=${this.props.match.params.page * 20 - 20}&limit=20`;
       this.props.getAds(query);
     }
   }
