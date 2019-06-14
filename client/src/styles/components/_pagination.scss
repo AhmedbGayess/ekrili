@@ -10,6 +10,7 @@
     display: inline-block;
     width: 3rem;
     border-radius: 50%;
+    transition: all 0.2s ease-in-out;
 
     &-active {
       color: $primary-color;

@@ -33,8 +33,6 @@ class AdsPage extends React.Component {
     const { ads, count, loading } = this.props.ads;
     return (
       <div>
-        <h1>hello</h1>
-        <Link to="/browse-ads">Go</Link>
         <Pagination
           count={count}
           link={this.props.location.search}
