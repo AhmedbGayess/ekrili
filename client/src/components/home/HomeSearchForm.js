@@ -23,6 +23,7 @@ const HomeSearchForm = ({
         className="home-search-input"
         onChange={onChange}
         placeholder="Ordinateur, appareil photo, robe..."
+        autoComplete="off"
       />
       <IoIosSearch className="home-search-container-icon" />
     </div>
@@ -37,12 +38,14 @@ const HomeSearchForm = ({
       options={delegations}
       value={delegation}
       placeholder="Délégation"
+      noOptions="Séléctionnez d'abord un gouvernorat"
     />
     <HomeSelectInput
       onChange={onDelegationChange}
       options={delegations}
       value={delegation}
       placeholder="Délégation"
+      noOptions="Séléctionnez d'abord un gouvernorat"
     />
     <Link
       className="btn-primary home-search-button"
