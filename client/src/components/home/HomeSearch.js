@@ -5,17 +5,12 @@ import PropTypes from "prop-types";
 import { governorates } from "../../utils/locations.js";
 import setDelegation from "../../utils/setDelegation.js";
 import HomeSearchForm from "./HomeSearchForm.js";
-import {
-  setSearchName,
-  setSearchGovernorate,
-  setSearchDelegation
-} from "../../store/actions/search";
 
 class HomeSearch extends React.Component {
   state = {
-    search: "",
-    governorate: null,
-    delegation: null,
+    title: "",
+    governorate: "",
+    delegation: "",
     delegations: [],
     governorates: []
   };
@@ -30,33 +25,40 @@ class HomeSearch extends React.Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-    this.props.setSearchName(e.target.value);
   };
 
   onGovernorateChange = (governorate) => {
-    this.setState({ governorate });
     const delegationsArray = setDelegation(governorate.value);
     const delegations = delegationsArray.map((option) => ({
       value: option.name,
       label: option.name
     }));
-    this.setState({ delegations, delegation: "" });
-    this.props.setSearchGovernorate(governorate.value);
+    this.setState({ delegations });
+    this.setState({ governorate });
   };
 
   onDelegationChange = (delegation) => {
     this.setState({ delegation });
-    this.props.setSearchDelegation(delegation.value);
   };
 
   render() {
     const {
-      search,
-      governorate,
       governorates,
-      delegation,
-      delegations
+      delegations,
+      title,
+      governorate,
+      delegation
     } = this.state;
+    const titleQuery = title ? `title=${title}` : "";
+    const governorateQuery = governorate
+      ? `governorate=${governorate.value}`
+      : "";
+    const delegationQuery = delegation ? `delegation=${delegation.value}` : "";
+
+    const query = [titleQuery, governorateQuery, delegationQuery]
+      .filter((string) => string.length > 0)
+      .join("&");
+
     return (
       <div className="home-search">
         <div className="home-search-center">
@@ -72,7 +74,8 @@ class HomeSearch extends React.Component {
             delegations={delegations}
             governorate={governorate}
             delegation={delegation}
-            search={search}
+            title={title}
+            query={query}
           />
           <div className="home-search-post">
             <p>Ou mettez quelque chose à louer</p>
@@ -105,7 +108,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(
-  mapStateToProps,
-  { setSearchName, setSearchDelegation, setSearchGovernorate }
-)(HomeSearch);
+export default connect(mapStateToProps)(HomeSearch);

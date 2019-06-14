@@ -183,8 +183,8 @@ router.get("/user/:id", async (req, res) => {
   }
 });
 
-router.get("/find/title", async (req, res) => {
-  const title = req.query.title.trim();
+router.get("/", async (req, res) => {
+  const title = req.query.title ? req.query.title.trim() : "";
   const match = {};
   const sort = {};
 
@@ -208,10 +208,15 @@ router.get("/find/title", async (req, res) => {
       .limit(parseInt(req.query.limit))
       .skip(parseInt(req.query.skip))
       .sort(sort);
+
+    const count = await Ad.find({
+      title: new RegExp(`.*${title}.*`, "i"),
+      ...match
+    }).countDocuments();
     if (!ads) {
       return res.status(404).send("No ads found");
     }
-    res.send(ads);
+    res.send({ ads, count });
   } catch (e) {
     res.status(500).send(e);
   }

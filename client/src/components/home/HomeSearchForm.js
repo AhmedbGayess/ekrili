@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import HomeSelectInput from "./HomeSelectInput.js";
 
 const HomeSearchForm = ({
-  search,
+  title,
   onChange,
   onGovernorateChange,
   onDelegationChange,
@@ -13,13 +13,13 @@ const HomeSearchForm = ({
   delegations,
   governorate,
   delegation,
-  onSubmit
+  query
 }) => (
   <form className="home-search-form">
     <div className="home-search-container">
       <input
-        name="search"
-        value={search}
+        name="title"
+        value={title}
         className="home-search-input"
         onChange={onChange}
         placeholder="Ordinateur, appareil photo, robe..."
@@ -44,14 +44,17 @@ const HomeSearchForm = ({
       value={delegation}
       placeholder="Délégation"
     />
-    <Link className="btn-primary home-search-button" to="/">
+    <Link
+      className="btn-primary home-search-button"
+      to={`/browse-ads/1?${query}`}
+    >
       Chercher
     </Link>
   </form>
 );
 
 HomeSearchForm.propTypes = {
-  search: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onGovernorateChange: PropTypes.func.isRequired,
   onDelegationChange: PropTypes.func.isRequired,

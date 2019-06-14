@@ -1,6 +1,7 @@
 const initialState = {
   ad: {},
   ads: [],
+  count: 0,
   loading: false
 };
 
@@ -20,7 +21,8 @@ export default (state = initialState, action) => {
     case "SET_ADS":
       return {
         ...state,
-        ads: [...action.payload],
+        ads: [...action.payload.ads],
+        count: action.payload.count,
         loading: false
       };
     default:

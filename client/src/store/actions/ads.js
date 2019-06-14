@@ -23,6 +23,19 @@ export const getAd = (id) => async (dispatch) => {
   }
 };
 
+export const getAds = (query) => async (dispatch) => {
+  dispatch(setAdsLoading());
+  try {
+    const { data } = await axios.get(`/ads${query}`);
+    dispatch({
+      type: "SET_ADS",
+      payload: data
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const getAdsByCategory = (id) => async (dispatch) => {
   try {
     dispatch(setAdsLoading());

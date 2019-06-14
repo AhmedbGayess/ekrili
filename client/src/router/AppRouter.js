@@ -7,6 +7,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRouter from "./AdminRouter";
 import Navbar from "../components/layout/Navbar";
 import CreateAd from "../components/create-ad/CreateAd";
+import AdsPage from "../components/ads/AdsPage";
 
 export const history = createBrowserHistory();
 
@@ -47,7 +48,7 @@ class AppRouter extends React.Component {
     return (
       <Router history={history}>
         <Route
-          path={["/", "/create-ad"]}
+          path={["/", "/create-ad", "/browse-ads/:page"]}
           render={() => (
             <Navbar
               loginModalOpen={loginModalOpen}
@@ -68,6 +69,7 @@ class AppRouter extends React.Component {
             exact
           />
           <PrivateRoute path="/create-ad" component={CreateAd} exact />
+          <Route path="/browse-ads/:page" component={AdsPage} exact />
           <Route path="/admin-login" component={AdminLogin} exact />
           <Route path="/admin" component={AdminRouter} />
         </Switch>
