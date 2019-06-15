@@ -28,3 +28,30 @@
     margin: 0 5px;
   }
 }
+
+@media (max-width: 550px) {
+  .pagination {
+    &__number {
+      margin: 0.1rem;
+      font-size: 14px;
+      width: 2.5rem;
+    }
+
+    &__dots {
+      font-size: 14px;
+      margin: 0 2px;
+    }
+  }
+}
+
+// @media (max-width: 390px) {
+//   .pagination {
+//     &__number {
+//       margin: 0.1rem;
+//       // font-size: 14px;
+//       width: 2rem;
+//       height: 2rem;
+//       padding: 3px 0;
+//     }
+//   }
+// }
