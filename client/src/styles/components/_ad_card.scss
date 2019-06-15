@@ -33,11 +33,21 @@
 
 @media (max-width: 800px) {
   .ad-card {
-    width: 200px;
+    width: 20px;
   }
 }
 
 @media (max-width: 450px) {
+  .ad-card {
+    width: 160px;
+
+    &__text {
+      font-size: 13px;
+    }
+  }
+}
+
+@media (max-width: 350px) {
   .ad-card {
     width: 140px;
 
