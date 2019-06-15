@@ -31,6 +31,12 @@
   }
 }
 
+@media (max-width: 800px) {
+  .ad-card {
+    width: 200px;
+  }
+}
+
 @media (max-width: 450px) {
   .ad-card {
     width: 160px;
