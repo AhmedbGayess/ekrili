@@ -8,13 +8,15 @@ import AdminRouter from "./AdminRouter";
 import Navbar from "../components/layout/Navbar";
 import CreateAd from "../components/create-ad/CreateAd";
 import AdsPage from "../components/ads/AdsPage";
+import MobileSideBar from "../components/layout/MobileSideBar";
 
 export const history = createBrowserHistory();
 
 class AppRouter extends React.Component {
   state = {
     signupModalOpen: false,
-    loginModalOpen: false
+    loginModalOpen: false,
+    mobileNavOpen: false
   };
 
   toggleSignupModal = () => {
@@ -43,8 +45,12 @@ class AppRouter extends React.Component {
     });
   };
 
+  toggleMobileNav = () => {
+    this.setState((prevState) => ({ mobileNavOpen: !prevState.mobileNavOpen }));
+  };
+
   render() {
-    const { loginModalOpen, signupModalOpen } = this.state;
+    const { loginModalOpen, signupModalOpen, mobileNavOpen } = this.state;
     return (
       <Router history={history}>
         <Route
@@ -58,10 +64,12 @@ class AppRouter extends React.Component {
               switchToSignup={this.switchToSignup}
               switchToLogin={this.switchToLogin}
               location={history.location.pathname}
+              toggleMobileNav={this.toggleMobileNav}
             />
           )}
           exact
         />
+        <MobileSideBar open={mobileNavOpen} />
         <Switch>
           <Route
             path="/"

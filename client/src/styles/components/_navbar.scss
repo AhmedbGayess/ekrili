@@ -54,6 +54,28 @@
         }
       }
     }
+
+    &-mobile {
+      display: none;
+      margin-right: 1rem;
+
+      &__item {
+        margin: 1rem;
+
+        &-icon {
+          color: #fff;
+          font-size: 1.5rem;
+          height: 100%;
+        }
+
+        .hamburger {
+          width: 35px;
+          height: 4px;
+          background-color: #fff;
+          margin: 6px 0;
+        }
+      }
+    }
   }
 
   &-icon {
@@ -70,6 +92,10 @@
   .navbar {
     &-list {
       display: none;
+
+      &-mobile {
+        display: flex;
+      }
     }
   }
 }
