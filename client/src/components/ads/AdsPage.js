@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getAds } from "../../store/actions/ads";
 import Pagination from "./Pagination";
 import Loader from "../common/Loader";
 import AdsList from "./AdsList";
+import NoAd from "./NoAd";
 
 class AdsPage extends React.Component {
   componentDidMount() {
@@ -38,7 +38,7 @@ class AdsPage extends React.Component {
     if (loading || ads === null) {
       pageContent = <Loader />;
     } else if (ads.length === 0) {
-      pageContent = <p>no ads</p>;
+      pageContent = <NoAd />;
     } else {
       pageContent = (
         <div>

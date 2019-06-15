@@ -1,0 +1,12 @@
+.no-ad {
+  text-align: center;
+  margin-top: 10rem;
+
+  &__message {
+    margin-bottom: 2rem;
+  }
+
+  &__link {
+    color: $secondary-color;
+  }
+}
