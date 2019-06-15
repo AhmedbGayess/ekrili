@@ -57,7 +57,7 @@
 
     &-mobile {
       display: none;
-      margin-right: 1rem;
+      margin-right: 0.2rem;
 
       &__item {
         margin: 1rem;
@@ -90,6 +90,7 @@
 
 @media (max-width: 800px) {
   .navbar {
+    padding-left: 1rem;
     &-list {
       display: none;
 

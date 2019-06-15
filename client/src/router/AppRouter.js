@@ -45,8 +45,12 @@ class AppRouter extends React.Component {
     });
   };
 
-  toggleMobileNav = () => {
-    this.setState((prevState) => ({ mobileNavOpen: !prevState.mobileNavOpen }));
+  openMobileNav = () => {
+    this.setState({ mobileNavOpen: true });
+  };
+
+  closeMobileNav = () => {
+    this.setState({ mobileNavOpen: false });
   };
 
   render() {
@@ -64,12 +68,13 @@ class AppRouter extends React.Component {
               switchToSignup={this.switchToSignup}
               switchToLogin={this.switchToLogin}
               location={history.location.pathname}
-              toggleMobileNav={this.toggleMobileNav}
+              toggleMobileNav={this.openMobileNav}
+              mobileNavOpen={mobileNavOpen}
             />
           )}
           exact
         />
-        <MobileSideBar open={mobileNavOpen} />
+        <MobileSideBar open={mobileNavOpen} close={this.closeMobileNav} />
         <Switch>
           <Route
             path="/"
