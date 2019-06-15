@@ -207,6 +207,7 @@ const CreateAd = withFormik({
   validationSchema: Yup.object({
     title: Yup.string()
       .min(10, "Soyez plus déscriptif!")
+      .max(30, "Le titre est trop long!")
       .required("Veuillez ajouter un titre à votre annonce"),
     description: Yup.string()
       .min(50, "Soyez plus déscriptif!")

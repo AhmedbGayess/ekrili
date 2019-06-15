@@ -1,6 +1,6 @@
 const initialState = {
   ad: {},
-  ads: [],
+  ads: null,
   count: 0,
   loading: false
 };

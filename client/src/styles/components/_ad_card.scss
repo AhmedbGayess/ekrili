@@ -1,0 +1,48 @@
+.ad-card {
+  width: 300px;
+  color: $dark-color;
+
+  &__text {
+    padding: 0 5px;
+  }
+
+  &__image {
+    border-radius: 4px;
+  }
+
+  &__title {
+    font-weight: 500;
+    word-wrap: break-word;
+  }
+
+  &__price {
+    font-weight: bold;
+    color: $secondary-color;
+  }
+}
+
+@media (max-width: 1350px) {
+  .ad-card {
+    width: 250px;
+
+    &__text {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .ad-card {
+    width: 200px;
+  }
+}
+
+@media (max-width: 450px) {
+  .ad-card {
+    width: 140px;
+
+    &__text {
+      font-size: 12px;
+    }
+  }
+}

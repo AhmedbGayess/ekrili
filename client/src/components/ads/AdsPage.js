@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getAds } from "../../store/actions/ads";
 import Pagination from "./Pagination";
+import Loader from "../common/Loader";
+import AdsList from "./AdsList";
 
 class AdsPage extends React.Component {
   componentDidMount() {
@@ -31,15 +33,26 @@ class AdsPage extends React.Component {
 
   render() {
     const { ads, count, loading } = this.props.ads;
-    return (
-      <div>
-        <Pagination
-          count={count}
-          link={this.props.location.search}
-          pageNumber={Number(this.props.match.params.page)}
-        />
-      </div>
-    );
+    let pageContent;
+
+    if (loading || ads === null) {
+      pageContent = <Loader />;
+    } else if (ads.length === 0) {
+      pageContent = <p>no ads</p>;
+    } else {
+      pageContent = (
+        <div>
+          <AdsList ads={ads} />
+          <Pagination
+            count={count}
+            link={this.props.location.search}
+            pageNumber={Number(this.props.match.params.page)}
+          />
+        </div>
+      );
+    }
+
+    return <div>{pageContent}</div>;
   }
 }
 
