@@ -28,12 +28,12 @@ class MobileNavList extends React.Component {
       loggedIn,
       toggleLoginModal,
       toggleSignupModal,
-      toggleMobileNav,
+      openSidebar,
       userDropdownOpen,
       closeUserDropdown,
       openUserDropdown,
       logout,
-      mobileNavOpen
+      sidebarOpen
     } = this.props;
     return (
       <ul className="navbar-list-mobile">
@@ -67,20 +67,20 @@ class MobileNavList extends React.Component {
           </li>
         )}
         <li className="navbar-list-mobile__item">
-          <div className="menu-button" onClick={toggleMobileNav}>
+          <div className="menu-button" onClick={openSidebar}>
             <div
               className={classNames("hamburger", {
-                "hamburger-1": mobileNavOpen
+                "hamburger-1": sidebarOpen
               })}
             />
             <div
               className={classNames("hamburger", {
-                "hamburger-2": mobileNavOpen
+                "hamburger-2": sidebarOpen
               })}
             />
             <div
               className={classNames("hamburger", {
-                "hamburger-3": mobileNavOpen
+                "hamburger-3": sidebarOpen
               })}
             />
           </div>
@@ -91,12 +91,10 @@ class MobileNavList extends React.Component {
 }
 
 MobileNavList.propTypes = {
-  toggleMobileNav: PropTypes.func.isRequired,
   toggleLoginModal: PropTypes.func.isRequired,
   toggleSignupModal: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  loggedIn: PropTypes.bool.isRequired,
-  mobileNavOpen: PropTypes.bool.isRequired
+  loggedIn: PropTypes.bool.isRequired
 };
 
 export default MobileNavList;

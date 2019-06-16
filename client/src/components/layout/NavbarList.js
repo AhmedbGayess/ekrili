@@ -16,11 +16,11 @@ const NavbarList = ({
   toggleSignupModal,
   helpDropdownOpen,
   userDropdownOpen,
-  toggleMobileNav
+  openSidebar
 }) => (
   <ul className="navbar-list">
     <li className="navbar-list-item">
-      <button className="btn-secondary" onClick={toggleMobileNav}>
+      <button className="btn-secondary" onClick={openSidebar}>
         Les Catégories
       </button>
     </li>

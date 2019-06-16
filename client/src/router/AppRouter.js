@@ -8,7 +8,7 @@ import AdminRouter from "./AdminRouter";
 import Navbar from "../components/layout/Navbar";
 import CreateAd from "../components/create-ad/CreateAd";
 import AdsPage from "../components/ads/AdsPage";
-import MobileSideBar from "../components/layout/MobileSideBar";
+import SideBar from "../components/layout/SideBar";
 import PageCover from "../components/layout/PageCover";
 
 export const history = createBrowserHistory();
@@ -17,7 +17,7 @@ class AppRouter extends React.Component {
   state = {
     signupModalOpen: false,
     loginModalOpen: false,
-    mobileNavOpen: false
+    sidebarOpen: false
   };
 
   toggleSignupModal = () => {
@@ -46,16 +46,16 @@ class AppRouter extends React.Component {
     });
   };
 
-  openMobileNav = () => {
-    this.setState({ mobileNavOpen: true });
+  openSidebar = () => {
+    this.setState({ sidebarOpen: true });
   };
 
-  closeMobileNav = () => {
-    this.setState({ mobileNavOpen: false });
+  closeSidebar = () => {
+    this.setState({ sidebarOpen: false });
   };
 
   render() {
-    const { loginModalOpen, signupModalOpen, mobileNavOpen } = this.state;
+    const { loginModalOpen, signupModalOpen, sidebarOpen } = this.state;
     return (
       <Router history={history}>
         <Route
@@ -69,14 +69,14 @@ class AppRouter extends React.Component {
               switchToSignup={this.switchToSignup}
               switchToLogin={this.switchToLogin}
               location={history.location.pathname}
-              toggleMobileNav={this.openMobileNav}
-              mobileNavOpen={mobileNavOpen}
+              openSidebar={this.openSidebar}
+              sidebarOpen={sidebarOpen}
             />
           )}
           exact
         />
-        <MobileSideBar open={mobileNavOpen} close={this.closeMobileNav} />
-        <PageCover open={mobileNavOpen} />
+        <SideBar open={sidebarOpen} close={this.closeSidebar} />
+        <PageCover open={sidebarOpen} />
         <Switch>
           <Route
             path="/"

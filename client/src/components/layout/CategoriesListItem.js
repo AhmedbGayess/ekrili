@@ -9,14 +9,13 @@ const CategoriesListItem = ({
 }) => (
   <li>
     <Link
-      className="mobile-sidebar__list-item"
+      className="sidebar__list-item"
       to={`/browse-ads/1?category=${category._id}`}
       onMouseOver={() => setSubCategories(category._id)}
       onMouseLeave={closeSubCategories}
     >
       {category.name}
     </Link>
-    <span className="mobile-sidebar__list-item-plus">+</span>
   </li>
 );
 

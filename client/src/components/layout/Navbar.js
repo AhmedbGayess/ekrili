@@ -55,8 +55,8 @@ class Navbar extends React.Component {
       toggleSignupModal,
       switchToSignup,
       switchToLogin,
-      toggleMobileNav,
-      mobileNavOpen
+      openSidebar,
+      sidebarOpen
     } = this.props;
     const loggedIn = Object.keys(this.props.user).length > 0;
     return (
@@ -80,10 +80,9 @@ class Navbar extends React.Component {
           toggleSignupModal={toggleSignupModal}
           helpDropdownOpen={helpDropdownOpen}
           userDropdownOpen={userDropdownOpen}
-          toggleMobileNav={toggleMobileNav}
+          openSidebar={openSidebar}
         />
         <MobileNavList
-          toggleMobileNav={toggleMobileNav}
           toggleLoginModal={toggleLoginModal}
           toggleSignupModal={toggleSignupModal}
           openUserDropdown={this.openUserDropdown}
@@ -91,7 +90,6 @@ class Navbar extends React.Component {
           userDropdownOpen={userDropdownOpen}
           logout={this.logout}
           loggedIn={loggedIn}
-          mobileNavOpen={mobileNavOpen}
         />
         <SignupModal
           modalOpen={signupModalOpen}
@@ -117,8 +115,8 @@ Navbar.propTypes = {
   toggleSignupModal: Proptypes.func.isRequired,
   switchToSignup: Proptypes.func.isRequired,
   switchToLogin: Proptypes.func.isRequired,
-  toggleMobileNav: Proptypes.func.isRequired,
-  mobileNavOpen: Proptypes.bool.isRequired
+  openSidebar: Proptypes.func.isRequired,
+  sidebarOpen: Proptypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({

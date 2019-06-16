@@ -12,7 +12,7 @@ const SubCategoriesCard = ({
   const subCategoriesList = subCategories.map((subCategory) => (
     <li key={subCategory._id}>
       <Link
-        className="mobile-sidebar__list-item"
+        className="sidebar__list-item"
         to={`/browse-ads/1?subCategory=${subCategory._id}`}
       >
         {subCategory.name}
@@ -21,7 +21,7 @@ const SubCategoriesCard = ({
   ));
   return (
     <ul
-      className={classNames("subcategories-card mobile-sidebar__list", {
+      className={classNames("subcategories-card sidebar__list", {
         "subcategories-card-open": subCategoriesOpen
       })}
       onMouseEnter={openSubCategories}

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { getCategories } from "../../store/actions/categories";
@@ -8,7 +7,7 @@ import { getSubCategories } from "../../store/actions/subCategories";
 import CategoriesListItem from "./CategoriesListItem";
 import SubCategoriesCard from "./SubCategoriesCard";
 
-class MobileSideBar extends React.Component {
+class SideBar extends React.Component {
   state = {
     subCategories: [],
     subCategoriesOpen: false
@@ -64,11 +63,11 @@ class MobileSideBar extends React.Component {
     return (
       <nav
         ref={this.setWrapperRef}
-        className={classNames("mobile-sidebar", {
-          "mobile-sidebar__open": open
+        className={classNames("sidebar", {
+          sidebar__open: open
         })}
       >
-        <ul className="mobile-sidebar__list">{categoriesList}</ul>
+        <ul className="sidebar__list">{categoriesList}</ul>
         <SubCategoriesCard
           subCategoriesOpen={subCategoriesOpen}
           subCategories={subCategories}
@@ -80,7 +79,7 @@ class MobileSideBar extends React.Component {
   }
 }
 
-MobileSideBar.propTypes = {
+SideBar.propTypes = {
   open: PropTypes.bool.isRequired,
   getCategories: PropTypes.func.isRequired,
   getSubCategories: PropTypes.func.isRequired,
@@ -96,4 +95,4 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   { getCategories, getSubCategories }
-)(MobileSideBar);
+)(SideBar);

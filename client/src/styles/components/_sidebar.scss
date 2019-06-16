@@ -1,4 +1,4 @@
-.mobile-sidebar {
+.sidebar {
   background: #fff;
   position: fixed;
   top: 0;
@@ -37,28 +37,13 @@
       &-plus {
         position: absolute;
         right: 10px;
-        display: none;
       }
     }
   }
 }
 
-@media (max-width: 800px) {
-  .mobile-sidebar {
-    width: 50%;
-  }
-
-  &__list {
-    &-item {
-      &-plus {
-        // display: inline;
-      }
-    }
-  }
-}
-
-@media (max-width: 500px) {
-  .mobile-sidebar {
-    width: 70%;
+@media (max-width: 1100px) {
+  .sidebar {
+    display: none;
   }
 }
