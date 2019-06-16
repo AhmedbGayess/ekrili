@@ -196,6 +196,14 @@ router.get("/", async (req, res) => {
     match.delegation = req.query.delegation;
   }
 
+  if (req.query.category) {
+    match.category = req.query.category;
+  }
+
+  if (req.query.subCategory) {
+    match.subCategory = req.query.subCategory;
+  }
+
   if (req.query.sortBy) {
     const parts = req.query.sortBy.split(":");
     sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
