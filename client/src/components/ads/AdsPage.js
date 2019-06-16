@@ -23,7 +23,7 @@ class AdsPage extends React.Component {
       prevProps.match.params.page !== this.props.match.params.page
     ) {
       const query = this.props.location.search
-        ? `${this.props.location.search}&skip=${this.props.match.params.page -
+        ? `${this.props.location.search}&skip=${this.props.match.params.page *
             20 -
             20}&limit=20`
         : `?skip=${this.props.match.params.page * 20 - 20}&limit=20`;

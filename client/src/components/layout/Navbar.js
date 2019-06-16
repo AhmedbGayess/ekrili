@@ -79,6 +79,7 @@ class Navbar extends React.Component {
           toggleSignupModal={toggleSignupModal}
           helpDropdownOpen={helpDropdownOpen}
           userDropdownOpen={userDropdownOpen}
+          toggleMobileNav={toggleMobileNav}
         />
         <MobileNavList
           toggleMobileNav={toggleMobileNav}

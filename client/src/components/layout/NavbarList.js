@@ -15,9 +15,15 @@ const NavbarList = ({
   toggleLoginModal,
   toggleSignupModal,
   helpDropdownOpen,
-  userDropdownOpen
+  userDropdownOpen,
+  toggleMobileNav
 }) => (
   <ul className="navbar-list">
+    <li className="navbar-list-item">
+      <button className="btn-secondary" onClick={toggleMobileNav}>
+        Les Catégories
+      </button>
+    </li>
     {loggedIn && (
       <li className="navbar-list-item">
         <NavLink className="btn-primary" to="/create-ad">

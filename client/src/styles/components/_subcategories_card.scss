@@ -1,0 +1,22 @@
+.subcategories-card {
+  position: absolute;
+  background: #fff;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+  min-height: 100vh;
+  -webkit-box-shadow: 4px -1px 5px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 4px -1px 5px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px -1px 5px 0px rgba(0, 0, 0, 0.2);
+  border-left: 1px solid $medium-color;
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+
+  &-open {
+    opacity: 1;
+    visibility: initial;
+  }
+}
