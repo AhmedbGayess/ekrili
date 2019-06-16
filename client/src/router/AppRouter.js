@@ -9,6 +9,7 @@ import Navbar from "../components/layout/Navbar";
 import CreateAd from "../components/create-ad/CreateAd";
 import AdsPage from "../components/ads/AdsPage";
 import MobileSideBar from "../components/layout/MobileSideBar";
+import PageCover from "../components/layout/PageCover";
 
 export const history = createBrowserHistory();
 
@@ -69,12 +70,12 @@ class AppRouter extends React.Component {
               switchToLogin={this.switchToLogin}
               location={history.location.pathname}
               toggleMobileNav={this.openMobileNav}
-              mobileNavOpen={mobileNavOpen}
             />
           )}
           exact
         />
         <MobileSideBar open={mobileNavOpen} close={this.closeMobileNav} />
+        <PageCover open={mobileNavOpen} />
         <Switch>
           <Route
             path="/"

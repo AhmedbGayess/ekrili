@@ -60,19 +60,31 @@
       margin-right: 0.2rem;
 
       &__item {
-        margin: 1rem;
+        margin: 0.5rem;
+
+        &-container {
+          display: inline-block;
+          height: 100%;
+          border: 2px #fff solid;
+          border-radius: 50%;
+          width: 40px;
+          position: relative;
+        }
 
         &-icon {
+          display: inline-block;
           color: #fff;
+          position: relative;
           font-size: 1.5rem;
-          height: 100%;
+          left: 6px;
+          top: 3px;
         }
 
         .hamburger {
           width: 35px;
-          height: 4px;
+          height: 3px;
           background-color: #fff;
-          margin: 6px 0;
+          margin: 7px 0;
         }
       }
     }
