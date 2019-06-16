@@ -1,6 +1,7 @@
 import React from "react";
 import { FaRegUser } from "react-icons/fa";
 import { IoIosLogIn } from "react-icons/io";
+import classNames from "classnames";
 import PropTypes from "prop-types";
 import MobileUserDropdown from "./MobileUserDropdown";
 import UserDropdown from "./UserDropdown";
@@ -31,7 +32,8 @@ class MobileNavList extends React.Component {
       userDropdownOpen,
       closeUserDropdown,
       openUserDropdown,
-      logout
+      logout,
+      mobileNavOpen
     } = this.props;
     return (
       <ul className="navbar-list-mobile">
@@ -66,9 +68,21 @@ class MobileNavList extends React.Component {
         )}
         <li className="navbar-list-mobile__item">
           <div className="menu-button" onClick={toggleMobileNav}>
-            <div className="hamburger" />
-            <div className="hamburger" />
-            <div className="hamburger" />
+            <div
+              className={classNames("hamburger", {
+                "hamburger-1": mobileNavOpen
+              })}
+            />
+            <div
+              className={classNames("hamburger", {
+                "hamburger-2": mobileNavOpen
+              })}
+            />
+            <div
+              className={classNames("hamburger", {
+                "hamburger-3": mobileNavOpen
+              })}
+            />
           </div>
         </li>
       </ul>
@@ -81,7 +95,8 @@ MobileNavList.propTypes = {
   toggleLoginModal: PropTypes.func.isRequired,
   toggleSignupModal: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  loggedIn: PropTypes.bool.isRequired
+  loggedIn: PropTypes.bool.isRequired,
+  mobileNavOpen: PropTypes.bool.isRequired
 };
 
 export default MobileNavList;

@@ -89,9 +89,24 @@
 
         .hamburger {
           width: 35px;
-          height: 3px;
+          height: 5px;
           background-color: #fff;
-          margin: 7px 0;
+          margin: 6px 0;
+          transition: 0.4s;
+
+          &-1 {
+            -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+            transform: rotate(-45deg) translate(-9px, 6px);
+          }
+
+          &-2 {
+            opacity: 0;
+          }
+
+          &-3 {
+            -webkit-transform: rotate(45deg) translate(-8px, -8px);
+            transform: rotate(45deg) translate(-8px, -8px);
+          }
         }
       }
     }

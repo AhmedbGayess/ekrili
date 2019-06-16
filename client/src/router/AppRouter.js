@@ -70,6 +70,7 @@ class AppRouter extends React.Component {
               switchToLogin={this.switchToLogin}
               location={history.location.pathname}
               toggleMobileNav={this.openMobileNav}
+              mobileNavOpen={mobileNavOpen}
             />
           )}
           exact
