@@ -80,7 +80,16 @@ class Navbar extends React.Component {
           helpDropdownOpen={helpDropdownOpen}
           userDropdownOpen={userDropdownOpen}
         />
-        <MobileNavList toggleMobileNav={toggleMobileNav} />
+        <MobileNavList
+          toggleMobileNav={toggleMobileNav}
+          toggleLoginModal={toggleLoginModal}
+          toggleSignupModal={toggleSignupModal}
+          openUserDropdown={this.openUserDropdown}
+          closeUserDropdown={this.closeUserDropdown}
+          userDropdownOpen={userDropdownOpen}
+          logout={this.logout}
+          loggedIn={loggedIn}
+        />
         <SignupModal
           modalOpen={signupModalOpen}
           toggleModal={toggleSignupModal}

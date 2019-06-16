@@ -34,3 +34,23 @@
     }
   }
 }
+
+@media (max-width: 800px) {
+  .dropdown {
+    top: 3.3rem;
+    font-size: 14px;
+    right: 10px;
+
+    &__list-item {
+      &-link {
+        padding: 0.8rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .dropdown {
+    width: 12rem;
+  }
+}
