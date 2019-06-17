@@ -50,7 +50,7 @@ class SideBar extends React.Component {
   };
 
   render() {
-    const { open, categories } = this.props;
+    const { open, categories, close } = this.props;
     const { subCategories, subCategoriesOpen } = this.state;
     const categoriesList = categories.map((category) => (
       <CategoriesListItem
@@ -58,6 +58,7 @@ class SideBar extends React.Component {
         category={category}
         setSubCategories={this.setSubCategories}
         closeSubCategories={this.closeSubCategories}
+        close={close}
       />
     ));
     return (
@@ -73,6 +74,7 @@ class SideBar extends React.Component {
           subCategories={subCategories}
           openSubCategories={this.openSubCategories}
           closeSubCategories={this.closeSubCategories}
+          close={close}
         />
       </nav>
     );

@@ -7,13 +7,20 @@ const SubCategoriesCard = ({
   subCategories,
   subCategoriesOpen,
   openSubCategories,
-  closeSubCategories
+  closeSubCategories,
+  close
 }) => {
+  const onLinkClick = () => {
+    close();
+    closeSubCategories();
+  };
+
   const subCategoriesList = subCategories.map((subCategory) => (
     <li key={subCategory._id}>
       <Link
         className="sidebar__list-item"
         to={`/browse-ads/1?subCategory=${subCategory._id}`}
+        onClick={onLinkClick}
       >
         {subCategory.name}
       </Link>
