@@ -28,7 +28,7 @@ class MobileNavList extends React.Component {
       loggedIn,
       toggleLoginModal,
       toggleSignupModal,
-      openSidebar,
+      openMobileSidebar,
       userDropdownOpen,
       closeUserDropdown,
       openUserDropdown,
@@ -67,7 +67,7 @@ class MobileNavList extends React.Component {
           </li>
         )}
         <li className="navbar-list-mobile__item">
-          <div className="menu-button" onClick={openSidebar}>
+          <div className="menu-button" onClick={openMobileSidebar}>
             <div
               className={classNames("hamburger", {
                 "hamburger-1": sidebarOpen
@@ -94,7 +94,8 @@ MobileNavList.propTypes = {
   toggleLoginModal: PropTypes.func.isRequired,
   toggleSignupModal: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  loggedIn: PropTypes.bool.isRequired
+  loggedIn: PropTypes.bool.isRequired,
+  openMobileSidebar: PropTypes.func.isRequired
 };
 
 export default MobileNavList;

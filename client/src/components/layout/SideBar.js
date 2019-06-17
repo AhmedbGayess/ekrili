@@ -1,21 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { getCategories } from "../../store/actions/categories";
-import { getSubCategories } from "../../store/actions/subCategories";
 import CategoriesListItem from "./CategoriesListItem";
 import SubCategoriesCard from "./SubCategoriesCard";
 
 class SideBar extends React.Component {
   state = {
-    subCategories: [],
     subCategoriesOpen: false
   };
 
   componentDidMount() {
-    this.props.getCategories();
-    this.props.getSubCategories();
     document.addEventListener("mousedown", this.handleClickOutside);
   }
 
@@ -28,10 +22,7 @@ class SideBar extends React.Component {
   };
 
   setSubCategories = (category) => {
-    const subCategories = this.props.subCategories.filter(
-      (subCategory) => subCategory.category === category
-    );
-    this.setState({ subCategories });
+    this.props.setSubCategories(category);
     this.openSubCategories();
   };
 
@@ -50,8 +41,8 @@ class SideBar extends React.Component {
   };
 
   render() {
-    const { open, categories, close } = this.props;
-    const { subCategories, subCategoriesOpen } = this.state;
+    const { open, categories, close, subCategories } = this.props;
+    const { subCategoriesOpen } = this.state;
     const categoriesList = categories.map((category) => (
       <CategoriesListItem
         key={category._id}
@@ -83,18 +74,8 @@ class SideBar extends React.Component {
 
 SideBar.propTypes = {
   open: PropTypes.bool.isRequired,
-  getCategories: PropTypes.func.isRequired,
-  getSubCategories: PropTypes.func.isRequired,
   categories: PropTypes.array.isRequired,
   subCategories: PropTypes.array.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  categories: state.categories.categories,
-  subCategories: state.subCategories.subCategories
-});
-
-export default connect(
-  mapStateToProps,
-  { getCategories, getSubCategories }
-)(SideBar);
+export default SideBar;
