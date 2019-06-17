@@ -7,6 +7,48 @@ const Home = ({ toggleSignupModal }) => (
     <HomeSearch toggleSignupModal={toggleSignupModal} />
     <div className="container">
       <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
+      <p>hi</p>
     </div>
   </div>
 );

@@ -21,7 +21,7 @@ const HomeSelectInput = ({
 );
 
 HomeSelectInput.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   placeholder: PropTypes.string.isRequired,
   noOptions: PropTypes.string,
   options: PropTypes.array.isRequired,
