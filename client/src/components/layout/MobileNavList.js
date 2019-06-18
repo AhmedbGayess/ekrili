@@ -1,7 +1,7 @@
 import React from "react";
+import classNames from "classnames";
 import { FaRegUser } from "react-icons/fa";
 import { IoIosLogIn } from "react-icons/io";
-import classNames from "classnames";
 import PropTypes from "prop-types";
 import MobileUserDropdown from "./MobileUserDropdown";
 import UserDropdown from "./UserDropdown";
@@ -33,7 +33,9 @@ class MobileNavList extends React.Component {
       closeUserDropdown,
       openUserDropdown,
       logout,
-      sidebarOpen
+      mobileSubCategoriesOpen,
+      mobileCategoriesOpen,
+      mobileOpen
     } = this.props;
     return (
       <ul className="navbar-list-mobile">
@@ -66,23 +68,18 @@ class MobileNavList extends React.Component {
             />
           </li>
         )}
+
         <li className="navbar-list-mobile__item">
-          <div className="menu-button" onClick={openMobileSidebar}>
-            <div
-              className={classNames("hamburger", {
-                "hamburger-1": sidebarOpen
-              })}
-            />
-            <div
-              className={classNames("hamburger", {
-                "hamburger-2": sidebarOpen
-              })}
-            />
-            <div
-              className={classNames("hamburger", {
-                "hamburger-3": sidebarOpen
-              })}
-            />
+          <div
+            className={classNames("menu-button", {
+              "menu-button-invisible":
+                mobileSubCategoriesOpen || mobileCategoriesOpen || mobileOpen
+            })}
+            onClick={openMobileSidebar}
+          >
+            <div className="hamburger" />
+            <div className="hamburger" />
+            <div className="hamburger" />
           </div>
         </li>
       </ul>

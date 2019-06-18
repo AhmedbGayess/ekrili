@@ -9,12 +9,13 @@ import AdminRouter from "./AdminRouter";
 import Navbar from "../components/layout/Navbar";
 import CreateAd from "../components/create-ad/CreateAd";
 import AdsPage from "../components/ads/AdsPage";
-import SideBar from "../components/layout/SideBar";
+import SideBar from "../components/layout/sidebar/SideBar";
 import PageCover from "../components/layout/PageCover";
-import MobileSidebar from "../components/layout/MobileSidebar";
+import MobileSidebar from "../components/layout/mobile-sidebar/MobileSidebar";
 import { getCategories } from "../store/actions/categories";
 import { getSubCategories } from "../store/actions/subCategories";
-import MobileCategories from "../components/layout/MobileCategories";
+import MobileCategories from "../components/layout/mobile-sidebar/MobileCategories";
+import MobileSubCategories from "../components/layout/mobile-sidebar/MobileSubCategroies";
 
 export const history = createBrowserHistory();
 
@@ -91,6 +92,14 @@ class AppRouter extends React.Component {
     this.setState({ mobileCategoriesOpen: false });
   };
 
+  openMobileSubCategories = () => {
+    this.setState({ mobileSubCategoriesOpen: true });
+  };
+
+  closeMobileSubCategories = () => {
+    this.setState({ mobileSubCategoriesOpen: false });
+  };
+
   render() {
     const {
       loginModalOpen,
@@ -98,7 +107,8 @@ class AppRouter extends React.Component {
       sidebarOpen,
       mobileSidebarOpen,
       subCategories,
-      mobileCategoriesOpen
+      mobileCategoriesOpen,
+      mobileSubCategoriesOpen
     } = this.state;
     const { categories } = this.props;
     return (
@@ -117,6 +127,9 @@ class AppRouter extends React.Component {
               openSidebar={this.openSidebar}
               sidebarOpen={sidebarOpen}
               openMobileSidebar={this.openMobileSidebar}
+              mobileOpen={mobileSidebarOpen}
+              mobileCategoriesOpen={mobileCategoriesOpen}
+              mobileSubCategoriesOpen={mobileSubCategoriesOpen}
             />
           )}
           exact
@@ -137,8 +150,22 @@ class AppRouter extends React.Component {
           categories={categories}
           close={this.closeMobileCategories}
           open={mobileCategoriesOpen}
+          openMobileSidebar={this.openMobileSidebar}
+          setSubCategories={this.setSubCategories}
+          openMobileSubCategories={this.openMobileSubCategories}
         />
-        <PageCover open={sidebarOpen} mobileOpen={mobileSidebarOpen} />
+        <MobileSubCategories
+          subCategories={subCategories}
+          close={this.closeMobileSubCategories}
+          open={mobileSubCategoriesOpen}
+          openMobileCategories={this.openMobileCategories}
+        />
+        <PageCover
+          open={sidebarOpen}
+          mobileOpen={mobileSidebarOpen}
+          categoriesOpen={mobileCategoriesOpen}
+          subCategoriesOpen={mobileSubCategoriesOpen}
+        />
         <Switch>
           <Route
             path="/"
