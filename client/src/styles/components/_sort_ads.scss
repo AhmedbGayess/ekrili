@@ -1,0 +1,44 @@
+.sort {
+  &-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 2rem;
+    margin-right: 2%;
+  }
+
+  &-label {
+    margin-right: 1rem;
+  }
+
+  &-input {
+    height: 40px;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid $medium-color;
+    border-radius: 4px;
+    outline: none;
+
+    &:focus {
+      border-color: $primary-color;
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .sort {
+    &-input {
+      height: 30px;
+      font-size: 14px;
+      padding: 3px;
+
+      &:focus {
+        border-color: $primary-color;
+      }
+    }
+    &-label {
+      font-size: 14px;
+      margin-right: 0.5rem;
+    }
+  }
+}

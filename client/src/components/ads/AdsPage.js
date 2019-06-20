@@ -7,8 +7,12 @@ import Loader from "../common/Loader";
 import AdsList from "./AdsList";
 import NoAd from "./NoAd";
 import AdsFilters from "./AdsFilters";
+import AdsSort from "./AdsSort";
 
 class AdsPage extends React.Component {
+  state = {
+    sortBy: ""
+  };
   componentDidMount() {
     const query = this.props.location.search
       ? `${this.props.location.search}&skip=${this.props.match.params.page *
@@ -16,6 +20,7 @@ class AdsPage extends React.Component {
           20}&limit=20`
       : `?skip=${this.props.match.params.page * 20 - 20}&limit=20`;
     this.props.getAds(query);
+    console.log(this.props.location.search);
   }
 
   componentDidUpdate(prevProps) {
@@ -32,6 +37,28 @@ class AdsPage extends React.Component {
     }
   }
 
+  onSortChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+    const { history, location } = this.props;
+    const query = {};
+    const pairs = (location.search[0] === "?"
+      ? location.search.substr(1)
+      : location.search
+    ).split("&");
+    for (let i = 0; i < pairs.length; i++) {
+      const pair = pairs[i].split("=");
+      query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || "");
+    }
+    const { title, governorate, delegation, category, subCategory } = query;
+    history.push(
+      `/browse-ads/1?title=${title ? title : ""}&governorate=${
+        governorate ? governorate : ""
+      }&delegation=${delegation ? delegation : ""}&category=${
+        category ? category : ""
+      }&subCategory=${subCategory ? subCategory : ""}&sortBy=${e.target.value}`
+    );
+  };
+
   render() {
     const { ads, count, loading } = this.props.ads;
     let pageContent;
@@ -43,6 +70,7 @@ class AdsPage extends React.Component {
     } else {
       pageContent = (
         <div>
+          <AdsSort onChange={this.onSortChange} value={this.state.sortBy} />
           <AdsList ads={ads} />
           <Pagination
             count={count}

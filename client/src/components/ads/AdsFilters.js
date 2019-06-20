@@ -28,8 +28,8 @@ class AdsFilters extends React.Component {
 
   setStateFromQuery = () => {
     const { queryString, subCategories } = this.props;
-    var query = {};
-    var pairs = (queryString[0] === "?"
+    const query = {};
+    const pairs = (queryString[0] === "?"
       ? queryString.substr(1)
       : queryString
     ).split("&");
