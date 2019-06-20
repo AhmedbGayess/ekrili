@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { history } from "../../router/AppRouter";
@@ -217,5 +216,11 @@ const mapStateToProps = (state) => ({
   categories: state.categories.categories,
   subCategories: state.subCategories.subCategories
 });
+
+AdsFilters.propTypes = {
+  categories: PropTypes.array.isRequired,
+  subCategories: PropTypes.array.isRequired,
+  queryString: PropTypes.string.isRequired
+};
 
 export default connect(mapStateToProps)(AdsFilters);
