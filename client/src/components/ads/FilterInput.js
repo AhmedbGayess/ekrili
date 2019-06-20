@@ -15,7 +15,10 @@ const FilterInput = ({ name, label, choices, onChange, value }) => {
       onChange={onChange}
       value={value}
     >
-      <option value="">-- {label} --</option>
+      <option value="" hidden>
+        {label}
+      </option>
+      <option value="" />
       {options}
     </select>
   );

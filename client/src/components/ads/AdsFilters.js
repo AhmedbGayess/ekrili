@@ -86,6 +86,12 @@ class AdsFilters extends React.Component {
     });
   };
 
+  onBlurInput = (e) => {
+    if (e.key === "Enter") {
+      e.target.blur();
+    }
+  };
+
   onCategoryChange = (e) => {
     const category = e.target.value;
     const subCategories = this.props.subCategories.filter(
@@ -151,6 +157,7 @@ class AdsFilters extends React.Component {
           </span>
         </div>
         <div className="container">
+          <h3>les filtres de recherche</h3>
           <div
             className={classNames("ads-filters__form", {
               "ads-filters__form--open": mobileFiltersOpen
@@ -161,6 +168,7 @@ class AdsFilters extends React.Component {
               placeholder="Chercher..."
               value={title}
               onChange={this.onChange}
+              onKeyPress={this.onBlurInput}
               className="ads-filters__form__input"
             />
             <FilterInput

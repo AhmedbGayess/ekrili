@@ -1,8 +1,6 @@
 .ads-filters {
   padding: 1rem;
-  // background: yellow;
-  // margin-bottom: 2rem;
-  border-bottom: 1px solid $medium-color;
+  margin-bottom: 2rem;
   -webkit-box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 1px 0px,
     rgba(0, 0, 0, 0.05) 0px 2px 4px 0px, rgba(0, 0, 0, 0.05) 0px 0px 8px 0px;
   -moz-box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 1px 0px,
@@ -10,8 +8,13 @@
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 1px 0px,
     rgba(0, 0, 0, 0.05) 0px 2px 4px 0px, rgba(0, 0, 0, 0.05) 0px 0px 8px 0px;
 
+  h3 {
+    color: $primary-color;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
   &__form {
-    // margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1rem;
@@ -56,6 +59,7 @@
       right: 10px;
       top: 20px;
       color: $primary-color;
+      font-weight: 500;
       cursor: pointer;
     }
   }
@@ -64,13 +68,21 @@
 @media (max-width: 1200px) {
   .ads-filters {
     padding: 0;
+    h3 {
+      display: none;
+    }
     &__form {
       display: none;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 1rem;
+      margin-bottom: 1rem;
 
       &--open {
         display: grid;
+      }
+
+      &__input {
+        margin-bottom: 1rem;
       }
     }
 
@@ -86,10 +98,6 @@
       &--open {
         display: flex;
         flex-direction: column;
-      }
-
-      &__input {
-        margin-bottom: 1rem;
       }
     }
   }
