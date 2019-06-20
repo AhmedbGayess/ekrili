@@ -20,7 +20,6 @@ class AdsPage extends React.Component {
           20}&limit=20`
       : `?skip=${this.props.match.params.page * 20 - 20}&limit=20`;
     this.props.getAds(query);
-    console.log(this.props.location.search);
   }
 
   componentDidUpdate(prevProps) {
