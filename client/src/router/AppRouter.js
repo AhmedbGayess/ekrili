@@ -16,6 +16,7 @@ import { getCategories } from "../store/actions/categories";
 import { getSubCategories } from "../store/actions/subCategories";
 import MobileCategories from "../components/layout/mobile-sidebar/MobileCategories";
 import MobileSubCategories from "../components/layout/mobile-sidebar/MobileSubCategroies";
+import Loader from "../components/common/Loader";
 
 export const history = createBrowserHistory();
 
@@ -30,7 +31,7 @@ class AppRouter extends React.Component {
     mobileSubCategoriesOpen: false
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.props.getCategories();
     this.props.getSubCategories();
   }
@@ -111,74 +112,82 @@ class AppRouter extends React.Component {
       mobileSubCategoriesOpen
     } = this.state;
     const { categories } = this.props;
-    return (
-      <Router history={history}>
-        <Route
-          path={["/", "/create-ad", "/browse-ads/:page"]}
-          render={() => (
-            <Navbar
-              loginModalOpen={loginModalOpen}
-              signupModalOpen={signupModalOpen}
-              toggleLoginModal={this.toggleLoginModal}
-              toggleSignupModal={this.toggleSignupModal}
-              switchToSignup={this.switchToSignup}
-              switchToLogin={this.switchToLogin}
-              location={history.location.pathname}
-              openSidebar={this.openSidebar}
-              sidebarOpen={sidebarOpen}
-              openMobileSidebar={this.openMobileSidebar}
-              mobileOpen={mobileSidebarOpen}
-              mobileCategoriesOpen={mobileCategoriesOpen}
-              mobileSubCategoriesOpen={mobileSubCategoriesOpen}
-            />
-          )}
-          exact
-        />
-        <SideBar
-          open={sidebarOpen}
-          close={this.closeSidebar}
-          categories={categories}
-          subCategories={subCategories}
-          setSubCategories={this.setSubCategories}
-        />
-        <MobileSidebar
-          open={mobileSidebarOpen}
-          close={this.closeMobileSidebar}
-          openMobileCategories={this.openMobileCategories}
-        />
-        <MobileCategories
-          categories={categories}
-          close={this.closeMobileCategories}
-          open={mobileCategoriesOpen}
-          openMobileSidebar={this.openMobileSidebar}
-          setSubCategories={this.setSubCategories}
-          openMobileSubCategories={this.openMobileSubCategories}
-        />
-        <MobileSubCategories
-          subCategories={subCategories}
-          close={this.closeMobileSubCategories}
-          open={mobileSubCategoriesOpen}
-          openMobileCategories={this.openMobileCategories}
-        />
-        <PageCover
-          open={sidebarOpen}
-          mobileOpen={mobileSidebarOpen}
-          categoriesOpen={mobileCategoriesOpen}
-          subCategoriesOpen={mobileSubCategoriesOpen}
-        />
-        <Switch>
+    let app;
+
+    if (categories.length === 0 || this.props.subCategories.length === 0) {
+      app = <Loader />;
+    } else {
+      app = (
+        <Router history={history}>
           <Route
-            path="/"
-            render={() => <Home toggleSignupModal={this.toggleSignupModal} />}
+            path={["/", "/create-ad", "/browse-ads/:page"]}
+            render={() => (
+              <Navbar
+                loginModalOpen={loginModalOpen}
+                signupModalOpen={signupModalOpen}
+                toggleLoginModal={this.toggleLoginModal}
+                toggleSignupModal={this.toggleSignupModal}
+                switchToSignup={this.switchToSignup}
+                switchToLogin={this.switchToLogin}
+                location={history.location.pathname}
+                openSidebar={this.openSidebar}
+                sidebarOpen={sidebarOpen}
+                openMobileSidebar={this.openMobileSidebar}
+                mobileOpen={mobileSidebarOpen}
+                mobileCategoriesOpen={mobileCategoriesOpen}
+                mobileSubCategoriesOpen={mobileSubCategoriesOpen}
+              />
+            )}
             exact
           />
-          <PrivateRoute path="/create-ad" component={CreateAd} exact />
-          <Route path="/browse-ads/:page" component={AdsPage} exact />
-          <Route path="/admin-login" component={AdminLogin} exact />
-          <Route path="/admin" component={AdminRouter} />
-        </Switch>
-      </Router>
-    );
+          <SideBar
+            open={sidebarOpen}
+            close={this.closeSidebar}
+            categories={categories}
+            subCategories={subCategories}
+            setSubCategories={this.setSubCategories}
+          />
+          <MobileSidebar
+            open={mobileSidebarOpen}
+            close={this.closeMobileSidebar}
+            openMobileCategories={this.openMobileCategories}
+          />
+          <MobileCategories
+            categories={categories}
+            close={this.closeMobileCategories}
+            open={mobileCategoriesOpen}
+            openMobileSidebar={this.openMobileSidebar}
+            setSubCategories={this.setSubCategories}
+            openMobileSubCategories={this.openMobileSubCategories}
+          />
+          <MobileSubCategories
+            subCategories={subCategories}
+            close={this.closeMobileSubCategories}
+            open={mobileSubCategoriesOpen}
+            openMobileCategories={this.openMobileCategories}
+          />
+          <PageCover
+            open={sidebarOpen}
+            mobileOpen={mobileSidebarOpen}
+            categoriesOpen={mobileCategoriesOpen}
+            subCategoriesOpen={mobileSubCategoriesOpen}
+          />
+          <Switch>
+            <Route
+              path="/"
+              render={() => <Home toggleSignupModal={this.toggleSignupModal} />}
+              exact
+            />
+            <PrivateRoute path="/create-ad" component={CreateAd} exact />
+            <Route path="/browse-ads/:page" component={AdsPage} exact />
+            <Route path="/admin-login" component={AdminLogin} exact />
+            <Route path="/admin" component={AdminRouter} />
+          </Switch>
+        </Router>
+      );
+    }
+
+    return app;
   }
 }
 

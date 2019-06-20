@@ -6,6 +6,7 @@ import Pagination from "./Pagination";
 import Loader from "../common/Loader";
 import AdsList from "./AdsList";
 import NoAd from "./NoAd";
+import AdsFilters from "./AdsFilters";
 
 class AdsPage extends React.Component {
   componentDidMount() {
@@ -52,7 +53,12 @@ class AdsPage extends React.Component {
       );
     }
 
-    return <div>{pageContent}</div>;
+    return (
+      <div>
+        <AdsFilters queryString={this.props.location.search} />
+        {pageContent}
+      </div>
+    );
   }
 }
 

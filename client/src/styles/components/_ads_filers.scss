@@ -1,0 +1,96 @@
+.ads-filters {
+  padding: 1rem;
+  // background: yellow;
+  // margin-bottom: 2rem;
+  border-bottom: 1px solid $medium-color;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 1px 0px,
+    rgba(0, 0, 0, 0.05) 0px 2px 4px 0px, rgba(0, 0, 0, 0.05) 0px 0px 8px 0px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 1px 0px,
+    rgba(0, 0, 0, 0.05) 0px 2px 4px 0px, rgba(0, 0, 0, 0.05) 0px 0px 8px 0px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 1px 0px,
+    rgba(0, 0, 0, 0.05) 0px 2px 4px 0px, rgba(0, 0, 0, 0.05) 0px 0px 8px 0px;
+
+  &__form {
+    // margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+
+    &__input {
+      height: 40px;
+      display: block;
+      font-size: 16px;
+      padding: 10px;
+      border: 1px solid $medium-color;
+      border-radius: 4px;
+      outline: none;
+
+      &:focus {
+        border-color: $primary-color;
+      }
+    }
+  }
+
+  &__mobile {
+    display: none;
+    position: relative;
+    padding: 2rem;
+    border-bottom: 1px solid $medium-color;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 1px 0px,
+      rgba(0, 0, 0, 0.05) 0px 2px 4px 0px, rgba(0, 0, 0, 0.05) 0px 0px 8px 0px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 1px 0px,
+      rgba(0, 0, 0, 0.05) 0px 2px 4px 0px, rgba(0, 0, 0, 0.05) 0px 0px 8px 0px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 1px 0px,
+      rgba(0, 0, 0, 0.05) 0px 2px 4px 0px, rgba(0, 0, 0, 0.05) 0px 0px 8px 0px;
+
+    &--open {
+      border-bottom: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
+
+    &__toggle {
+      display: inline-block;
+      position: absolute;
+      right: 10px;
+      top: 20px;
+      color: $primary-color;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .ads-filters {
+    padding: 0;
+    &__form {
+      display: none;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 1rem;
+
+      &--open {
+        display: grid;
+      }
+    }
+
+    &__mobile {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .ads-filters {
+    &__form {
+      &--open {
+        display: flex;
+        flex-direction: column;
+      }
+
+      &__input {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

@@ -33,8 +33,7 @@ class HomeSearch extends React.Component {
       value: option.name,
       label: option.name
     }));
-    this.setState({ delegations });
-    this.setState({ governorate });
+    this.setState({ delegations, governorate });
   };
 
   onDelegationChange = (delegation) => {
