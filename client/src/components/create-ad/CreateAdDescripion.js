@@ -3,24 +3,25 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import FormTextAreaField from "../common/FormTextAreaField";
 import FormInputSelect from "../common/FormInputSelect";
-import { getCategories } from "../../store/actions/categories";
-import { getCategorySubCategories } from "../../store/actions/subCategories";
 
 class CreateAdDescription extends React.Component {
-  componentDidMount() {
-    this.props.getCategories();
-  }
+  state = {
+    subCategories: []
+  };
 
   componentDidUpdate(prevProps) {
-    const { category, getCategorySubCategories } = this.props;
+    const { category, subCategories } = this.props;
     if (category !== prevProps.category) {
-      getCategorySubCategories(category);
+      const stateSubCategories = subCategories.filter(
+        (subCategory) => subCategory.category === category
+      );
+      this.setState({ subCategories: [...stateSubCategories] });
     }
   }
 
   render() {
     const { categories } = this.props.categories;
-    const { subCategories } = this.props.subCategories;
+
     const {
       categoryError,
       touchedCategory,
@@ -38,13 +39,13 @@ class CreateAdDescription extends React.Component {
           touched={touchedCategory}
           choices={categories}
         />
-        {subCategories.length > 0 && (
+        {this.state.subCategories.length > 0 && (
           <FormInputSelect
             name="subCategory"
             label="Sous-catégories"
             error={subCategoryError}
             touched={touchedSubCategory}
-            choices={subCategories}
+            choices={this.state.subCategories}
           />
         )}
         <FormTextAreaField
@@ -59,10 +60,8 @@ class CreateAdDescription extends React.Component {
 }
 
 CreateAdDescription.propTypes = {
-  categories: PropTypes.shape({}).isRequired,
-  getCategories: PropTypes.func.isRequired,
-  subCategories: PropTypes.shape({}).isRequired,
-  getCategorySubCategories: PropTypes.func.isRequired,
+  categories: PropTypes.object.isRequired,
+  subCategories: PropTypes.array.isRequired,
   category: PropTypes.string.isRequired,
   categoryError: PropTypes.string,
   touchedCategory: PropTypes.bool,
@@ -74,10 +73,7 @@ CreateAdDescription.propTypes = {
 
 const mapStateToProps = (state) => ({
   categories: state.categories,
-  subCategories: state.subCategories
+  subCategories: state.subCategories.subCategories
 });
 
-export default connect(
-  mapStateToProps,
-  { getCategories, getCategorySubCategories }
-)(CreateAdDescription);
+export default connect(mapStateToProps)(CreateAdDescription);
