@@ -1,5 +1,5 @@
 const initialState = {
-  ad: {},
+  ad: null,
   ads: null,
   count: 0,
   loading: false
