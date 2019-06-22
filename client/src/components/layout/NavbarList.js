@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FaRegUser } from "react-icons/fa";
 import PropTypes from "prop-types";
 import HelpDropdown from "./HelpDropdown";
 import UserDropdown from "./UserDropdown";
+import questionMark from "../../images/question-mark.png";
 
 const NavbarList = ({
   loggedIn,
@@ -16,7 +16,8 @@ const NavbarList = ({
   toggleSignupModal,
   helpDropdownOpen,
   userDropdownOpen,
-  openSidebar
+  openSidebar,
+  userImage
 }) => (
   <ul className="navbar-list">
     <li className="navbar-list-item">
@@ -33,12 +34,12 @@ const NavbarList = ({
     )}
     {loggedIn && (
       <li className="navbar-list-item">
-        <span
-          className="navbar-list-item__drop-button"
+        <img
+          src={userImage}
+          alt="avatar"
+          className="avatar"
           onClick={openUserDropdown}
-        >
-          <FaRegUser className="navbar-icon" />
-        </span>
+        />
         <UserDropdown
           open={userDropdownOpen}
           close={closeUserDropdown}
@@ -61,12 +62,12 @@ const NavbarList = ({
       </li>
     )}
     <li className="navbar-list-item">
-      <span
-        className="navbar-list-item__drop-button"
+      <img
+        src={questionMark}
+        alt="point d'interrogation"
+        className="avatar"
         onClick={openHelpDropdown}
-      >
-        <span className="navbar-icon">?</span>
-      </span>
+      />
       <HelpDropdown open={helpDropdownOpen} close={closeHelpDropdown} />
     </li>
   </ul>

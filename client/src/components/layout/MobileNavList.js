@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import { FaRegUser } from "react-icons/fa";
 import { IoIosLogIn } from "react-icons/io";
 import PropTypes from "prop-types";
 import MobileUserDropdown from "./MobileUserDropdown";
@@ -35,7 +34,8 @@ class MobileNavList extends React.Component {
       logout,
       mobileSubCategoriesOpen,
       mobileCategoriesOpen,
-      mobileOpen
+      mobileOpen,
+      userImage
     } = this.props;
     return (
       <ul className="navbar-list-mobile">
@@ -55,12 +55,12 @@ class MobileNavList extends React.Component {
         )}
         {loggedIn && (
           <li className="navbar-list-mobile__item">
-            <span
-              className="navbar-list-mobile__item-container"
+            <img
+              src={userImage}
+              alt="avatar"
+              className="avatar"
               onClick={openUserDropdown}
-            >
-              <FaRegUser className="navbar-list-mobile__item-icon" />
-            </span>
+            />
             <UserDropdown
               open={userDropdownOpen}
               close={closeUserDropdown}

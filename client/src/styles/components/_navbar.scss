@@ -38,21 +38,6 @@
       & > * {
         font-weight: 500;
       }
-
-      &__drop-button {
-        display: inline-block;
-        height: 97%;
-        border: 2px solid #fff;
-        width: 50px;
-        border-radius: 50%;
-        transition: all 0.3s;
-        cursor: pointer;
-        position: relative;
-
-        &:hover {
-          background: rgba(255, 255, 255, 0.4);
-        }
-      }
     }
 
     &-mobile {
@@ -78,15 +63,6 @@
           margin-top: -2.5px;
         }
 
-        &-icon {
-          display: inline-block;
-          color: #fff;
-          position: relative;
-          font-size: 1.5rem;
-          left: 6px;
-          top: 3px;
-        }
-
         .menu-button {
           &-invisible {
             opacity: 0;
@@ -102,15 +78,6 @@
         }
       }
     }
-  }
-
-  &-icon {
-    color: #fff;
-    position: absolute;
-    top: 42%;
-    left: 50%;
-    transform: translate(-50%, -40%);
-    font-size: 1.5rem;
   }
 }
 

@@ -18,6 +18,7 @@ import MobileCategories from "../components/layout/mobile-sidebar/MobileCategori
 import MobileSubCategories from "../components/layout/mobile-sidebar/MobileSubCategroies";
 import Loader from "../components/common/Loader";
 import AdPage from "../components/ad-page/AdPage";
+import UserPage from "../components/user/UserPage";
 
 export const history = createBrowserHistory();
 
@@ -121,7 +122,13 @@ class AppRouter extends React.Component {
       app = (
         <Router history={history}>
           <Route
-            path={["/", "/create-ad", "/browse-ads/:page", "/ad/:id"]}
+            path={[
+              "/",
+              "/create-ad",
+              "/browse-ads/:page",
+              "/ad/:id",
+              "/user-page"
+            ]}
             render={() => (
               <Navbar
                 loginModalOpen={loginModalOpen}
@@ -180,6 +187,7 @@ class AppRouter extends React.Component {
               exact
             />
             <PrivateRoute path="/create-ad" component={CreateAd} exact />
+            <PrivateRoute path="/user-page" component={UserPage} exact />
             <Route path="/browse-ads/:page" component={AdsPage} exact />
             <Route path="/ad/:id" component={AdPage} exact />
             <Route path="/admin-login" component={AdminLogin} exact />

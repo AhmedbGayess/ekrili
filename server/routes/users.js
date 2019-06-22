@@ -17,7 +17,10 @@ router.post("/register", (req, res) => {
         const payload = {
           id: user._id,
           email: user.email,
-          admin: user.admin
+          admin: user.admin,
+          name: user.name,
+          phone: user.phone,
+          image: user.image
         };
 
         jwt.sign(
@@ -47,7 +50,10 @@ router.post("/login", async (req, res) => {
         const payload = {
           id: user.id,
           email: user.email,
-          admin: user.admin
+          admin: user.admin,
+          name: user.name,
+          phone: user.phone,
+          image: user.image
         };
 
         jwt.sign(

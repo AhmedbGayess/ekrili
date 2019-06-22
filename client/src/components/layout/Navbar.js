@@ -8,6 +8,7 @@ import LoginModal from "../auth/LoginModal";
 import { logout } from "../../store/actions/auth";
 import MobileNavList from "./MobileNavList";
 import NavbarList from "./NavbarList";
+import avatar from "../../images/avatar.png";
 
 class Navbar extends React.Component {
   state = {
@@ -62,6 +63,7 @@ class Navbar extends React.Component {
       mobileSubCategoriesOpen
     } = this.props;
     const loggedIn = Object.keys(this.props.user).length > 0;
+    let userImage = this.props.user.image ? "" : avatar;
     return (
       <nav
         className={classNames("navbar", {
@@ -84,6 +86,7 @@ class Navbar extends React.Component {
           helpDropdownOpen={helpDropdownOpen}
           userDropdownOpen={userDropdownOpen}
           openSidebar={openSidebar}
+          userImage={userImage}
         />
         <MobileNavList
           toggleLoginModal={toggleLoginModal}
@@ -97,6 +100,7 @@ class Navbar extends React.Component {
           mobileOpen={mobileOpen}
           mobileCategoriesOpen={mobileCategoriesOpen}
           mobileSubCategoriesOpen={mobileSubCategoriesOpen}
+          userImage={userImage}
         />
         <SignupModal
           modalOpen={signupModalOpen}
