@@ -91,33 +91,37 @@ router.patch(
   "/edit",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    const user = await User.findById(req.user.id);
-    if (!user) {
-      return res.status(404).send({ user: "No user found" });
-    }
+    try {
+      const user = await User.findById(req.user.id);
+      if (!user) {
+        return res.status(404).send({ user: "No user found" });
+      }
 
-    const updates = {
-      email: req.body.email,
-      password: req.body.password,
-      phone: req.body.phone
-    };
+      const updates = {
+        email: req.body.email,
+        password: req.body.password,
+        phone: req.body.phone
+      };
 
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(updates.password, salt, async (err, hash) => {
-        try {
-          if (err) throw err;
-          updates.password = hash;
-          const updatedUser = await User.findOneAndUpdate(
-            { _id: req.user.id },
-            { $set: updates },
-            { new: true }
-          );
-          res.send(updatedUser);
-        } catch (e) {
-          res.status(500).send(e);
-        }
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(updates.password, salt, async (err, hash) => {
+          try {
+            if (err) throw err;
+            updates.password = hash;
+            const updatedUser = await User.findOneAndUpdate(
+              { _id: req.user.id },
+              { $set: updates },
+              { new: true }
+            );
+            res.send(updatedUser);
+          } catch (e) {
+            res.status(500).send(e);
+          }
+        });
       });
-    });
+    } catch (e) {
+      res.status(500).send(e);
+    }
   }
 );
 
@@ -176,6 +180,74 @@ router.delete(
         res.status(404).send("No user found");
       }
       res.send(user);
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  }
+);
+
+router.post(
+  "/image/:image",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const user = await User.findById(req.user.id);
+      if (!user) {
+        return res.status(404).send({ user: "No user found" });
+      }
+      user.image = req.params.image;
+      await user.save();
+      const payload = {
+        id: user._id,
+        email: user.email,
+        admin: user.admin,
+        name: user.name,
+        phone: user.phone,
+        image: user.image
+      };
+
+      jwt.sign(
+        payload,
+        process.env.JWT_SECRET,
+        { expiresIn: 7200 },
+        (err, token) => {
+          res.json({ token });
+        }
+      );
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  }
+);
+
+router.delete(
+  "/delete/image",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const user = await User.findById(req.user.id);
+      if (!user) {
+        return res.status(404).send({ user: "No user found" });
+      }
+      user.image = "";
+      await user.save();
+      const payload = {
+        id: user._id,
+        email: user.email,
+        admin: user.admin,
+        name: user.name,
+        phone: user.phone,
+        image: user.image
+      };
+
+      jwt.sign(
+        payload,
+        process.env.JWT_SECRET,
+        { expiresIn: 7200 },
+        (err, token) => {
+          res.json({ token });
+        }
+      );
     } catch (e) {
       res.status(500).send(e);
     }

@@ -1,0 +1,39 @@
+.user-info {
+  &__image {
+    height: 300px;
+    width: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+    &::after {
+      content: "";
+      display: none;
+      background: $dark-color;
+      opacity: 0.3;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &:hover::after {
+      display: block;
+    }
+
+    &__delete {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 3rem;
+      z-index: 10;
+      cursor: pointer;
+      display: none;
+    }
+    &:hover &__delete {
+      display: initial;
+    }
+  }
+}

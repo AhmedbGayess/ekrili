@@ -44,6 +44,32 @@ export const logout = () => async (dispatch) => {
   }
 };
 
+export const setUserImage = (image) => async (dispatch) => {
+  try {
+    const { data } = await axios.post(`/users/image/${image}`);
+    localStorage.setItem("token", data.token);
+    setAuthToken(data.token);
+    const decoded = jwt_decode(data.token);
+    dispatch(setCurrentUser(decoded));
+    return true;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const deleteUserImage = () => async (dispatch) => {
+  try {
+    const { data } = await axios.delete("/users/delete/image");
+    localStorage.setItem("token", data.token);
+    setAuthToken(data.token);
+    const decoded = jwt_decode(data.token);
+    dispatch(setCurrentUser(decoded));
+    return true;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const setCurrentUser = (decoded) => ({
   type: "SET_CURRENT_USER",
   payload: decoded

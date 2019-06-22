@@ -60,10 +60,11 @@ class Navbar extends React.Component {
       openMobileSidebar,
       mobileOpen,
       mobileCategoriesOpen,
-      mobileSubCategoriesOpen
+      mobileSubCategoriesOpen,
+      user
     } = this.props;
-    const loggedIn = Object.keys(this.props.user).length > 0;
-    let userImage = this.props.user.image ? "" : avatar;
+    const loggedIn = Object.keys(user).length > 0;
+    let userImage = user.image ? `/images/${user.image}` : avatar;
     return (
       <nav
         className={classNames("navbar", {
