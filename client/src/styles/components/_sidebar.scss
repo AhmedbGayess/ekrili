@@ -8,7 +8,7 @@
   -moz-box-shadow: 4px -1px 5px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 4px -1px 5px 0px rgba(0, 0, 0, 0.2);
   transform: translateX(-120%);
-  width: 15%;
+  width: 20%;
 
   &__open {
     transition: all 0.3s ease-in-out;
@@ -20,23 +20,10 @@
       display: block;
       height: 100%;
       padding: 1rem;
-      color: $dark-color;
-      border: 1px solid $medium-color;
-      border-right: none;
-      border-left: none;
-
-      &:not(:last-child),
-      &:first-child {
-        border-top: none;
-      }
+      color: $secondary-color;
 
       &:hover {
         background: $light-color;
-        color: $primary-color;
-      }
-      &-plus {
-        position: absolute;
-        right: 10px;
       }
     }
   }

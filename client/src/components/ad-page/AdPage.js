@@ -7,6 +7,7 @@ import AdImages from "./AdImages";
 import AdPrice from "./AdPrice";
 import AdDescription from "./AdDescription";
 import AdPath from "./AdPath";
+import AdContact from "./AdContact";
 
 class AdPage extends React.Component {
   componentDidMount() {
@@ -23,8 +24,12 @@ class AdPage extends React.Component {
           <AdPath category={ad.category} subCategory={ad.subCategory} />
           <div className="ad">
             <AdImages images={ad.images} />
-            <AdPrice ad={ad} />
-            <AdDescription ad={ad} />
+            <h1 className="ad-title">{ad.title}</h1>
+            <div className="ad-info">
+              <AdPrice ad={ad} />
+              <AdContact ad={ad} />
+            </div>
+            <AdDescription description={ad.description} />
           </div>
         </div>
       );

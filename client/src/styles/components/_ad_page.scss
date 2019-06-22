@@ -1,33 +1,43 @@
 .ad {
   display: grid;
-  grid-template-areas: "images price" "description description";
+  grid-template-areas: "images info" "images info" "title title" "description description";
   grid-gap: 1rem;
   margin: 2rem auto;
+
+  &-title {
+    margin: 1rem 0;
+    word-break: break-all;
+    grid-area: title;
+  }
 
   &-images {
     grid-area: images;
   }
 
   &-price {
-    grid-area: price;
+    margin-bottom: 1rem;
+  }
 
-    &__card {
-      border: 1px solid #ece9e9;
-      padding: 1.5rem;
-      width: 70%;
-      margin: 0 auto;
+  &-contact {
+    &__phone {
+      color: $secondary-color;
+    }
+  }
+  &-info {
+    grid-area: info;
+  }
 
-      h3 {
-        color: $tertiary-color;
-      }
+  &-contact,
+  &-price {
+    border: 1px solid #ece9e9;
+    padding: 1.5rem;
 
-      p {
-        font-weight: 500;
-      }
+    h3 {
+      color: $tertiary-color;
+    }
 
-      &__phone {
-        color: $secondary-color;
-      }
+    p {
+      font-weight: 500;
     }
   }
 
@@ -35,10 +45,8 @@
     grid-area: description;
     border: 1px solid #ece9e9;
     padding: 1rem;
-    h1 {
-      color: $primary-color;
-      margin: 1rem 0;
-      word-break: break-all;
+    h3 {
+      margin-bottom: 1rem;
     }
 
     p {
@@ -61,7 +69,7 @@
 
 @media (max-width: 1000px) {
   .ad {
-    grid-template-areas: "images" "description" "price";
+    grid-template-areas: "images" "title" "description" "info";
     margin: 1.5rem 0;
 
     &-price {
@@ -76,26 +84,29 @@
   .ad {
     margin: 1rem 0;
 
-    &-price {
-      &__card {
-        padding: 1rem;
+    h1 {
+      font-size: 24px;
+      margin: 0;
+    }
 
-        h2 {
-          font-size: 18px;
-        }
+    &-price,
+    &-contact {
+      padding: 1rem;
 
-        p {
-          font-size: 14px;
-        }
+      h3 {
+        font-size: 18px;
+      }
+
+      p {
+        font-size: 14px;
       }
     }
 
     &-description {
-      h1 {
-        font-size: 24px;
-        margin: 0;
+      h3 {
+        margin-bottom: 0.5rem;
+        font-size: 18px;
       }
-
       p {
         font-size: 15px;
       }

@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const AdDescription = ({ ad }) => (
+const AdDescription = ({ description }) => (
   <div className="ad-description">
-    <h1>{ad.title}</h1>
-    <p>{ad.description}</p>
+    <h3>Description</h3>
+    <p>{description}</p>
   </div>
 );
 
 AdDescription.propTypes = {
-  ad: PropTypes.object.isRequired
+  description: PropTypes.object.isRequired
 };
 
 export default AdDescription;
