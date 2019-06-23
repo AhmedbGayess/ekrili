@@ -43,12 +43,31 @@
     border: 1px solid #ece9e9;
     padding: 1.5rem;
 
-    h3 {
-      color: $tertiary-color;
-    }
-
     p {
       font-weight: 500;
+    }
+  }
+
+  &-price {
+    h3 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    &__prices {
+      display: flex;
+      margin: 0 auto;
+      justify-content: space-around;
+
+      p {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+      &__cost {
+        color: $primary-color;
+        font-size: 1.3rem;
+        font-weight: bold;
+      }
     }
   }
 
@@ -156,6 +175,15 @@
     &-images {
       &__heart {
         font-size: 2rem;
+      }
+    }
+
+    &-price {
+      &__prices {
+        &__cost {
+          font-size: 1rem;
+          font-weight: bold;
+        }
       }
     }
   }
