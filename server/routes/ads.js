@@ -309,4 +309,65 @@ router.delete(
   }
 );
 
+router.post(
+  "/favorite/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const ad = await Ad.findById(req.params.id);
+      const exists = req.user.favorites.find(
+        (favorite) => favorite._id.toString() === req.params.id.toString()
+      );
+
+      if (exists) {
+        req.user.favorites.splice(ad, 1);
+        req.user.save();
+        res.send(false);
+      } else {
+        req.user.favorites.unshift(ad);
+        req.user.save();
+        res.send(true);
+      }
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  }
+);
+
+router.get(
+  "/favorite/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const exists = req.user.favorites.find(
+        (favorite) => favorite._id.toString() === req.params.id.toString()
+      );
+      if (exists) {
+        res.send(true);
+      } else {
+        res.send(false);
+      }
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  }
+);
+
+router.get(
+  "/favorites",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const skip = parseInt(req.query.skip, 10);
+      const favorites = req.user.favorites.slice(skip, skip + 5);
+      const last =
+        req.user.favorites.indexOf(favorites[favorites.length - 1]) + 1;
+      const more = last !== req.user.favorites.length;
+      res.send({ favorites, more });
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  }
+);
+
 module.exports = router;

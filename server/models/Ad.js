@@ -357,14 +357,6 @@ const AdSchema = new mongoose.Schema(
         "Zahouan",
         "Zriba"
       ]
-    },
-    featured: {
-      type: Boolean,
-      default: false
-    },
-    featuredExpires: {
-      type: Date,
-      default: Date.now
     }
   },
   {

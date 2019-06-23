@@ -40,6 +40,11 @@ const UserSchema = new mongoose.Schema(
     image: {
       type: String
     },
+    favorites: [
+      {
+        type: Object
+      }
+    ],
     admin: {
       type: Boolean,
       default: false
