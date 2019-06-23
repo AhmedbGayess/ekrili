@@ -37,6 +37,10 @@ export const checkIfFavorite = (id) => async (dispatch) => {
   }
 };
 
+export const clearFavorites = () => ({
+  type: "CLEAR_FAVORITES"
+});
+
 const setFavoritesLoading = () => ({
   type: "SET_FAVORITES_LOADING"
 });

@@ -1,0 +1,38 @@
+.favorites-page {
+  &__title {
+    margin: 2rem 0;
+    color: $primary-color;
+    text-align: center;
+  }
+
+  &__ads {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+  }
+
+  &__more {
+    display: block;
+    margin: 3rem auto;
+  }
+}
+
+@media (max-width: 1600px) {
+  .favorites-page {
+    &__ads {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media (max-width: 1350px) {
+  .ads-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .ads-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

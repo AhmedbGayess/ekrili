@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { getFavorites } from "../../store/actions/favorites";
+import { getFavorites, clearFavorites } from "../../store/actions/favorites";
+import Loader from "../common/Loader";
+import AdCard from "../ads/AdCard";
 
 class FavoritesPage extends React.Component {
   state = {
@@ -12,6 +15,10 @@ class FavoritesPage extends React.Component {
     this.getNextFavorites();
   }
 
+  componentWillUnmount() {
+    this.props.clearFavorites();
+  }
+
   getNextFavorites = () => {
     this.props.getFavorites(this.state.skip);
     this.setState((prevState) => ({
@@ -20,9 +27,35 @@ class FavoritesPage extends React.Component {
   };
 
   render() {
+    const { favorites, loading, more } = this.props.favorites;
+    let pageContent;
+    if (loading) {
+      pageContent = <Loader />;
+    } else if (favorites.length > 0) {
+      pageContent = favorites.map((ad) => (
+        <Link key={ad._id} to={`/ad/${ad._id}`}>
+          <AdCard
+            title={ad.title}
+            price={ad.price}
+            governorate={ad.governorate}
+            delegation={ad.delegation}
+            image={ad.images[0]}
+          />
+        </Link>
+      ));
+    }
     return (
-      <div>
-        <h1>FAVORITES</h1>
+      <div className="favorites-page">
+        <h1 className="favorites-page__title">VOS FAVORIS</h1>
+        <div className="ads-list">{pageContent}</div>
+        {more && (
+          <button
+            className="favorites-page__more btn-primary"
+            onClick={this.getNextFavorites}
+          >
+            Afficher Plus
+          </button>
+        )}
       </div>
     );
   }
@@ -30,6 +63,7 @@ class FavoritesPage extends React.Component {
 
 FavoritesPage.propTypes = {
   getFavorites: PropTypes.func.isRequired,
+  clearFavorites: PropTypes.func.isRequired,
   favorites: PropTypes.object.isRequired
 };
 
@@ -39,5 +73,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { getFavorites }
+  { getFavorites, clearFavorites }
 )(FavoritesPage);

@@ -16,12 +16,18 @@ export default (state = initialState, action) => {
       return {
         ...state,
         favorites: [...state.favorites, ...action.payload.favorites],
-        more: action.payload.more
+        more: action.payload.more,
+        loading: false
       };
     case "IN_FAVORITES":
       return {
         ...state,
         inFavorites: action.payload
+      };
+    case "CLEAR_FAVORITES":
+      return {
+        ...state,
+        favorites: []
       };
     default:
       return state;
