@@ -12,6 +12,17 @@
 
   &-images {
     grid-area: images;
+    position: relative;
+
+    &__heart {
+      position: absolute;
+      z-index: 6;
+      right: 1rem;
+      top: 1rem;
+      color: $tertiary-color;
+      font-size: 3rem;
+      cursor: pointer;
+    }
   }
 
   &-price {
@@ -63,6 +74,25 @@
       &:hover {
         color: $tertiary-color;
       }
+    }
+  }
+
+  &-favorite {
+    display: block;
+    color: $primary-color;
+    border-color: $primary-color;
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      color: lighten($primary-color, 25%);
+      border-color: lighten($primary-color, 25%);
+    }
+
+    &__icon {
+      margin-right: 0.5rem;
+      font-size: 1rem;
     }
   }
 }
@@ -120,6 +150,12 @@
         &:hover {
           color: $tertiary-color;
         }
+      }
+    }
+
+    &-images {
+      &__heart {
+        font-size: 2rem;
       }
     }
   }

@@ -19,6 +19,7 @@ import MobileSubCategories from "../components/layout/mobile-sidebar/MobileSubCa
 import Loader from "../components/common/Loader";
 import AdPage from "../components/ad-page/AdPage";
 import UserPage from "../components/user/UserPage";
+import FavoritesPage from "../components/favorites-page/FavoritesPage";
 
 export const history = createBrowserHistory();
 
@@ -127,7 +128,8 @@ class AppRouter extends React.Component {
               "/create-ad",
               "/browse-ads/:page",
               "/ad/:id",
-              "/user-page"
+              "/user-page",
+              "/my-favorites"
             ]}
             render={() => (
               <Navbar
@@ -188,6 +190,11 @@ class AppRouter extends React.Component {
             />
             <PrivateRoute path="/create-ad" component={CreateAd} exact />
             <PrivateRoute path="/user-page" component={UserPage} exact />
+            <PrivateRoute
+              path="/my-favorites"
+              component={FavoritesPage}
+              exact
+            />
             <Route path="/browse-ads/:page" component={AdsPage} exact />
             <Route path="/ad/:id" component={AdPage} exact />
             <Route path="/admin-login" component={AdminLogin} exact />

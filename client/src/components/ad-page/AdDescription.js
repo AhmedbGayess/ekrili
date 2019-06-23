@@ -9,7 +9,7 @@ const AdDescription = ({ description }) => (
 );
 
 AdDescription.propTypes = {
-  description: PropTypes.object.isRequired
+  description: PropTypes.string.isRequired
 };
 
 export default AdDescription;
