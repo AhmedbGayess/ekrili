@@ -1,10 +1,25 @@
 .user-info {
+  border: 1px solid $medium-color;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: relative;
+
+  &__profile-image {
+    h3 {
+      text-align: center;
+    }
+  }
+
   &__image {
-    height: 300px;
-    width: 300px;
+    height: 250px;
+    width: 250px;
     background-repeat: no-repeat;
     background-size: cover;
+    border-radius: 50%;
     position: relative;
+    cursor: pointer;
+    margin: 0 auto;
 
     &::after {
       content: "";
@@ -15,6 +30,7 @@
       left: 0;
       width: 100%;
       height: 100%;
+      border-radius: 50%;
     }
 
     &:hover::after {
@@ -29,11 +45,85 @@
       color: #fff;
       font-size: 3rem;
       z-index: 10;
-      cursor: pointer;
       display: none;
     }
     &:hover &__delete {
       display: initial;
+    }
+  }
+
+  &__user {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    height: 70%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &__title {
+      text-align: center;
+    }
+    &__text {
+      line-height: 3rem;
+    }
+  }
+
+  &__edit {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    &__icon {
+      font-size: 1.5rem;
+      color: $primary-color;
+
+      &:hover {
+        color: $secondary-color;
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .user-info {
+    grid-template-columns: repeat(1, 1fr);
+
+    &__profile-image {
+      h3 {
+        display: none;
+      }
+    }
+
+    &__user {
+      &__title {
+        margin-bottom: 1rem;
+      }
+      &__text {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .user-info {
+    &__image {
+      height: 200px;
+      width: 200px;
+    }
+    &__user {
+      &__title {
+        margin-bottom: 1rem;
+      }
+      &__text {
+        font-size: 12px;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    &__edit {
+      top: 0.5rem;
+      right: 0.5rem;
     }
   }
 }

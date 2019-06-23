@@ -1,0 +1,16 @@
+.user-page {
+  &__title {
+    margin: 2rem;
+    text-align: center;
+    color: $primary-color;
+  }
+}
+
+@media (max-width: 600px) {
+  .user-page {
+    &__title {
+      font-size: 1.5rem;
+      margin: 1rem;
+    }
+  }
+}

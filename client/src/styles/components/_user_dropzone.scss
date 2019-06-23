@@ -1,20 +1,24 @@
 .user-dropzone {
-  height: 300px;
-  width: 300px;
-  background-image: url("../images/avatar.png");
+  height: 250px;
+  width: 250px;
+  background-image: url("../images/profile-picture.jpg");
   background-size: cover;
   position: relative;
+  border: 2px solid #000;
+  border-radius: 50%;
+  margin: 0 auto;
   cursor: pointer;
 
   &::after {
     content: "";
     display: none;
     background: $dark-color;
-    opacity: 0.3;
+    opacity: 0.5;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    border-radius: 50%;
   }
 
   &:hover::after {
@@ -39,5 +43,12 @@
     &:hover::after {
       display: none;
     }
+  }
+}
+
+@media (max-width: 500px) {
+  .user-dropzone {
+    height: 200px;
+    width: 200px;
   }
 }
