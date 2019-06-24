@@ -20,7 +20,8 @@ router.post("/register", (req, res) => {
           admin: user.admin,
           name: user.name,
           phone: user.phone,
-          image: user.image
+          image: user.image,
+          bio: user.bio
         };
 
         jwt.sign(
@@ -53,7 +54,8 @@ router.post("/login", async (req, res) => {
           admin: user.admin,
           name: user.name,
           phone: user.phone,
-          image: user.image
+          image: user.image,
+          bio: user.bio
         };
 
         jwt.sign(
@@ -82,7 +84,8 @@ router.get(
       name: req.user.name,
       email: req.user.email,
       phone: req.user.phone,
-      address: req.user.address
+      address: req.user.address,
+      bio: req.user.bio
     });
   }
 );
@@ -100,7 +103,8 @@ router.patch(
       const updates = {
         email: req.body.email,
         password: req.body.password || req.user.password,
-        phone: req.body.phone
+        phone: req.body.phone,
+        bio: req.body.bio
       };
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -121,7 +125,8 @@ router.patch(
               admin: updatedUser.admin,
               name: updatedUser.name,
               phone: updatedUser.phone,
-              image: updatedUser.image
+              image: updatedUser.image,
+              bio: updatedUser.bio
             };
 
             jwt.sign(

@@ -58,17 +58,18 @@ class UserInfo extends React.Component {
   };
 
   render() {
-    const { name, email, phone, image } = this.props.user;
+    const { name, email, phone, image, bio } = this.props.user;
     const { loading, deleteModalOpen, edit } = this.state;
     return (
       <div className="user-info">
-        <span
+        <button
           to="/edit-user"
-          className="user-info__edit"
+          className="btn-secondary user-info__edit"
           onClick={this.toggleEdit}
         >
+          Modifier vos infos
           <MdEdit className="user-info__edit__icon" />
-        </span>
+        </button>
         <div className="user-info__profile-image">
           {image && (
             <div
@@ -85,15 +86,34 @@ class UserInfo extends React.Component {
             toggleModal={this.toggleDeleteModal}
             deleteImage={this.onDeleteImage}
           />
-          <h3 className="my-2">Photo de profil</h3>
         </div>
         {!edit && (
           <div className="user-info__user">
-            <h3 className="user-info__user__title">Vos informations</h3>
             <div className="user-info__user__text">
-              <p>Nom: {name}</p>
-              <p>Adresse Email: {email}</p>
-              <p>Numéro de téléphone: {phone}</p>
+              <h1>{name}</h1>
+              <p>
+                <span>Adresse Email</span>: {email}
+              </p>
+              <p>
+                <span>Numéro de téléphone</span>: +216 {phone}
+              </p>
+              {bio && (
+                <p className="user-info__user__text__bio">
+                  <span>Bio</span>: <span>{bio}</span>
+                </p>
+              )}
+
+              {!bio && (
+                <p>
+                  <span>Bio</span>:{" "}
+                  <span
+                    className="user-info__user__text__add-bio"
+                    onClick={this.toggleEdit}
+                  >
+                    Ajouter une bio (optionnel)
+                  </span>
+                </p>
+              )}
             </div>
           </div>
         )}

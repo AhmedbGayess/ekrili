@@ -75,12 +75,15 @@
     grid-area: description;
     border: 1px solid #ece9e9;
     padding: 1rem;
+
     h3 {
       margin-bottom: 1rem;
     }
 
     p {
       word-break: break-all;
+      white-space: pre-wrap;
+      text-align: justify;
     }
   }
 

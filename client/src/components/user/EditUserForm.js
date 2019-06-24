@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import PropTypes from "prop-types";
 import { updateUserInfo } from "../../store/actions/auth";
 import FormInputField from "../common/FormInputField";
+import FormTextAreaField from "../common/FormTextAreaField";
 
 const EditUser = ({ errors, touched, error }) => (
   <Form className="auth-form">
@@ -28,8 +29,9 @@ const EditUser = ({ errors, touched, error }) => (
       label="Mot de passe"
       error={errors.password}
       touched={touched.password}
-      placeholder="Laissez vide pour garder votre mot de passe actuel"
+      placeholder="**********"
     />
+    <FormTextAreaField name="bio" label="Bio" />
     <button type="submit" className="btn-primary">
       Modifier
     </button>
@@ -46,7 +48,8 @@ const EditUserForm = withFormik({
     return {
       email: user.email,
       phone: user.phone,
-      password: ""
+      password: "",
+      bio: user.bio
     };
   },
   validationSchema: Yup.object({

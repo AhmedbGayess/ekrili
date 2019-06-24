@@ -38,6 +38,10 @@ const UserSchema = new mongoose.Schema(
         }
       }
     },
+    bio: {
+      type: String,
+      default: ""
+    },
     image: {
       type: String
     },

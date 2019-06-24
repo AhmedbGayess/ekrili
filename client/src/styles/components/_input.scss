@@ -28,7 +28,7 @@
     }
 
     &::placeholder {
-      color: $medium-color;
+      color: $dark-color;
     }
   }
 
@@ -36,11 +36,5 @@
     color: #fa685b;
     margin-top: 4px;
     line-height: 21px;
-  }
-}
-
-@media (max-width: 500px) {
-  .form-input::placeholder {
-    font-size: 12px;
   }
 }
