@@ -99,7 +99,7 @@ router.patch(
 
       const updates = {
         email: req.body.email,
-        password: req.body.password,
+        password: req.body.password || req.user.password,
         phone: req.body.phone
       };
 
@@ -107,13 +107,31 @@ router.patch(
         bcrypt.hash(updates.password, salt, async (err, hash) => {
           try {
             if (err) throw err;
-            updates.password = hash;
+            if (req.body.password) {
+              updates.password = hash;
+            }
             const updatedUser = await User.findOneAndUpdate(
               { _id: req.user.id },
               { $set: updates },
               { new: true }
             );
-            res.send(updatedUser);
+            const payload = {
+              id: updatedUser._id,
+              email: updatedUser.email,
+              admin: updatedUser.admin,
+              name: updatedUser.name,
+              phone: updatedUser.phone,
+              image: updatedUser.image
+            };
+
+            jwt.sign(
+              payload,
+              process.env.JWT_SECRET,
+              { expiresIn: 7200 },
+              (err, token) => {
+                res.json({ token });
+              }
+            );
           } catch (e) {
             res.status(500).send(e);
           }

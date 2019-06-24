@@ -11,9 +11,15 @@ export const registerUser = (userData) => async (dispatch) => {
     dispatch(setCurrentUser(decoded));
     return true;
   } catch (e) {
-    dispatch({
-      type: "SET_SIGNUP_ERROR"
-    });
+    if (e.response.data.code === 11000) {
+      dispatch({
+        type: "DUPLICATE_ERROR"
+      });
+    } else {
+      dispatch({
+        type: "SET_SIGNUP_ERROR"
+      });
+    }
     return false;
   }
 };
@@ -40,6 +46,24 @@ export const logout = () => async (dispatch) => {
     setAuthToken(false);
     dispatch(setCurrentUser({}));
   } catch (e) {
+    console.log(e);
+  }
+};
+
+export const updateUserInfo = (userData) => async (dispatch) => {
+  try {
+    const { data } = await axios.patch("/users/edit", userData);
+    localStorage.setItem("token", data.token);
+    setAuthToken(data.token);
+    const decoded = jwt_decode(data.token);
+    dispatch(setCurrentUser(decoded));
+    return true;
+  } catch (e) {
+    if (e.response.data.code === 11000) {
+      dispatch({
+        type: "DUPLICATE_ERROR"
+      });
+    }
     console.log(e);
   }
 };

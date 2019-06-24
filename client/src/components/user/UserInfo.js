@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { FaTrash } from "react-icons/fa";
@@ -8,17 +7,23 @@ import { MdEdit } from "react-icons/md";
 import { setUserImage, deleteUserImage } from "../../store/actions/auth";
 import UserImage from "./UserImage";
 import DeleteImageModal from "./DeleteImageModal";
+import EditUserForm from "./EditUserForm";
 
 class UserInfo extends React.Component {
   state = {
     loading: false,
-    deleteModalOpen: false
+    deleteModalOpen: false,
+    edit: false
   };
 
   toggleDeleteModal = () => {
     this.setState((prevProps) => ({
       deleteModalOpen: !prevProps.deleteModalOpen
     }));
+  };
+
+  toggleEdit = () => {
+    this.setState((prevState) => ({ edit: !prevState.edit }));
   };
 
   onDrop = async (acceptedFiles) => {
@@ -54,12 +59,16 @@ class UserInfo extends React.Component {
 
   render() {
     const { name, email, phone, image } = this.props.user;
-    const { loading, deleteModalOpen } = this.state;
+    const { loading, deleteModalOpen, edit } = this.state;
     return (
       <div className="user-info">
-        <Link to="/edit-user" className="user-info__edit">
+        <span
+          to="/edit-user"
+          className="user-info__edit"
+          onClick={this.toggleEdit}
+        >
           <MdEdit className="user-info__edit__icon" />
-        </Link>
+        </span>
         <div className="user-info__profile-image">
           {image && (
             <div
@@ -78,14 +87,19 @@ class UserInfo extends React.Component {
           />
           <h3 className="my-2">Photo de profil</h3>
         </div>
-        <div className="user-info__user">
-          <h3 className="user-info__user__title">Vos informations</h3>
-          <div className="user-info__user__text">
-            <p>Nom: {name}</p>
-            <p>Adresse Email: {email}</p>
-            <p>Numéro de téléphone: {phone}</p>
+        {!edit && (
+          <div className="user-info__user">
+            <h3 className="user-info__user__title">Vos informations</h3>
+            <div className="user-info__user__text">
+              <p>Nom: {name}</p>
+              <p>Adresse Email: {email}</p>
+              <p>Numéro de téléphone: {phone}</p>
+            </div>
           </div>
-        </div>
+        )}
+        {edit && (
+          <EditUserForm user={this.props.user} toggleEdit={this.toggleEdit} />
+        )}
       </div>
     );
   }

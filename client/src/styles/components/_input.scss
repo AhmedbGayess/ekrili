@@ -26,11 +26,21 @@
     &:focus {
       border-color: $primary-color;
     }
+
+    &::placeholder {
+      color: $medium-color;
+    }
   }
 
   .input-error {
     color: #fa685b;
     margin-top: 4px;
     line-height: 21px;
+  }
+}
+
+@media (max-width: 500px) {
+  .form-input::placeholder {
+    font-size: 12px;
   }
 }

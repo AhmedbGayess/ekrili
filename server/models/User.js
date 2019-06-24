@@ -30,6 +30,7 @@ const UserSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
+      unique: true,
       required: true,
       validate(value) {
         if (!validator.isMobilePhone(value, "ar-TN")) {
