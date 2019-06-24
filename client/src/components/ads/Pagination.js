@@ -43,21 +43,23 @@ const Pagination = ({ count, search, pageNumber, link }) => {
         ...
       </span>
     );
-  } else if (pagination.length <= 5 && pageNumber < pagesNumber - 2) {
+  }
+
+  if (pagesNumber > 5 && pageNumber >= 4 && pageNumber !== pagesNumber) {
     pagination.splice(
-      pagination.length - 1,
+      1,
       0,
-      <span className="pagination__dots" key="end-dots">
+      <span className="pagination__dots" key="start-dots">
         ...
       </span>
     );
   }
 
-  if (pagesNumber >= 5 && pageNumber >= 4 && pageNumber !== pagesNumber) {
+  if (pagesNumber > 5 && pageNumber < pagesNumber - 2) {
     pagination.splice(
-      1,
+      pagination.length - 1,
       0,
-      <span className="pagination__dots" key="start-dots">
+      <span className="pagination__dots" key="end-dots">
         ...
       </span>
     );
