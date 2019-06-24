@@ -5,34 +5,31 @@ import PropTypes from "prop-types";
 import { getFavorites, clearFavorites } from "../../store/actions/favorites";
 import Loader from "../common/Loader";
 import AdCard from "../ads/AdCard";
+import Pagination from "../ads/Pagination";
 
 class FavoritesPage extends React.Component {
-  state = {
-    skip: 0
-  };
-
   componentDidMount() {
     this.getNextFavorites();
   }
 
-  componentWillUnmount() {
-    this.props.clearFavorites();
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.page !== this.props.match.params.page) {
+      this.getNextFavorites();
+    }
   }
 
   getNextFavorites = () => {
-    this.props.getFavorites(this.state.skip);
-    this.setState((prevState) => ({
-      skip: prevState.skip + 5
-    }));
+    const skip = this.props.match.params.page * 20 - 20;
+    this.props.getFavorites(skip);
   };
 
   render() {
-    const { favorites, loading, more } = this.props.favorites;
+    const { favorites, loading, count } = this.props.favorites;
     let pageContent;
     if (loading) {
       pageContent = <Loader />;
     } else if (favorites.length > 0) {
-      pageContent = favorites.map((ad) => (
+      const ads = favorites.map((ad) => (
         <Link key={ad._id} to={`/ad/${ad._id}`}>
           <AdCard
             title={ad.title}
@@ -43,19 +40,21 @@ class FavoritesPage extends React.Component {
           />
         </Link>
       ));
+      pageContent = (
+        <div>
+          <div className="ads-list">{ads}</div>
+          <Pagination
+            count={count}
+            link={"/my-favorites"}
+            pageNumber={Number(this.props.match.params.page)}
+          />
+        </div>
+      );
     }
     return (
       <div className="favorites-page">
         <h1 className="favorites-page__title">VOS FAVORIS</h1>
-        <div className="ads-list">{pageContent}</div>
-        {more && (
-          <button
-            className="favorites-page__more btn-primary"
-            onClick={this.getNextFavorites}
-          >
-            Afficher Plus
-          </button>
-        )}
+        <div>{pageContent}</div>
       </div>
     );
   }

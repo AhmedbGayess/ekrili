@@ -53,7 +53,7 @@ class UserDropdown extends React.Component {
           </li>
           <li className="dropdown__list-item">
             <Link
-              to="/my-favorites"
+              to="/my-favorites/1"
               onClick={close}
               className="dropdown__list-item-link"
             >

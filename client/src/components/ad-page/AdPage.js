@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { getAd } from "../../store/actions/ads";
 import { checkIfFavorite, addToFavorites } from "../../store/actions/favorites";
 import Loader from "../common/Loader";
@@ -13,8 +12,8 @@ import AdContact from "./AdContact";
 
 class AdPage extends React.Component {
   componentDidMount() {
-    this.props.getAd(this.props.match.params.id);
     this.props.checkIfFavorite(this.props.match.params.id);
+    this.props.getAd(this.props.match.params.id);
   }
 
   addToFavorites = () => {

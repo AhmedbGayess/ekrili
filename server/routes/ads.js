@@ -348,11 +348,9 @@ router.get(
   async (req, res) => {
     try {
       const skip = parseInt(req.query.skip, 10);
-      const favorites = req.user.favorites.slice(skip, skip + 5);
-      const last =
-        req.user.favorites.indexOf(favorites[favorites.length - 1]) + 1;
-      const more = last !== req.user.favorites.length;
-      res.send({ favorites, more });
+      const favorites = req.user.favorites.slice(skip, skip + 20);
+      const count = req.user.favorites.length;
+      res.send({ favorites, count });
     } catch (e) {
       res.status(500).send(e);
     }

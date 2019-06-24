@@ -2,7 +2,7 @@ const initialState = {
   inFavorites: false,
   favorites: [],
   loading: false,
-  more: false
+  count: 0
 };
 
 export default (state = initialState, action) => {
@@ -15,19 +15,14 @@ export default (state = initialState, action) => {
     case "SET_FAVORITES":
       return {
         ...state,
-        favorites: [...state.favorites, ...action.payload.favorites],
-        more: action.payload.more,
+        favorites: [...action.payload.favorites],
+        count: action.payload.count,
         loading: false
       };
     case "IN_FAVORITES":
       return {
         ...state,
         inFavorites: action.payload
-      };
-    case "CLEAR_FAVORITES":
-      return {
-        ...state,
-        favorites: []
       };
     default:
       return state;

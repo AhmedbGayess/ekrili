@@ -130,7 +130,7 @@ class AppRouter extends React.Component {
               "/browse-ads/:page",
               "/ad/:id",
               "/user-page",
-              "/my-favorites",
+              "/my-favorites/:page",
               "/my-ads/:page"
             ]}
             render={() => (
@@ -193,7 +193,7 @@ class AppRouter extends React.Component {
             <PrivateRoute path="/create-ad" component={CreateAd} exact />
             <PrivateRoute path="/user-page" component={UserPage} exact />
             <PrivateRoute
-              path="/my-favorites"
+              path="/my-favorites/:page"
               component={FavoritesPage}
               exact
             />
