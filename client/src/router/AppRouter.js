@@ -20,6 +20,7 @@ import Loader from "../components/common/Loader";
 import AdPage from "../components/ad-page/AdPage";
 import UserPage from "../components/user/UserPage";
 import FavoritesPage from "../components/favorites-page/FavoritesPage";
+import UserAdsPage from "../components/user-ads/UserAdsPage";
 
 export const history = createBrowserHistory();
 
@@ -129,7 +130,8 @@ class AppRouter extends React.Component {
               "/browse-ads/:page",
               "/ad/:id",
               "/user-page",
-              "/my-favorites"
+              "/my-favorites",
+              "/my-ads/:page"
             ]}
             render={() => (
               <Navbar
@@ -195,6 +197,7 @@ class AppRouter extends React.Component {
               component={FavoritesPage}
               exact
             />
+            <PrivateRoute path="/my-ads/:page" component={UserAdsPage} exact />
             <Route path="/browse-ads/:page" component={AdsPage} exact />
             <Route path="/ad/:id" component={AdPage} exact />
             <Route path="/admin-login" component={AdminLogin} exact />

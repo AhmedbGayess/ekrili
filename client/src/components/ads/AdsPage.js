@@ -73,8 +73,9 @@ class AdsPage extends React.Component {
           <AdsList ads={ads} />
           <Pagination
             count={count}
-            link={this.props.location.search}
+            search={this.props.location.search}
             pageNumber={Number(this.props.match.params.page)}
+            link="/browse-ads"
           />
         </div>
       );

@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Pagination = ({ count, link, pageNumber }) => {
+const Pagination = ({ count, search, pageNumber, link }) => {
   const pagesNumber = Math.ceil(count / 20);
   let pages = [];
 
@@ -23,8 +23,8 @@ const Pagination = ({ count, link, pageNumber }) => {
   const pagination = pages.map((page, i) => (
     <NavLink
       to={{
-        pathname: `/browse-ads/${page}`,
-        search: link
+        pathname: `${link}/${page}`,
+        search
       }}
       key={i}
       className="pagination__number"
@@ -63,8 +63,8 @@ const Pagination = ({ count, link, pageNumber }) => {
     );
   }
 
-  const previousLink = `/browse-ads/${pageNumber - 1}/${link}`;
-  const nextLink = `/browse-ads/${pageNumber + 1}/${link}`;
+  const previousLink = `${link}/${pageNumber - 1}/${search}`;
+  const nextLink = `${link}/${pageNumber + 1}/${search}`;
 
   return (
     <div className="pagination">
@@ -85,7 +85,8 @@ const Pagination = ({ count, link, pageNumber }) => {
 
 Pagination.propTypes = {
   count: PropTypes.number.isRequired,
-  link: PropTypes.string.isRequired
+  link: PropTypes.string.isRequired,
+  search: PropTypes.string
 };
 
 export default Pagination;

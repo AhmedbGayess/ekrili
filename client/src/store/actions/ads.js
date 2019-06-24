@@ -62,10 +62,10 @@ export const getAdsBySubcategory = (id) => async (dispatch) => {
   }
 };
 
-export const getOwnAds = () => async (dispatch) => {
+export const getOwnAds = (limit, skip) => async (dispatch) => {
   try {
     dispatch(setAdsLoading());
-    const { data } = await axios.get("/ads/my-ads");
+    const { data } = await axios.get(`/ads/my-ads?limit=${limit}&skip=${skip}`);
     dispatch({
       type: "SET_ADS",
       payload: data

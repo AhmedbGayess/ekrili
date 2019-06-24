@@ -129,25 +129,20 @@ router.get(
   "/my-ads",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    const sort = {};
-
-    if (req.query.sortBy) {
-      const parts = req.query.sortBy.split(":");
-      sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
-    }
-
     try {
-      await req.user
+      const count = await Ad.find({
+        user: req.user.id
+      }).countDocuments();
+      const user = await req.user
         .populate({
           path: "ads",
           options: {
             limit: parseInt(req.query.limit),
-            skip: parseInt(req.query.skip),
-            sort
+            skip: parseInt(req.query.skip)
           }
         })
         .execPopulate();
-      res.send(req.user.ads);
+      res.send({ ads: user.ads, count });
     } catch (e) {
       res.status(500).send();
     }
@@ -155,12 +150,6 @@ router.get(
 );
 
 router.get("/user/:id", async (req, res) => {
-  const sort = {};
-
-  if (req.query.sortBy) {
-    const parts = req.query.sortBy.split(":");
-    sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
-  }
   try {
     const user = await User.findById(req.params.id);
     await user

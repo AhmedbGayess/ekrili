@@ -44,16 +44,20 @@ class UserDropdown extends React.Component {
           </li>
           <li className="dropdown__list-item">
             <Link
+              to="/my-ads/1"
+              onClick={close}
+              className="dropdown__list-item-link"
+            >
+              Mes annonces
+            </Link>
+          </li>
+          <li className="dropdown__list-item">
+            <Link
               to="/my-favorites"
               onClick={close}
               className="dropdown__list-item-link"
             >
               Mes favoris
-            </Link>
-          </li>
-          <li className="dropdown__list-item">
-            <Link to="/" onClick={close} className="dropdown__list-item-link">
-              Mes annonces
             </Link>
           </li>
           <li className="dropdown__list-item">
