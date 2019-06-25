@@ -230,7 +230,9 @@ router.patch(
       "price",
       "images",
       "governorate",
-      "delegation"
+      "delegation",
+      "category",
+      "subCategory"
     ];
 
     const isValidOperation = updates.every((update) =>
@@ -238,6 +240,8 @@ router.patch(
     );
 
     if (!isValidOperation) {
+      console.log(allowedUpdates);
+      console.log(req.body);
       return res.status(400).send({ error: "Invalid updates." });
     }
 

@@ -2,7 +2,7 @@ import React from "react";
 import { FaRegLightbulb } from "react-icons/fa";
 import PropTypes from "prop-types";
 
-const CreatAdTips = ({ step }) => {
+const EditAdTips = ({ step }) => {
   let content;
   if (step === 1) {
     content = (
@@ -71,8 +71,8 @@ const CreatAdTips = ({ step }) => {
   );
 };
 
-CreatAdTips.propTypes = {
+EditAdTips.propTypes = {
   step: PropTypes.number.isRequired
 };
 
-export default CreatAdTips;
+export default EditAdTips;

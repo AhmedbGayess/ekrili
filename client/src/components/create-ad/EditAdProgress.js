@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 
-const CreateAdProgress = ({ step }) => {
+const EditAdProgress = ({ step }) => {
   let subtitle;
   if (step === 1) {
     subtitle = <h3>Qu'avez-vous à louer?</h3>;
@@ -33,8 +33,8 @@ const CreateAdProgress = ({ step }) => {
   );
 };
 
-CreateAdProgress.propTypes = {
+EditAdProgress.propTypes = {
   step: PropTypes.number.isRequired
 };
 
-export default CreateAdProgress;
+export default EditAdProgress;

@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FormInputField from "../common/FormInputField";
-import CreateAdImage from "./CreateAdImage";
+import EditAdImage from "./EditAdImage";
 
-const CreateAdTitle = ({
+const EditAdTitle = ({
   error,
   touched,
   imageOne,
@@ -22,19 +22,19 @@ const CreateAdTitle = ({
     <div className="my-1">
       <h4 className="my-1">Ajoutez des images à votre annonce</h4>
       <div className="create-ad-images">
-        <CreateAdImage
+        <EditAdImage
           image={imageOne}
           stateImage="imageOne"
           addImage={addImage}
           removeImage={removeImage}
         />
-        <CreateAdImage
+        <EditAdImage
           image={imageTwo}
           stateImage="imageTwo"
           addImage={addImage}
           removeImage={removeImage}
         />
-        <CreateAdImage
+        <EditAdImage
           image={imageThree}
           stateImage="imageThree"
           addImage={addImage}
@@ -45,7 +45,7 @@ const CreateAdTitle = ({
   </div>
 );
 
-CreateAdTitle.propTypes = {
+EditAdTitle.propTypes = {
   error: PropTypes.string,
   touched: PropTypes.bool,
   imageOne: PropTypes.string.isRequired,
@@ -55,4 +55,4 @@ CreateAdTitle.propTypes = {
   removeImage: PropTypes.func.isRequired
 };
 
-export default CreateAdTitle;
+export default EditAdTitle;

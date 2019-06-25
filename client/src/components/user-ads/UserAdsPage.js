@@ -31,7 +31,7 @@ class UserAdsPage extends React.Component {
       pageContent = <Loader />;
     } else if (ads.length > 0) {
       const fetchedAds = ads.map((ad) => (
-        <Link key={ad._id} to={`/ad/${ad._id}`}>
+        <Link key={ad._id} to={`/edit-ad/${ad._id}`}>
           <AdCard
             title={ad.title}
             price={ad.price}

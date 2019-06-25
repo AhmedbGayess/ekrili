@@ -7,7 +7,7 @@ import AdminLogin from "../components/auth/AdminLogin";
 import PrivateRoute from "./PrivateRoute";
 import AdminRouter from "./AdminRouter";
 import Navbar from "../components/layout/Navbar";
-import CreateAd from "../components/create-ad/CreateAd";
+import EditAd from "../components/create-ad/EditAd";
 import AdsPage from "../components/ads/AdsPage";
 import SideBar from "../components/layout/sidebar/SideBar";
 import PageCover from "../components/layout/PageCover";
@@ -21,6 +21,7 @@ import AdPage from "../components/ad-page/AdPage";
 import UserPage from "../components/user/UserPage";
 import FavoritesPage from "../components/favorites-page/FavoritesPage";
 import UserAdsPage from "../components/user-ads/UserAdsPage";
+import UpdateAd from "../components/create-ad/UpdateAd";
 
 export const history = createBrowserHistory();
 
@@ -127,6 +128,7 @@ class AppRouter extends React.Component {
             path={[
               "/",
               "/create-ad",
+              "/edit-ad/:id",
               "/browse-ads/:page",
               "/ad/:id",
               "/user-page",
@@ -190,7 +192,8 @@ class AppRouter extends React.Component {
               render={() => <Home toggleSignupModal={this.toggleSignupModal} />}
               exact
             />
-            <PrivateRoute path="/create-ad" component={CreateAd} exact />
+            <PrivateRoute path="/create-ad" component={EditAd} exact />
+            <PrivateRoute path="/edit-ad/:id" component={UpdateAd} exact />
             <PrivateRoute path="/user-page" component={UserPage} exact />
             <PrivateRoute
               path="/my-favorites/:page"

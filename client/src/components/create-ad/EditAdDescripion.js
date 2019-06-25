@@ -4,10 +4,20 @@ import PropTypes from "prop-types";
 import FormTextAreaField from "../common/FormTextAreaField";
 import FormInputSelect from "../common/FormInputSelect";
 
-class CreateAdDescription extends React.Component {
+class EditAdDescription extends React.Component {
   state = {
     subCategories: []
   };
+
+  componentDidMount() {
+    const { category, subCategories } = this.props;
+    if (category) {
+      const stateSubCategories = subCategories.filter(
+        (subCategory) => subCategory.category === category
+      );
+      this.setState({ subCategories: [...stateSubCategories] });
+    }
+  }
 
   componentDidUpdate(prevProps) {
     const { category, subCategories } = this.props;
@@ -59,7 +69,7 @@ class CreateAdDescription extends React.Component {
   }
 }
 
-CreateAdDescription.propTypes = {
+EditAdDescription.propTypes = {
   categories: PropTypes.object.isRequired,
   subCategories: PropTypes.array.isRequired,
   category: PropTypes.string.isRequired,
@@ -76,4 +86,4 @@ const mapStateToProps = (state) => ({
   subCategories: state.subCategories.subCategories
 });
 
-export default connect(mapStateToProps)(CreateAdDescription);
+export default connect(mapStateToProps)(EditAdDescription);

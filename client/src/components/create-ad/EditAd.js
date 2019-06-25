@@ -3,20 +3,20 @@ import { connect } from "react-redux";
 import { withFormik, Form } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-import { createAd } from "../../store/actions/ads";
-import CreateAdProgress from "./CreateAdProgress";
-import CreatAdTips from "./CreatAdTips";
-import CreateAdTitle from "./CreateAdTitle";
-import CreateAdDescription from "./CreateAdDescripion";
-import CreateAdLocation from "./CreateAdLocation";
-import CreateAdPrice from "./CreateAdPrice";
+import { createAd, editAd } from "../../store/actions/ads";
+import EditAdProgress from "./EditAdProgress";
+import EditAdTips from "./EditAdTips";
+import EditAdTitle from "./EditAdTitle";
+import EditAdDescription from "./EditAdDescripion";
+import EditAdLocation from "./EditAdLocation";
+import EditAdPrice from "./EditAdPrice";
 
-class NewAd extends React.Component {
+class Ad extends React.Component {
   state = {
     step: 1,
-    imageOne: "",
-    imageTwo: "",
-    imageThree: "",
+    imageOne: this.props.imageOne ? this.props.imageOne : "",
+    imageTwo: this.props.imageTwo ? this.props.imageTwo : "",
+    imageThree: this.props.imageThree ? this.props.imageThree : "",
     weekPrice: "",
     monthPrice: ""
   };
@@ -48,15 +48,25 @@ class NewAd extends React.Component {
     const images = [imageOne, imageTwo, imageThree].filter(
       (image) => image !== ""
     );
-    this.props.createAd({
-      ...this.props.values,
-      images
-    });
+    if (this.props.id) {
+      this.props.editAd(
+        {
+          ...this.props.values,
+          images
+        },
+        this.props.id
+      );
+    } else {
+      this.props.createAd({
+        ...this.props.values,
+        images
+      });
+    }
   };
 
   render() {
     const { step, imageOne, imageTwo, imageThree } = this.state;
-    const { errors, touched, values } = this.props;
+    const { errors, touched, values, ads } = this.props;
 
     let disabledNext = false;
 
@@ -103,7 +113,7 @@ class NewAd extends React.Component {
 
     if (step === 1) {
       content = (
-        <CreateAdTitle
+        <EditAdTitle
           error={errors.title}
           touched={touched.title}
           imageOne={imageOne}
@@ -115,10 +125,10 @@ class NewAd extends React.Component {
       );
     } else if (step === 2) {
       content = (
-        <CreateAdDescription
+        <EditAdDescription
           descriptionError={errors.description}
           touchedDescription={touched.description}
-          category={this.props.values.category}
+          category={values.category}
           categoryError={errors.category}
           touchedCategory={touched.category}
           subCategoryError={errors.subCategory}
@@ -127,8 +137,8 @@ class NewAd extends React.Component {
       );
     } else if (step === 3) {
       content = (
-        <CreateAdLocation
-          governorate={this.props.values.governorate}
+        <EditAdLocation
+          governorate={values.governorate}
           governorateError={errors.governorate}
           touchedGovernorate={touched.governorate}
           delegationError={errors.delegation}
@@ -137,8 +147,8 @@ class NewAd extends React.Component {
       );
     } else if (step === 4) {
       content = (
-        <CreateAdPrice
-          price={this.props.values.price}
+        <EditAdPrice
+          price={values.price}
           error={errors.price}
           touched={touched.price}
         />
@@ -146,7 +156,7 @@ class NewAd extends React.Component {
     }
     return (
       <div className="container">
-        <CreateAdProgress step={step} />
+        <EditAdProgress step={step} />
         <div className="create-ad">
           <div>
             <Form>{content}</Form>
@@ -180,7 +190,7 @@ class NewAd extends React.Component {
             </div>
           </div>
           <div>
-            <CreatAdTips step={step} />
+            <EditAdTips step={step} />
           </div>
         </div>
       </div>
@@ -188,20 +198,31 @@ class NewAd extends React.Component {
   }
 }
 
-NewAd.propTypes = {
-  createAd: PropTypes.func.isRequired
+Ad.propTypes = {
+  createAd: PropTypes.func.isRequired,
+  editAd: PropTypes.func.isRequired,
+  ads: PropTypes.object
 };
 
-const CreateAd = withFormik({
-  mapPropsToValues() {
+const EditAd = withFormik({
+  enableReinitialize: true,
+  mapPropsToValues({
+    title,
+    description,
+    price,
+    delegation,
+    governorate,
+    category,
+    subCategory
+  }) {
     return {
-      title: "",
-      description: "",
-      price: "",
-      governorate: "",
-      delegation: "",
-      category: "",
-      subCategory: ""
+      title: title ? title : "",
+      description: description ? description : "",
+      price: price ? price : "",
+      governorate: governorate ? governorate : "",
+      delegation: delegation ? delegation : "",
+      category: category ? category : "",
+      subCategory: subCategory ? subCategory : ""
     };
   },
   validationSchema: Yup.object({
@@ -228,9 +249,8 @@ const CreateAd = withFormik({
       .matches(/^\d{1,}(\.\d{0,3})?$/, "Vérifiez votre prix")
       .required("Vous devez spécifier le prix de location par jour")
   })
-})(NewAd);
-
+})(Ad);
 export default connect(
   null,
-  { createAd }
-)(CreateAd);
+  { createAd, editAd }
+)(EditAd);

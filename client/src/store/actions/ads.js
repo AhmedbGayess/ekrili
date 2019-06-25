@@ -3,8 +3,8 @@ import { history } from "../../router/AppRouter";
 
 export const createAd = (adData) => async () => {
   try {
-    await axios.post("/ads", adData);
-    history.push("/");
+    const { data } = await axios.post("/ads", adData);
+    history.push(`/ad/${data._id}`);
   } catch (e) {
     console.log(e);
   }
@@ -18,8 +18,10 @@ export const getAd = (id) => async (dispatch) => {
       type: "SET_AD",
       payload: data
     });
+    return true;
   } catch (e) {
     console.log(e);
+    return false;
   }
 };
 
@@ -78,7 +80,7 @@ export const getOwnAds = (limit, skip) => async (dispatch) => {
 export const getUserAds = (title) => async (dispatch) => {
   try {
     dispatch(setAdsLoading());
-    const { data } = await axios.get(`ads/find/title?title=${title}`);
+    const { data } = await axios.get(`/ads/find/title?title=${title}`);
     dispatch({
       type: "SET_ADS",
       payload: data
@@ -90,8 +92,8 @@ export const getUserAds = (title) => async (dispatch) => {
 
 export const editAd = (adData, id) => async () => {
   try {
-    await axios.patch(`ads/${id}`, adData);
-    history.push("/");
+    await axios.patch(`/ads/${id}`, adData);
+    history.push(`/ad/${id}`);
   } catch (e) {
     console.log(e);
   }
@@ -99,7 +101,7 @@ export const editAd = (adData, id) => async () => {
 
 export const deleteAd = (id) => async () => {
   try {
-    await axios.get.delete(`ads/${id}`);
+    await axios.get.delete(`/ads/${id}`);
     history.push("/");
   } catch (e) {
     console.log(e);
@@ -108,7 +110,7 @@ export const deleteAd = (id) => async () => {
 
 export const adminDeleteAd = (id) => async () => {
   try {
-    await axios.get.delete(`ads/admin/${id}`);
+    await axios.get.delete(`/ads/admin/${id}`);
     history.push("/");
   } catch (e) {
     console.log(e);

@@ -4,7 +4,7 @@ import { governorates } from "../../utils/locations.js";
 import FormInputSelect from "../common/FormInputSelect";
 import setDelegation from "../../utils/setDelegation.js";
 
-const CreateAdLocation = ({
+const EditAdLocation = ({
   governorate,
   governorateError,
   touchedGovernorate,
@@ -12,7 +12,6 @@ const CreateAdLocation = ({
   touchedDelegation
 }) => {
   const delegations = setDelegation(governorate);
-
   return (
     <div>
       <FormInputSelect
@@ -35,7 +34,7 @@ const CreateAdLocation = ({
   );
 };
 
-CreateAdLocation.propTypes = {
+EditAdLocation.propTypes = {
   governorate: PropTypes.string.isRequired,
   governorateError: PropTypes.string,
   touchedGovernorate: PropTypes.bool,
@@ -43,4 +42,4 @@ CreateAdLocation.propTypes = {
   touchedDelegation: PropTypes.bool
 };
 
-export default CreateAdLocation;
+export default EditAdLocation;

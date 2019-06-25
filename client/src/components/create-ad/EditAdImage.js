@@ -4,7 +4,7 @@ import { FaTrash } from "react-icons/fa";
 import PropTypes from "prop-types";
 import Dropzone from "../common/Dropzone";
 
-class CreateAdImage extends React.Component {
+class EditAdImage extends React.Component {
   state = {
     loading: false
   };
@@ -68,11 +68,11 @@ class CreateAdImage extends React.Component {
   }
 }
 
-CreateAdImage.propTypes = {
+EditAdImage.propTypes = {
   addImage: PropTypes.func.isRequired,
   removeImage: PropTypes.func.isRequired,
   image: PropTypes.string.isRequired,
   stateImage: PropTypes.string.isRequired
 };
 
-export default CreateAdImage;
+export default EditAdImage;

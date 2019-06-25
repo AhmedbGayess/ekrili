@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import FormInputField from "../common/FormInputField";
 
-const CreateAdPrice = ({ price, error, touched }) => (
+const EditAdPrice = ({ price, error, touched }) => (
   <div>
     <FormInputField
       type="number"
@@ -38,10 +38,10 @@ const CreateAdPrice = ({ price, error, touched }) => (
   </div>
 );
 
-CreateAdPrice.propTypes = {
+EditAdPrice.propTypes = {
   price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   error: PropTypes.string,
   touched: PropTypes.bool
 };
 
-export default CreateAdPrice;
+export default EditAdPrice;
