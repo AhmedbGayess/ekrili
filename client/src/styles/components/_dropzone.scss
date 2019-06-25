@@ -10,10 +10,18 @@
   border: 2px dashed $medium-color;
   position: relative;
   cursor: pointer;
+  font-size: 14px;
+  text-align: center;
 
-  &loader {
+  p {
+    font-size: 12px;
+    margin: 5px;
+  }
+
+  &-loader {
     position: absolute;
-    z-index: 10;
+    width: 100%;
+    z-index: 2;
   }
 
   &-icon {

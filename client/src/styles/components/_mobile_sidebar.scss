@@ -25,6 +25,7 @@
         padding: 1rem 2rem;
         color: $secondary-color;
         font-size: 14px;
+        font-weight: 500;
 
         &-category {
           display: flex;
@@ -89,14 +90,6 @@
 @media (max-width: 600px) {
   .mobile-sidebar {
     width: 55%;
-
-    ul {
-      li {
-        .mobile-sidebar__link {
-          font-size: 12px;
-        }
-      }
-    }
   }
 }
 
@@ -115,5 +108,12 @@
 @media (max-width: 400px) {
   .mobile-sidebar {
     width: 85%;
+    ul {
+      li {
+        .mobile-sidebar__link {
+          font-size: 12px;
+        }
+      }
+    }
   }
 }

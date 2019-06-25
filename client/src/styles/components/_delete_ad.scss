@@ -2,8 +2,7 @@
   border: 1px solid $medium-color;
   padding: 1rem;
   width: 60%;
-  margin: 0 auto;
-  margin-top: 1rem;
+  margin: 1rem auto;
   text-align: center;
 
   &__message {
@@ -19,5 +18,11 @@
       color: #fff;
       background: $tertiary-color;
     }
+  }
+}
+
+@media (max-width: 600px) {
+  .delete-ad {
+    width: 100%;
   }
 }

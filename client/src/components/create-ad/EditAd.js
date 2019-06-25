@@ -25,12 +25,18 @@ class Ad extends React.Component {
     if (this.state.step < 4) {
       this.setState((prevState) => ({ step: prevState.step + 1 }));
     }
+    this.scroll();
   };
 
   previousStep = () => {
     if (this.state.step > 1) {
       this.setState((prevState) => ({ step: prevState.step - 1 }));
     }
+    this.scroll();
+  };
+
+  scroll = () => {
+    window.scrollTo(0, 0);
   };
 
   addImage = (image, stateImage) => {

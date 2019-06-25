@@ -1,6 +1,6 @@
 .create-ad {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 2.2fr 1fr;
   grid-gap: 2rem;
 
   &-title {
@@ -48,10 +48,6 @@
         &-icon:hover {
           color: $tertiary-color;
         }
-
-        p {
-          margin: 0;
-        }
       }
     }
   }
@@ -63,10 +59,6 @@
     div {
       width: 250px;
       height: 180px;
-    }
-    p {
-      margin-top: 1rem;
-      font-size: 14px;
     }
   }
 
