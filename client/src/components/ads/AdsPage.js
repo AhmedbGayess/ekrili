@@ -69,7 +69,9 @@ class AdsPage extends React.Component {
     } else {
       pageContent = (
         <div>
-          <AdsSort onChange={this.onSortChange} value={this.state.sortBy} />
+          <div className="sort">
+            <AdsSort onChange={this.onSortChange} value={this.state.sortBy} />
+          </div>
           <AdsList ads={ads} />
           <Pagination
             count={count}

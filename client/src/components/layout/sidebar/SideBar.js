@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import CategoriesListItem from "./CategoriesListItem";
@@ -59,7 +60,16 @@ class SideBar extends React.Component {
           sidebar__open: open
         })}
       >
-        <ul className="sidebar__list">{categoriesList}</ul>
+        <ul className="sidebar__list">
+          <Link
+            className="sidebar__list-item"
+            to="/browse-ads/1"
+            onClick={close}
+          >
+            Toutes les catégories
+          </Link>
+          {categoriesList}
+        </ul>
         <SubCategoriesCard
           subCategoriesOpen={subCategoriesOpen}
           subCategories={subCategories}

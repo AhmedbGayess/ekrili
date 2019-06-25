@@ -8,7 +8,7 @@
   -moz-box-shadow: 4px -1px 5px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 4px -1px 5px 0px rgba(0, 0, 0, 0.2);
   transform: translateX(-120%);
-  width: 40%;
+  width: 33%;
   display: none;
   overflow-y: scroll;
   transition: all 0.3s ease-in-out;
@@ -24,6 +24,7 @@
         height: 100%;
         padding: 1rem 2rem;
         color: $secondary-color;
+        font-size: 14px;
 
         &-category {
           display: flex;
@@ -60,26 +61,59 @@
   }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 950px) {
   .mobile-sidebar {
-    width: 60%;
+    width: 40%;
+  }
+}
 
+@media (max-width: 750px) {
+  .mobile-sidebar {
+    width: 45%;
+  }
+}
+
+@media (max-width: 650px) {
+  .mobile-sidebar {
+    width: 50%;
     ul {
       li {
-        font-size: 14px;
+        .mobile-sidebar__link {
+          font-size: 13px;
+        }
       }
     }
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
   .mobile-sidebar {
-    width: 60%;
+    width: 55%;
+
+    ul {
+      li {
+        .mobile-sidebar__link {
+          font-size: 12px;
+        }
+      }
+    }
   }
 }
 
 @media (max-width: 500px) {
   .mobile-sidebar {
-    width: 80%;
+    width: 68%;
+  }
+}
+
+@media (max-width: 450px) {
+  .mobile-sidebar {
+    width: 75%;
+  }
+}
+
+@media (max-width: 400px) {
+  .mobile-sidebar {
+    width: 85%;
   }
 }

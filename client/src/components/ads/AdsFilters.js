@@ -151,12 +151,14 @@ class AdsFilters extends React.Component {
             className="ads-filters__mobile__toggle"
             onClick={this.toggleMobileFilters}
           >
-            Afficher les filtres{" "}
-            {mobileFiltersOpen ? <span>-</span> : <span>+</span>}
+            {mobileFiltersOpen ? (
+              <span>Réduire les filtres -</span>
+            ) : (
+              <span>Afficher les filtres +</span>
+            )}
           </span>
         </div>
         <div className="container">
-          <h3>les filtres de recherche</h3>
           <div
             className={classNames("ads-filters__form", {
               "ads-filters__form--open": mobileFiltersOpen
