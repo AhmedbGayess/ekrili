@@ -1,16 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getAd } from "../../store/actions/ads";
+import { getAd, deleteAd } from "../../store/actions/ads";
 import Loader from "../common/Loader";
 import EditAd from "./EditAd";
 import { history } from "../../router/AppRouter";
+import DeleteAd from "./DeleteAd";
+import DeleteModal from "../common/DeleteModal";
 
 class UpdateAd extends React.Component {
   state = {
     imageOne: "",
     imageTwo: "",
-    imageThree: ""
+    imageThree: "",
+    deleteModalOpen: false
   };
 
   async componentDidMount() {
@@ -25,6 +28,16 @@ class UpdateAd extends React.Component {
       history.push("/");
     }
   }
+
+  toggleDeleteModal = () => {
+    this.setState((prevProps) => ({
+      deleteModalOpen: !prevProps.deleteModalOpen
+    }));
+  };
+
+  deleteAd = () => {
+    this.props.deleteAd(this.props.match.params.id);
+  };
 
   render() {
     const { loading, ad } = this.props.ads;
@@ -45,19 +58,28 @@ class UpdateAd extends React.Component {
         images
       } = ad;
       content = (
-        <EditAd
-          title={title}
-          description={description}
-          price={price}
-          delegation={delegation}
-          governorate={governorate}
-          category={category}
-          subCategory={subCategory}
-          imageOne={images[0]}
-          imageTwo={images[1] || ""}
-          imageThree={images[2] || ""}
-          id={this.props.match.params.id}
-        />
+        <div>
+          <EditAd
+            title={title}
+            description={description}
+            price={price}
+            delegation={delegation}
+            governorate={governorate}
+            category={category}
+            subCategory={subCategory}
+            imageOne={images[0]}
+            imageTwo={images[1] || ""}
+            imageThree={images[2] || ""}
+            id={this.props.match.params.id}
+          />
+          <DeleteAd toggleDeleteModal={this.toggleDeleteModal} />
+          <DeleteModal
+            modalOpen={this.state.deleteModalOpen}
+            toggleModal={this.toggleDeleteModal}
+            deleteItem={this.deleteAd}
+            item="annonce"
+          />
+        </div>
       );
     }
     return content;
@@ -67,7 +89,8 @@ class UpdateAd extends React.Component {
 UpdateAd.propTypes = {
   ads: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
-  getAd: PropTypes.func.isRequired
+  getAd: PropTypes.func.isRequired,
+  deleteAd: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -77,5 +100,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { getAd }
+  { getAd, deleteAd }
 )(UpdateAd);

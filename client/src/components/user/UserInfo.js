@@ -6,7 +6,7 @@ import { FaTrash } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { setUserImage, deleteUserImage } from "../../store/actions/auth";
 import UserImage from "./UserImage";
-import DeleteImageModal from "./DeleteImageModal";
+import DeleteModal from "../common/DeleteModal";
 import EditUserForm from "./EditUserForm";
 
 class UserInfo extends React.Component {
@@ -81,10 +81,11 @@ class UserInfo extends React.Component {
             </div>
           )}
           {!image && <UserImage onDrop={this.onDrop} loading={loading} />}
-          <DeleteImageModal
+          <DeleteModal
             modalOpen={deleteModalOpen}
             toggleModal={this.toggleDeleteModal}
-            deleteImage={this.onDeleteImage}
+            deleteItem={this.onDeleteImage}
+            item="image"
           />
         </div>
         {!edit && (

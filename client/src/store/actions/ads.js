@@ -101,8 +101,8 @@ export const editAd = (adData, id) => async () => {
 
 export const deleteAd = (id) => async () => {
   try {
-    await axios.get.delete(`/ads/${id}`);
-    history.push("/");
+    await axios.delete(`/ads/${id}`);
+    history.push("/my-ads/1");
   } catch (e) {
     console.log(e);
   }

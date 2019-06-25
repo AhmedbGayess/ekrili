@@ -1,0 +1,23 @@
+.delete-ad {
+  border: 1px solid $medium-color;
+  padding: 1rem;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 1rem;
+  text-align: center;
+
+  &__message {
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  &__btn {
+    color: $tertiary-color;
+    border-color: $tertiary-color;
+
+    &:hover {
+      color: #fff;
+      background: $tertiary-color;
+    }
+  }
+}

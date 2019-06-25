@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 import PropTypes from "prop-types";
 
-const DeleteImageModal = ({ modalOpen, toggleModal, deleteImage }) => (
+const DeleteModal = ({ modalOpen, toggleModal, deleteItem, item }) => (
   <Modal
     isOpen={modalOpen}
     onRequestClose={toggleModal}
@@ -10,9 +10,9 @@ const DeleteImageModal = ({ modalOpen, toggleModal, deleteImage }) => (
     closeTimeoutMS={200}
     className="delete-modal"
   >
-    <p>Êtes-vous sûr de supprimer votre photo?</p>
+    <p>Êtes-vous sûr de supprimer votre {item}?</p>
     <div className="delete-modal__buttons">
-      <button onClick={deleteImage} className="btn-secondary">
+      <button onClick={deleteItem} className="btn-secondary">
         Supprimer
       </button>
       <button onClick={toggleModal} className="btn-secondary">
@@ -22,10 +22,10 @@ const DeleteImageModal = ({ modalOpen, toggleModal, deleteImage }) => (
   </Modal>
 );
 
-DeleteImageModal.propTypes = {
+DeleteModal.propTypes = {
   modalOpen: PropTypes.bool.isRequired,
   toggleModal: PropTypes.func.isRequired,
-  deleteImage: PropTypes.func.isRequired
+  deleteItem: PropTypes.func.isRequired
 };
 
-export default DeleteImageModal;
+export default DeleteModal;
