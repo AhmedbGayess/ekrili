@@ -164,7 +164,7 @@ class AdsFilters extends React.Component {
           >
             <input
               name="title"
-              placeholder="Chercher..."
+              placeholder="Filtrer les résultats..."
               value={title}
               onChange={this.onChange}
               onKeyPress={this.onBlurInput}
