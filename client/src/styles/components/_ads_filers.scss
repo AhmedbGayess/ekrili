@@ -38,7 +38,6 @@
     display: none;
     position: relative;
     padding: 2rem;
-    border-bottom: 1px solid $medium-color;
     -webkit-box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 1px 0px,
       rgba(0, 0, 0, 0.05) 0px 2px 4px 0px, rgba(0, 0, 0, 0.05) 0px 0px 8px 0px;
     -moz-box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 1px 0px,
@@ -47,7 +46,6 @@
       rgba(0, 0, 0, 0.05) 0px 2px 4px 0px, rgba(0, 0, 0, 0.05) 0px 0px 8px 0px;
 
     &--open {
-      border-bottom: none;
       -webkit-box-shadow: none;
       -moz-box-shadow: none;
       box-shadow: none;

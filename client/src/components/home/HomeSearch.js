@@ -62,7 +62,7 @@ class HomeSearch extends React.Component {
       <div className="home-search">
         <div className="home-search-center">
           <h1 className="home-search-title">
-            Trouvez ce dont vous avez besoin.
+            Louez. Économisez. Gagnez de l'argent.
           </h1>
           <HomeSearchForm
             onChange={this.onChange}
