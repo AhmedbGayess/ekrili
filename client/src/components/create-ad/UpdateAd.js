@@ -1,8 +1,10 @@
 import React from "react";
-import { getAd } from "../../store/actions/ads";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { getAd } from "../../store/actions/ads";
 import Loader from "../common/Loader";
 import EditAd from "./EditAd";
+import { history } from "../../router/AppRouter";
 
 class UpdateAd extends React.Component {
   state = {
@@ -19,6 +21,9 @@ class UpdateAd extends React.Component {
       imageTwo: images[1] || "",
       imageThree: images[2] || ""
     });
+    if (this.props.ads.ad.user !== this.props.user.id) {
+      history.push("/");
+    }
   }
 
   render() {
@@ -59,8 +64,15 @@ class UpdateAd extends React.Component {
   }
 }
 
+UpdateAd.propTypes = {
+  ads: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  getAd: PropTypes.func.isRequired
+};
+
 const mapStateToProps = (state) => ({
-  ads: state.ads
+  ads: state.ads,
+  user: state.auth.user
 });
 
 export default connect(

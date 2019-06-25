@@ -66,7 +66,7 @@ class Ad extends React.Component {
 
   render() {
     const { step, imageOne, imageTwo, imageThree } = this.state;
-    const { errors, touched, values, ads } = this.props;
+    const { errors, touched, values } = this.props;
 
     let disabledNext = false;
 
