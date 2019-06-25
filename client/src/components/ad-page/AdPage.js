@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { MdEdit } from "react-icons/md";
 import { getAd } from "../../store/actions/ads";
 import { checkIfFavorite, addToFavorites } from "../../store/actions/favorites";
 import Loader from "../common/Loader";
@@ -22,11 +24,13 @@ class AdPage extends React.Component {
 
   render() {
     const { ad, loading } = this.props.ads;
-    const { favorite, isAuthenticated } = this.props;
+    const { favorite, auth } = this.props;
+    const { isAuthenticated, user } = auth;
     let pageContent;
     if (ad === null || loading) {
       pageContent = <Loader />;
     } else if (Object.keys(ad).length > 0) {
+      const isOwner = user.id === ad.user;
       pageContent = (
         <div className="container my-2">
           <AdPath category={ad.category} subCategory={ad.subCategory} />
@@ -41,6 +45,15 @@ class AdPage extends React.Component {
             <div className="ad-info">
               <AdPrice ad={ad} />
               <AdContact ad={ad} />
+              {isOwner && (
+                <Link
+                  to={`/edit-ad/${ad._id}`}
+                  className="btn-secondary ad-edit"
+                >
+                  Modifier
+                  <MdEdit className=" ad-edit__icon" />
+                </Link>
+              )}
             </div>
             <AdDescription description={ad.description} />
           </div>
@@ -56,13 +69,14 @@ AdPage.propTypes = {
   getAd: PropTypes.func.isRequired,
   checkIfFavorite: PropTypes.func.isRequired,
   addToFavorites: PropTypes.func.isRequired,
-  favorite: PropTypes.bool.isRequired
+  favorite: PropTypes.bool.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
   ads: state.ads,
   favorite: state.favorites.inFavorites,
-  isAuthenticated: state.auth.isAuthenticated
+  auth: state.auth
 });
 
 export default connect(
