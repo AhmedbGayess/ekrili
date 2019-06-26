@@ -322,11 +322,11 @@ router.post(
       );
 
       if (exists) {
-        req.user.favorites.splice(ad, 1);
+        req.user.favorites.splice(ad._id, 1);
         req.user.save();
         res.send(false);
       } else {
-        req.user.favorites.unshift(ad);
+        req.user.favorites.unshift(ad._id);
         req.user.save();
         res.send(true);
       }
@@ -360,8 +360,7 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
-      const skip = parseInt(req.query.skip, 10);
-      const favorites = req.user.favorites.slice(skip, skip + 20);
+      const favorites = await Ad.find({ _id: { $in: req.user.favorites } });
       const count = req.user.favorites.length;
       res.send({ favorites, count });
     } catch (e) {

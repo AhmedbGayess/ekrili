@@ -47,7 +47,8 @@ const UserSchema = new mongoose.Schema(
     },
     favorites: [
       {
-        type: Object
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "ads"
       }
     ],
     admin: {
