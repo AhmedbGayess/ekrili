@@ -1,31 +1,35 @@
 import React from "react";
-import Select from "react-select";
 import PropTypes from "prop-types";
 
-const HomeSelectInput = ({
-  value,
-  options,
-  onChange,
-  placeholder,
-  noOptions
-}) => (
-  <Select
-    value={value}
-    onChange={onChange}
-    options={options}
-    className="react-select-container"
-    classNamePrefix="react-select"
-    placeholder={placeholder}
-    noOptionsMessage={() => noOptions}
-  />
-);
+const HomeSelectInput = ({ name, label, choices, onChange, value }) => {
+  const options = choices.map((option) => (
+    <option key={option._id} value={option._id}>
+      {option.name}
+    </option>
+  ));
+  return (
+    <select
+      id={name}
+      name={name}
+      className="home-search-input home-search-input__select"
+      onChange={onChange}
+      value={value}
+    >
+      <option value="" hidden>
+        {label}
+      </option>
+      <option value="" />
+      {options}
+    </select>
+  );
+};
 
 HomeSelectInput.propTypes = {
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-  placeholder: PropTypes.string.isRequired,
-  noOptions: PropTypes.string,
-  options: PropTypes.array.isRequired,
-  onChange: PropTypes.func.isRequired
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  choices: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired
 };
 
 export default HomeSelectInput;

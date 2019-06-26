@@ -5,58 +5,49 @@ import PropTypes from "prop-types";
 import { governorates } from "../../utils/locations.js";
 import setDelegation from "../../utils/setDelegation.js";
 import HomeSearchForm from "./HomeSearchForm.js";
+import { history } from "../../router/AppRouter";
 
 class HomeSearch extends React.Component {
   state = {
     title: "",
     governorate: "",
     delegation: "",
-    delegations: [],
-    governorates: []
+    delegations: []
   };
-
-  componentDidMount() {
-    const options = governorates.map((option) => ({
-      value: option.name,
-      label: option.name
-    }));
-    this.setState({ governorates: options });
-  }
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onGovernorateChange = (governorate) => {
-    const delegationsArray = setDelegation(governorate.value);
-    const delegations = delegationsArray.map((option) => ({
-      value: option.name,
-      label: option.name
-    }));
-    this.setState({ delegations, governorate });
-  };
-
-  onDelegationChange = (delegation) => {
-    this.setState({ delegation });
-  };
-
-  render() {
-    const {
-      governorates,
-      delegations,
-      title,
+  onGovernorateChange = (e) => {
+    const governorate = e.target.value;
+    const delegations = setDelegation(governorate);
+    this.setState({
+      delegations: [...delegations],
       governorate,
-      delegation
-    } = this.state;
+      delegation: ""
+    });
+  };
+
+  onDelegationChange = (e) => {
+    this.setState({ delegation: e.target.value });
+  };
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    const { title, governorate, delegation } = this.state;
     const titleQuery = title ? `title=${title}` : "";
-    const governorateQuery = governorate
-      ? `governorate=${governorate.value}`
-      : "";
-    const delegationQuery = delegation ? `delegation=${delegation.value}` : "";
+    const governorateQuery = governorate ? `governorate=${governorate}` : "";
+    const delegationQuery = delegation ? `delegation=${delegation}` : "";
 
     const query = [titleQuery, governorateQuery, delegationQuery]
       .filter((string) => string.length > 0)
       .join("&");
+    history.push(`/browse-ads/1?${query}`);
+  };
+
+  render() {
+    const { delegations, title, governorate, delegation } = this.state;
 
     return (
       <div className="home-search">
@@ -74,7 +65,7 @@ class HomeSearch extends React.Component {
             governorate={governorate}
             delegation={delegation}
             title={title}
-            query={query}
+            onSubmit={this.onSubmit}
           />
           <div className="home-search-post">
             <p>Ou mettez quelque chose à louer</p>

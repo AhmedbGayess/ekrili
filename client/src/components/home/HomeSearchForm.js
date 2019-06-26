@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import PropTypes from "prop-types";
 import HomeSelectInput from "./HomeSelectInput.js";
@@ -13,9 +12,9 @@ const HomeSearchForm = ({
   delegations,
   governorate,
   delegation,
-  query
+  onSubmit
 }) => (
-  <form className="home-search-form">
+  <form className="home-search-form" onSubmit={onSubmit}>
     <div className="home-search-container">
       <input
         name="title"
@@ -28,31 +27,27 @@ const HomeSearchForm = ({
       <IoIosSearch className="home-search-container-icon" />
     </div>
     <HomeSelectInput
-      onChange={onGovernorateChange}
-      options={governorates}
+      name="governorate"
+      label="Gouvernorat"
+      choices={governorates}
       value={governorate}
-      placeholder="Gouvernorat"
+      onChange={onGovernorateChange}
     />
     <HomeSelectInput
-      onChange={onDelegationChange}
-      options={delegations}
+      name="delegation"
+      label="Délégation"
+      choices={delegations}
       value={delegation}
-      placeholder="Délégation"
-      noOptions="Séléctionnez d'abord un gouvernorat"
+      onChange={onDelegationChange}
     />
     <HomeSelectInput
-      onChange={onDelegationChange}
-      options={delegations}
+      name="delegation"
+      label="Délégation"
+      choices={delegations}
       value={delegation}
-      placeholder="Délégation"
-      noOptions="Séléctionnez d'abord un gouvernorat"
+      onChange={onDelegationChange}
     />
-    <Link
-      className="btn-primary home-search-button"
-      to={`/browse-ads/1?${query}`}
-    >
-      Chercher
-    </Link>
+    <button className="btn-primary home-search-button">Chercher</button>
   </form>
 );
 
