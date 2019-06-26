@@ -29,6 +29,11 @@
     background-color: $secondary-color;
   }
 
+  &-logo-container {
+    display: flex;
+    align-items: center;
+  }
+
   &-list {
     display: flex;
 

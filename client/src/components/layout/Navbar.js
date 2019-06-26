@@ -9,6 +9,7 @@ import { logout } from "../../store/actions/auth";
 import MobileNavList from "./MobileNavList";
 import NavbarList from "./NavbarList";
 import avatar from "../../images/avatar.png";
+import SearchBar from "./SearchBar";
 
 class Navbar extends React.Component {
   state = {
@@ -74,6 +75,7 @@ class Navbar extends React.Component {
       >
         <div className="navbar-logo-container">
           <NavLink to="/">Placeholder</NavLink>
+          {!homePath && <SearchBar screen="large" />}
         </div>
         <NavbarList
           loggedIn={loggedIn}

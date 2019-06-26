@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import SearchBar from "../SearchBar";
 
 class MobileSidebar extends React.Component {
   componentDidMount() {
@@ -22,7 +23,7 @@ class MobileSidebar extends React.Component {
   };
 
   render() {
-    const { open, openMobileCategories } = this.props;
+    const { open, openMobileCategories, close } = this.props;
     return (
       <nav
         ref={this.setWrapperRef}
@@ -30,8 +31,10 @@ class MobileSidebar extends React.Component {
           "mobile-sidebar__open": open
         })}
       >
-        <h1>Placeholder</h1>
         <ul>
+          <li>
+            <SearchBar screen="mobile" close={close} />
+          </li>
           <li>
             <p
               className="mobile-sidebar__link mobile-sidebar__link-category"

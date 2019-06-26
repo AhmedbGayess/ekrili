@@ -22,7 +22,7 @@ const HomeSearchForm = ({
         value={title}
         className="home-search-input"
         onChange={onChange}
-        placeholder="Ordinateur, appareil photo, robe..."
+        placeholder="Que cherchez-vous?"
         autoComplete="off"
       />
       <IoIosSearch className="home-search-container-icon" />

@@ -1,0 +1,54 @@
+.searchbar-container {
+  position: relative;
+  margin-left: 2rem;
+
+  &-icon {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+
+    font-size: 1.2rem;
+
+    &-mobile {
+      font-size: 25px;
+      top: 8px;
+      left: auto;
+      right: 10px;
+      color: $secondary-color;
+    }
+  }
+
+  &-mobile {
+    margin-left: 1.9rem;
+    display: none;
+    margin-top: 1rem;
+    width: 80%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.searchbar-input {
+  font-size: 14px;
+  padding: 10px;
+  padding-left: 30px;
+  border: none;
+  outline: none;
+  border-radius: 2px;
+
+  &-mobile {
+    width: 100%;
+    font-size: 12px;
+    padding: 13px;
+    border: 1px solid $medium-color;
+  }
+}
+
+@media (max-width: 600px) {
+  .searchbar-container-large {
+    display: none;
+  }
+
+  .searchbar-container-mobile {
+    display: block;
+  }
+}
