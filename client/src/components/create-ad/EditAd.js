@@ -127,6 +127,7 @@ class Ad extends React.Component {
           imageThree={imageThree}
           addImage={this.addImage}
           removeImage={this.removeImage}
+          id={this.props.id}
         />
       );
     } else if (step === 2) {

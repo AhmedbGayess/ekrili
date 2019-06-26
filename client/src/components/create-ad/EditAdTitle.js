@@ -10,7 +10,8 @@ const EditAdTitle = ({
   imageTwo,
   imageThree,
   addImage,
-  removeImage
+  removeImage,
+  id
 }) => (
   <div className="create-ad-title">
     <FormInputField
@@ -27,18 +28,21 @@ const EditAdTitle = ({
           stateImage="imageOne"
           addImage={addImage}
           removeImage={removeImage}
+          id={id}
         />
         <EditAdImage
           image={imageTwo}
           stateImage="imageTwo"
           addImage={addImage}
           removeImage={removeImage}
+          id={id}
         />
         <EditAdImage
           image={imageThree}
           stateImage="imageThree"
           addImage={addImage}
           removeImage={removeImage}
+          id={id}
         />
       </div>
     </div>

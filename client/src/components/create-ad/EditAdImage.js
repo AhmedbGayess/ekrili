@@ -34,14 +34,18 @@ class EditAdImage extends React.Component {
     }
   };
 
-  deleteImage = () => {
-    axios
-      .delete(`/upload/${this.props.image}`)
-      .then(() => {
-        this.setState({ image: "" });
-        this.props.removeImage(this.props.stateImage);
-      })
-      .catch((err) => console.log(err));
+  deleteImage = async () => {
+    try {
+      const { id, image } = this.props;
+      if (this.props.id) {
+        await axios.delete(`/ads/image/${id}?image=${image}`);
+      }
+      await axios.delete(`/upload/${this.props.image}`);
+      this.setState({ image: "" });
+      this.props.removeImage(this.props.stateImage);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   render() {

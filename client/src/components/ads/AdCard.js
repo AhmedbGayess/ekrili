@@ -1,9 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
+import noImage from "../../images/no-image.jpg";
 
 const AdCard = ({ title, price, governorate, delegation, image }) => (
   <div className="ad-card">
-    <img src={`/images/${image}`} alt={title} className="ad-card__image" />
+    <img
+      src={`/images/${image}`}
+      alt={title}
+      className="ad-card__image"
+      onError={(e) => {
+        e.target.onerror = null;
+        e.target.src = noImage;
+      }}
+    />
     <div className="ad-card__text">
       <p className="ad-card__title">{title}</p>
       <p className="ad-card__price">{price} TND / JOUR</p>
