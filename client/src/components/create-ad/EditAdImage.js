@@ -25,6 +25,9 @@ class EditAdImage extends React.Component {
       this.setState({
         loading: false
       });
+      if (this.props.id) {
+        await axios.post(`/ads/image/${this.props.id}`, { image: data.image });
+      }
       this.props.addImage(data.image, this.props.stateImage);
     } catch (e) {
       this.setState({
@@ -37,7 +40,7 @@ class EditAdImage extends React.Component {
   deleteImage = async () => {
     try {
       const { id, image } = this.props;
-      if (this.props.id) {
+      if (id) {
         await axios.delete(`/ads/image/${id}?image=${image}`);
       }
       await axios.delete(`/upload/${this.props.image}`);

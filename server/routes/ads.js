@@ -369,6 +369,29 @@ router.get(
   }
 );
 
+router.post(
+  "/image/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const ad = await Ad.findById(req.params.id);
+
+      if (!ad) {
+        return res.status(404).send("No ad found");
+      }
+      if (ad.user.toString() !== req.user.id) {
+        return res.status(401).send("Unauthorized");
+      }
+
+      ad.images.push(req.body.image);
+      await ad.save();
+      res.send("success");
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  }
+);
+
 router.delete(
   "/image/:id",
   passport.authenticate("jwt", { session: false }),
