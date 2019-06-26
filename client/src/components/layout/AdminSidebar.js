@@ -58,7 +58,7 @@ const AdminSidebar = ({ logout }) => (
       </li>
       <li>
         <NavLink
-          to="/admin/ads"
+          to="/admin/ads/1"
           className="admin-nav-link"
           activeClassName="admin-nav-link-active"
           exact

@@ -30,12 +30,6 @@ class EditCategory extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.match.params !== prevProps.match.params) {
-      window.location.reload();
-    }
-  }
-
   onDrop = async (acceptedFiles) => {
     const formData = new FormData();
     this.setState({

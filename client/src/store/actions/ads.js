@@ -110,8 +110,8 @@ export const deleteAd = (id) => async () => {
 
 export const adminDeleteAd = (id) => async () => {
   try {
-    await axios.get.delete(`/ads/admin/${id}`);
-    history.push("/");
+    await axios.delete(`/ads/admin/${id}`);
+    history.push("/admin/ads/1");
   } catch (e) {
     console.log(e);
   }

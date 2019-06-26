@@ -1,15 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getAds } from "../../store/actions/ads";
-import Pagination from "./Pagination";
+import Pagination from "../ads/Pagination";
 import Loader from "../common/Loader";
-import AdsList from "./AdsList";
-import NoAd from "./NoAd";
-import AdsFilters from "./AdsFilters";
-import AdsSort from "./AdsSort";
+import NoAd from "../ads/NoAd";
+import AdsFilters from "../ads/AdsFilters";
+import AdsSort from "../ads/AdsSort";
+import AdCard from "../ads/AdCard";
 
-class AdsPage extends React.Component {
+class AdminAdsPage extends React.Component {
   state = {
     sortBy: ""
   };
@@ -17,7 +18,7 @@ class AdsPage extends React.Component {
     const query = this.props.location.search
       ? `${this.props.location.search}&skip=${this.props.match.params.page *
           20 -
-          20}&limit=20`
+          20}&limit=20&sortBy=updatedAt:desc`
       : `?skip=${this.props.match.params.page * 20 -
           20}&limit=20&sortBy=updatedAt:desc`;
     this.props.getAds(query);
@@ -51,7 +52,7 @@ class AdsPage extends React.Component {
     }
     const { title, governorate, delegation, category, subCategory } = query;
     history.push(
-      `/browse-ads/1?title=${title ? title : ""}&governorate=${
+      `/admin/ads/1?title=${title ? title : ""}&governorate=${
         governorate ? governorate : ""
       }&delegation=${delegation ? delegation : ""}&category=${
         category ? category : ""
@@ -68,17 +69,28 @@ class AdsPage extends React.Component {
     } else if (ads.length === 0) {
       pageContent = <NoAd />;
     } else {
+      const adsList = ads.map((ad) => (
+        <Link to={`/admin/ad/${ad._id}`} key={ad._id}>
+          <AdCard
+            title={ad.title}
+            price={ad.price}
+            governorate={ad.governorate}
+            delegation={ad.delegation}
+            image={ad.images[0]}
+          />
+        </Link>
+      ));
       pageContent = (
         <div>
           <div className="sort">
             <AdsSort onChange={this.onSortChange} value={this.state.sortBy} />
           </div>
-          <AdsList ads={ads} />
+          <div className="admin-ads ads-list">{adsList}</div>
           <Pagination
             count={count}
             search={this.props.location.search}
             pageNumber={Number(this.props.match.params.page)}
-            link="/browse-ads"
+            link="/admin/ads"
           />
         </div>
       );
@@ -88,7 +100,7 @@ class AdsPage extends React.Component {
       <div>
         <AdsFilters
           queryString={this.props.location.search}
-          link="/browse-ads/1"
+          link="/admin/ads/1"
         />
         {pageContent}
       </div>
@@ -96,7 +108,7 @@ class AdsPage extends React.Component {
   }
 }
 
-AdsPage.propTypes = {
+AdminAdsPage.propTypes = {
   getAds: PropTypes.func.isRequired
 };
 
@@ -107,4 +119,4 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   { getAds }
-)(AdsPage);
+)(AdminAdsPage);

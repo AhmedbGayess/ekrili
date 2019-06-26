@@ -10,7 +10,7 @@ const DeleteModal = ({ modalOpen, toggleModal, deleteItem, item }) => (
     closeTimeoutMS={200}
     className="delete-modal"
   >
-    <p>Êtes-vous sûr de supprimer votre {item}?</p>
+    <p>Êtes-vous sûr de supprimer {item}?</p>
     <div className="delete-modal__buttons">
       <button onClick={deleteItem} className="btn-secondary">
         Supprimer

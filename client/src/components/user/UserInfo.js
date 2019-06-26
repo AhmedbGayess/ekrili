@@ -85,7 +85,7 @@ class UserInfo extends React.Component {
             modalOpen={deleteModalOpen}
             toggleModal={this.toggleDeleteModal}
             deleteItem={this.onDeleteImage}
-            item="image"
+            item="cette image"
           />
         </div>
         {!edit && (

@@ -1,6 +1,7 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "../../utils/setAuthToken";
+import { history } from "../../router/AppRouter";
 
 export const registerUser = (userData) => async (dispatch) => {
   try {
@@ -31,6 +32,9 @@ export const login = (userData) => async (dispatch) => {
     setAuthToken(data.token);
     const decoded = jwt_decode(data.token);
     dispatch(setCurrentUser(decoded));
+    if (decoded.admin) {
+      history.push("/admin");
+    }
     return true;
   } catch (e) {
     dispatch({

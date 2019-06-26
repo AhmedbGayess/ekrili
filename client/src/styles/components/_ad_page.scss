@@ -118,6 +118,27 @@
     }
   }
 
+  &-delete {
+    margin-top: 1rem;
+    right: 1rem;
+    top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: $tertiary-color;
+    color: $tertiary-color;
+    width: 100%;
+
+    &__icon {
+      font-size: 1.5rem;
+      margin-left: 10px;
+    }
+    &:hover {
+      color: #fff;
+      background: $tertiary-color;
+    }
+  }
+
   &-edit {
     margin-top: 1rem;
     right: 1rem;
@@ -127,10 +148,6 @@
     justify-content: center;
     border-color: $primary-color;
     color: $primary-color;
-    &__icon {
-      font-size: 1.5rem;
-      margin-left: 10px;
-    }
     &:hover {
       color: $secondary-color;
       border-color: $secondary-color;

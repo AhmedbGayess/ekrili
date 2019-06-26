@@ -23,8 +23,6 @@ class AdsFilters extends React.Component {
     this.setStateFromQuery();
   }
 
-  componentWillUnmount() {}
-
   setStateFromQuery = () => {
     const { queryString, subCategories } = this.props;
     const query = {};
@@ -124,7 +122,9 @@ class AdsFilters extends React.Component {
       subCategory
     } = this.state;
     history.push(
-      `/browse-ads/1?title=${title}&governorate=${governorate}&delegation=${delegation}&category=${category}&subCategory=${subCategory}`
+      `${
+        this.props.link
+      }?title=${title}&governorate=${governorate}&delegation=${delegation}&category=${category}&subCategory=${subCategory}`
     );
   };
 

@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { MdEdit } from "react-icons/md";
 import { getAd } from "../../store/actions/ads";
 import { checkIfFavorite, addToFavorites } from "../../store/actions/favorites";
 import Loader from "../common/Loader";
@@ -51,7 +50,6 @@ class AdPage extends React.Component {
                   className="btn-secondary ad-edit"
                 >
                   Modifier
-                  <MdEdit className=" ad-edit__icon" />
                 </Link>
               )}
             </div>

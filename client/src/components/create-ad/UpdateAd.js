@@ -77,7 +77,7 @@ class UpdateAd extends React.Component {
             modalOpen={this.state.deleteModalOpen}
             toggleModal={this.toggleDeleteModal}
             deleteItem={this.deleteAd}
-            item="annonce"
+            item="votre annonce"
           />
         </div>
       );
