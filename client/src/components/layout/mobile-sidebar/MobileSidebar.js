@@ -49,6 +49,15 @@ class MobileSidebar extends React.Component {
             <SearchBar screen="mobile" close={close} />
           </li>
           <li>
+            <Link
+              to="/browse-ads/1"
+              className="mobile-sidebar__link"
+              onClick={close}
+            >
+              Toutes les catégories
+            </Link>
+          </li>
+          <li>
             <p
               className="mobile-sidebar__link mobile-sidebar__link-category"
               onClick={openMobileCategories}
