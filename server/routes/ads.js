@@ -300,6 +300,18 @@ router.delete(
       if (!ad) {
         res.status(404).send("No ad found");
       }
+
+      const users = await User.find({
+        favorites: { $elemMatch: { _id: ad._id } }
+      });
+
+      users.forEach(async (user) => {
+        user.favorites = user.favorites.filter(
+          (favorite) => favorite._id.toString() !== ad._id.toString()
+        );
+        await user.save();
+      });
+
       ad.images.forEach((image) => {
         fs.unlinkSync(`./uploads/${image}`);
       });
