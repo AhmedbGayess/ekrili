@@ -165,6 +165,8 @@ class AppRouter extends React.Component {
             open={mobileSidebarOpen}
             close={this.closeMobileSidebar}
             openMobileCategories={this.openMobileCategories}
+            toggleLoginModal={this.toggleLoginModal}
+            toggleSignupModal={this.toggleSignupModal}
           />
           <MobileCategories
             categories={categories}

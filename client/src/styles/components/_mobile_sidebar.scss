@@ -30,6 +30,7 @@
         &-category {
           display: flex;
           justify-content: space-between;
+          align-items: center;
 
           a {
             color: $secondary-color;
@@ -42,6 +43,16 @@
             border-radius: 50%;
             color: $secondary-color;
           }
+        }
+      }
+      button {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        width: 80%;
+
+        &:first-child {
+          margin-top: 1rem;
         }
       }
     }

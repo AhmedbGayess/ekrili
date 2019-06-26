@@ -22,6 +22,18 @@ class MobileSidebar extends React.Component {
     }
   };
 
+  login = () => {
+    const { toggleLoginModal, close } = this.props;
+    close();
+    toggleLoginModal();
+  };
+
+  signup = () => {
+    const { toggleSignupModal, close } = this.props;
+    close();
+    toggleSignupModal();
+  };
+
   render() {
     const { open, openMobileCategories, close } = this.props;
     return (
@@ -60,6 +72,16 @@ class MobileSidebar extends React.Component {
             <Link to="/" className="mobile-sidebar__link">
               Nous contacter
             </Link>
+          </li>
+          <li>
+            <button className="btn-primary" onClick={this.login}>
+              Se connecter
+            </button>
+          </li>
+          <li>
+            <button className="btn-primary" onClick={this.signup}>
+              S'inscrire
+            </button>
           </li>
         </ul>
       </nav>

@@ -39,20 +39,6 @@ class MobileNavList extends React.Component {
     } = this.props;
     return (
       <ul className="navbar-list-mobile">
-        {!loggedIn && (
-          <li
-            className="navbar-list-mobile__item"
-            onClick={this.openAuthDropdown}
-          >
-            <IoIosLogIn className="navbar-list-mobile__item-login" />
-            <MobileUserDropdown
-              open={this.state.authDropdownOpen}
-              close={this.closeAuthDropdown}
-              toggleLoginModal={toggleLoginModal}
-              toggleSignupModal={toggleSignupModal}
-            />
-          </li>
-        )}
         {loggedIn && (
           <li className="navbar-list-mobile__item">
             <img
