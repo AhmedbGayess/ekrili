@@ -20,6 +20,12 @@ class SearchBar extends React.Component {
     }
   };
 
+  onBlurInput = (e) => {
+    if (e.key === "Enter") {
+      e.target.blur();
+    }
+  };
+
   render() {
     return (
       <form onSubmit={this.onSubmit}>
@@ -35,6 +41,7 @@ class SearchBar extends React.Component {
             onChange={this.onChange}
             placeholder="Que cherchez-vous?"
             autoComplete="off"
+            onKeyPress={this.onBlurInput}
           />
           <IoIosSearch
             className={`searchbar-container-icon searchbar-container-icon-${

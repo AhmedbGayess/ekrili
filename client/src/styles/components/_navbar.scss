@@ -6,7 +6,7 @@
   padding-left: 5rem;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 50;
 
   &-home {
     &::after {
@@ -50,7 +50,7 @@
 
     &-mobile {
       display: none;
-      padding: 0.5rem;
+      padding: 0.5rem 0;
       &__item {
         margin-right: 0.5rem;
 
