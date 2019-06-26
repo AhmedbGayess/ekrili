@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.3rem 0;
   padding-left: 5rem;
   position: sticky;
   top: 0;
@@ -36,10 +37,12 @@
 
   &-list {
     display: flex;
+    align-items: center;
 
     &-item {
-      margin: 0.6rem 0.7rem 0 0.7rem;
-
+      margin: 0 0.5rem;
+      display: flex;
+      align-items: center;
       & > * {
         font-weight: 600;
       }
@@ -47,41 +50,17 @@
 
     &-mobile {
       display: none;
-      margin-right: 0.2rem;
-
+      padding: 0.5rem;
       &__item {
-        margin: 0.5rem 0.5rem 0 0.5rem;
+        margin-right: 0.5rem;
 
-        &-container {
-          display: inline-block;
-          height: 100%;
-          border: 2px #fff solid;
-          border-radius: 50%;
-          width: 40px;
-          position: relative;
+        &-invisible {
+          opacity: 0;
         }
-
-        &-login {
-          color: #fff;
-          height: 100%;
-          font-size: 2.4rem;
-          margin-top: -2.5px;
-        }
-
-        .menu-button {
-          &-invisible {
-            opacity: 0;
-            transition: 0.3s;
-          }
-
-          .hamburger {
-            width: 35px;
-            height: 5px;
-            background-color: #fff;
-            &:not(:first-child) {
-              margin: 6px 0;
-            }
-          }
+        button {
+          padding: 0.5rem;
+          font-size: 12px;
+          width: 50px;
         }
       }
     }
@@ -93,9 +72,9 @@
     padding-left: 1rem;
     &-list {
       display: none;
-
       &-mobile {
         display: flex;
+        align-items: center;
       }
     }
   }

@@ -30,19 +30,15 @@ class MobileNavList extends React.Component {
       logout,
       mobileSubCategoriesOpen,
       mobileCategoriesOpen,
-      mobileOpen,
-      userImage
+      mobileOpen
     } = this.props;
     return (
       <ul className="navbar-list-mobile">
         {loggedIn && (
           <li className="navbar-list-mobile__item">
-            <img
-              src={userImage}
-              alt="avatar"
-              className="avatar"
-              onClick={openUserDropdown}
-            />
+            <button onClick={openUserDropdown} className="btn-secondary">
+              Profil
+            </button>
             <UserDropdown
               open={userDropdownOpen}
               close={closeUserDropdown}
@@ -51,18 +47,15 @@ class MobileNavList extends React.Component {
           </li>
         )}
 
-        <li className="navbar-list-mobile__item">
-          <div
-            className={classNames("menu-button", {
-              "menu-button-invisible":
-                mobileSubCategoriesOpen || mobileCategoriesOpen || mobileOpen
-            })}
-            onClick={openMobileSidebar}
-          >
-            <div className="hamburger" />
-            <div className="hamburger" />
-            <div className="hamburger" />
-          </div>
+        <li
+          className={classNames("navbar-list-mobile__item", {
+            "navbar-list-mobile__item-invisible":
+              mobileSubCategoriesOpen || mobileCategoriesOpen || mobileOpen
+          })}
+        >
+          <button className="btn-secondary" onClick={openMobileSidebar}>
+            Menu
+          </button>
         </li>
       </ul>
     );
