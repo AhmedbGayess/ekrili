@@ -59,9 +59,6 @@ class Navbar extends React.Component {
       switchToLogin,
       openSidebar,
       openMobileSidebar,
-      mobileOpen,
-      mobileCategoriesOpen,
-      mobileSubCategoriesOpen,
       user
     } = this.props;
     const loggedIn = Object.keys(user).length > 0;

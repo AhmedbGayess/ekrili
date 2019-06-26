@@ -65,7 +65,6 @@ class HomeSearch extends React.Component {
             governorate={governorate}
             delegation={delegation}
             title={title}
-            onSubmit={this.onSubmit}
           />
           <div className="home-search-post">
             <p>Ou mettez quelque chose à louer</p>

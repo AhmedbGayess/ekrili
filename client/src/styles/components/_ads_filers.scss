@@ -36,8 +36,7 @@
 
   &__mobile {
     display: none;
-    position: relative;
-    padding: 2rem;
+    padding: 1rem;
 
     &--open {
       -webkit-box-shadow: none;
@@ -47,10 +46,7 @@
 
     &__toggle {
       display: inline-block;
-      position: absolute;
       color: $secondary-color;
-      right: 10px;
-      top: 20px;
       font-weight: 600;
     }
   }
@@ -78,7 +74,8 @@
     }
 
     &__mobile {
-      display: block;
+      display: flex;
+      justify-content: flex-end;
     }
   }
 }

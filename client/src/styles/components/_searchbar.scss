@@ -1,6 +1,6 @@
 .searchbar-container {
   position: relative;
-  margin-left: 2rem;
+  margin-left: 4rem;
 
   &-icon {
     color: darken(#28b6a8, 30%);
@@ -34,8 +34,9 @@
   padding-left: 2.5rem;
   border: none;
   outline: none;
-  border-radius: 2px;
+  border-radius: 3px;
   background: #28b6a8;
+  transition: all 0.2s ease-in-out;
 
   &::placeholder {
     color: #fff;
