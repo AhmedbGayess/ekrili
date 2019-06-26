@@ -100,10 +100,6 @@ class Navbar extends React.Component {
           logout={this.logout}
           loggedIn={loggedIn}
           openMobileSidebar={openMobileSidebar}
-          mobileOpen={mobileOpen}
-          mobileCategoriesOpen={mobileCategoriesOpen}
-          mobileSubCategoriesOpen={mobileSubCategoriesOpen}
-          userImage={userImage}
         />
         <SignupModal
           modalOpen={signupModalOpen}

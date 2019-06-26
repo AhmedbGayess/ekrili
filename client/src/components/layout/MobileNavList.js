@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "classnames";
 import PropTypes from "prop-types";
 import UserDropdown from "./UserDropdown";
 
@@ -27,10 +26,7 @@ class MobileNavList extends React.Component {
       userDropdownOpen,
       closeUserDropdown,
       openUserDropdown,
-      logout,
-      mobileSubCategoriesOpen,
-      mobileCategoriesOpen,
-      mobileOpen
+      logout
     } = this.props;
     return (
       <ul className="navbar-list-mobile">
@@ -47,12 +43,7 @@ class MobileNavList extends React.Component {
           </li>
         )}
 
-        <li
-          className={classNames("navbar-list-mobile__item", {
-            "navbar-list-mobile__item-invisible":
-              mobileSubCategoriesOpen || mobileCategoriesOpen || mobileOpen
-          })}
-        >
+        <li className="navbar-list-mobile__item">
           <button className="btn-secondary" onClick={openMobileSidebar}>
             Menu
           </button>

@@ -53,14 +53,10 @@
       padding: 0.5rem 0;
       &__item {
         margin-right: 0.5rem;
-
-        &-invisible {
-          opacity: 0;
-        }
         button {
           padding: 0.5rem;
-          font-size: 12px;
-          width: 50px;
+          font-size: 14px;
+          width: 5rem;
         }
       }
     }
@@ -80,5 +76,11 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
+  .navbar-list-mobile__item {
+    button {
+      font-size: 12px;
+      width: 4rem;
+    }
+  }
 }

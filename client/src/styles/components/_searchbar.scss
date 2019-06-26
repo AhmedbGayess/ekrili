@@ -3,6 +3,7 @@
   margin-left: 2rem;
 
   &-icon {
+    color: darken(#28b6a8, 30%);
     position: absolute;
     top: 8px;
     left: 8px;
@@ -30,16 +31,35 @@
 .searchbar-input {
   font-size: 14px;
   padding: 10px;
-  padding-left: 30px;
+  padding-left: 2.5rem;
   border: none;
   outline: none;
   border-radius: 2px;
+  background: #28b6a8;
+
+  &::placeholder {
+    color: #fff;
+  }
+
+  &:focus {
+    background: #fff;
+  }
+
+  &:focus .searchbar-container-icon {
+    color: blue;
+  }
 
   &-mobile {
     width: 100%;
     font-size: 12px;
     padding: 13px;
+    background: #fff;
+
     border: 1px solid $medium-color;
+
+    &::placeholder {
+      color: initial;
+    }
   }
 }
 

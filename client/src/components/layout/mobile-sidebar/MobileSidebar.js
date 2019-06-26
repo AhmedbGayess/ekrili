@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import PropTypes from "prop-types";
@@ -35,7 +36,7 @@ class MobileSidebar extends React.Component {
   };
 
   render() {
-    const { open, openMobileCategories, close } = this.props;
+    const { open, openMobileCategories, close, isAuthenticated } = this.props;
     return (
       <nav
         ref={this.setWrapperRef}
@@ -73,16 +74,20 @@ class MobileSidebar extends React.Component {
               Nous contacter
             </Link>
           </li>
-          <li>
-            <button className="btn-primary" onClick={this.login}>
-              Se connecter
-            </button>
-          </li>
-          <li>
-            <button className="btn-primary" onClick={this.signup}>
-              S'inscrire
-            </button>
-          </li>
+          {!isAuthenticated && (
+            <li>
+              <button className="btn-primary" onClick={this.login}>
+                Se connecter
+              </button>
+            </li>
+          )}
+          {!isAuthenticated && (
+            <li>
+              <button className="btn-primary" onClick={this.signup}>
+                S'inscrire
+              </button>
+            </li>
+          )}
         </ul>
       </nav>
     );
@@ -92,7 +97,12 @@ class MobileSidebar extends React.Component {
 MobileSidebar.propTypes = {
   open: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired,
-  openMobileCategories: PropTypes.func.isRequired
+  openMobileCategories: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
-export default MobileSidebar;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(MobileSidebar);
