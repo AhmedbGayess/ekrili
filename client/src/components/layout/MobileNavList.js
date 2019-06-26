@@ -1,8 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { IoIosLogIn } from "react-icons/io";
 import PropTypes from "prop-types";
-import MobileUserDropdown from "./MobileUserDropdown";
 import UserDropdown from "./UserDropdown";
 
 class MobileNavList extends React.Component {
@@ -25,8 +23,6 @@ class MobileNavList extends React.Component {
   render() {
     const {
       loggedIn,
-      toggleLoginModal,
-      toggleSignupModal,
       openMobileSidebar,
       userDropdownOpen,
       closeUserDropdown,

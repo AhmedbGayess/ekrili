@@ -78,7 +78,9 @@
             width: 35px;
             height: 5px;
             background-color: #fff;
-            margin: 6px 0;
+            &:not(:first-child) {
+              margin: 6px 0;
+            }
           }
         }
       }
