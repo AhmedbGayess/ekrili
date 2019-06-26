@@ -22,13 +22,13 @@ const NavbarList = ({
   <ul className="navbar-list">
     <li className="navbar-list-item">
       <button className="btn-secondary" onClick={openSidebar}>
-        Les Catégories
+        Les Annonces
       </button>
     </li>
     {loggedIn && (
       <li className="navbar-list-item">
         <NavLink className="btn-primary" to="/create-ad">
-          Créer un annonce
+          Ajouter une annonce
         </NavLink>
       </li>
     )}

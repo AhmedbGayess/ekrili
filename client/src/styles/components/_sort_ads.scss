@@ -29,12 +29,8 @@
   .sort {
     &-input {
       height: 30px;
-      font-size: 14px;
+      font-size: 12px;
       padding: 3px;
-
-      &:focus {
-        border-color: $primary-color;
-      }
     }
     &-label {
       font-size: 14px;

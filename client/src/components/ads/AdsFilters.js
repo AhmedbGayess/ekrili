@@ -159,6 +159,7 @@ class AdsFilters extends React.Component {
           </span>
         </div>
         <div className="container">
+          <h3>Affinez votre recherche</h3>
           <div
             className={classNames("ads-filters__form", {
               "ads-filters__form--open": mobileFiltersOpen
