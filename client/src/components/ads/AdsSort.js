@@ -14,8 +14,8 @@ const AdsSort = ({ onChange, value }) => (
       onChange={onChange}
       value={value}
     >
-      <option value="updatedAt:asc">Le plus récent</option>
-      <option value="updatedAt:desc">Le plus ancien</option>
+      <option value="updatedAt:desc">Le plus récent</option>
+      <option value="updatedAt:asc">Le plus ancien</option>
       <option value="price:asc">Prix croissant</option>
       <option value="price:desc">Prix décroissant</option>
     </select>

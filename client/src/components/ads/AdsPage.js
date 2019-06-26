@@ -18,7 +18,8 @@ class AdsPage extends React.Component {
       ? `${this.props.location.search}&skip=${this.props.match.params.page *
           20 -
           20}&limit=20`
-      : `?skip=${this.props.match.params.page * 20 - 20}&limit=20`;
+      : `?skip=${this.props.match.params.page * 20 -
+          20}&limit=20&sortBy=updatedAt:desc`;
     this.props.getAds(query);
   }
 

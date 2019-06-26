@@ -138,7 +138,8 @@ router.get(
           path: "ads",
           options: {
             limit: parseInt(req.query.limit),
-            skip: parseInt(req.query.skip)
+            skip: parseInt(req.query.skip),
+            sort: { updatedAt: -1 }
           }
         })
         .execPopulate();
