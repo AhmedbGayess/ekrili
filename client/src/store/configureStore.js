@@ -5,12 +5,13 @@ import categories from "./reducers/categories";
 import subCategories from "./reducers/subCategories";
 import ads from "./reducers/ads";
 import favorites from "./reducers/favorites";
+import users from "./reducers/users";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default () => {
   const store = createStore(
-    combineReducers({ auth, categories, subCategories, ads, favorites }),
+    combineReducers({ auth, categories, subCategories, ads, favorites, users }),
     composeEnhancers(applyMiddleware(thunk))
   );
   return store;

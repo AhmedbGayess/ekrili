@@ -18,10 +18,11 @@ import MobileCategories from "../components/layout/mobile-sidebar/MobileCategori
 import MobileSubCategories from "../components/layout/mobile-sidebar/MobileSubCategroies";
 import Loader from "../components/common/Loader";
 import AdPage from "../components/ad-page/AdPage";
-import UserPage from "../components/user/UserPage";
+import MyPage from "../components/user/MyPage";
 import FavoritesPage from "../components/favorites-page/FavoritesPage";
 import UserAdsPage from "../components/user-ads/UserAdsPage";
 import UpdateAd from "../components/create-ad/UpdateAd";
+import Profile from "../components/user-profile/Profile";
 
 export const history = createBrowserHistory();
 
@@ -131,9 +132,10 @@ class AppRouter extends React.Component {
               "/edit-ad/:id",
               "/browse-ads/:page",
               "/ad/:id",
-              "/user-page",
+              "/my-page",
               "/my-favorites/:page",
-              "/my-ads/:page"
+              "/my-ads/:page",
+              "/user/:id/:page"
             ]}
             render={() => (
               <Navbar
@@ -196,7 +198,7 @@ class AppRouter extends React.Component {
             />
             <PrivateRoute path="/create-ad" component={EditAd} exact />
             <PrivateRoute path="/edit-ad/:id" component={UpdateAd} exact />
-            <PrivateRoute path="/user-page" component={UserPage} exact />
+            <PrivateRoute path="/my-page" component={MyPage} exact />
             <PrivateRoute
               path="/my-favorites/:page"
               component={FavoritesPage}
@@ -205,6 +207,7 @@ class AppRouter extends React.Component {
             <PrivateRoute path="/my-ads/:page" component={UserAdsPage} exact />
             <Route path="/browse-ads/:page" component={AdsPage} exact />
             <Route path="/ad/:id" component={AdPage} exact />
+            <Route path="/user/:id/:page" component={Profile} exact />
             <Route path="/admin-login" component={AdminLogin} exact />
             <Route path="/admin" component={AdminRouter} />
           </Switch>

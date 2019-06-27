@@ -77,10 +77,12 @@ export const getOwnAds = (limit, skip) => async (dispatch) => {
   }
 };
 
-export const getUserAds = (title) => async (dispatch) => {
+export const getUserAds = (id, limit, skip) => async (dispatch) => {
   try {
     dispatch(setAdsLoading());
-    const { data } = await axios.get(`/ads/find/title?title=${title}`);
+    const { data } = await axios.get(
+      `/ads/user/${id}?limit=${limit}&skip=${skip}&sortBy=updatedAt:desc`
+    );
     dispatch({
       type: "SET_ADS",
       payload: data

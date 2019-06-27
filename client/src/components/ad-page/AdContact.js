@@ -1,10 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const AdContact = ({ ad }) => (
   <div className="ad-contact">
     <h3>Contacter</h3>
-    <p>Propriétaire: {ad.name}</p>
+    <p>
+      Propriétaire:{" "}
+      <Link to={`/user/${ad.user}/1`} className="ad-contact__phone">
+        {ad.name}
+      </Link>
+    </p>
     <p>
       Téléphone:{" "}
       <a href={`tel:+216${ad.phone}`} className="ad-contact__phone">

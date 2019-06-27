@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const passport = require("passport");
 const fs = require("fs");
 const Ad = require("../models/Ad");
@@ -152,6 +153,12 @@ router.get(
 
 router.get("/user/:id", async (req, res) => {
   try {
+    const sort = {};
+    if (req.query.sortBy) {
+      const parts = req.query.sortBy.split(":");
+      sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
+    }
+
     const user = await User.findById(req.params.id);
     await user
       .populate({
@@ -163,13 +170,13 @@ router.get("/user/:id", async (req, res) => {
         }
       })
       .execPopulate();
+    const count = await Ad.find({ user: req.params.id }).countDocuments();
     res.send({
-      name: user.name,
-      phone: user.phone,
-      ads: user.ads
+      ads: user.ads,
+      count
     });
   } catch (e) {
-    res.status(500).send();
+    res.status(500).send(e);
   }
 });
 

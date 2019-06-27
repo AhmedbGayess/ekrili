@@ -171,24 +171,24 @@ router.get(
   }
 );
 
-router.get(
-  "/:id",
-  passport.authenticate("jwt", { session: false }),
-  async (req, res) => {
-    try {
-      if (!req.user.admin) {
-        return res.status(401).send();
-      }
-      const user = await User.findById(req.params.id);
-      if (!user) {
-        res.status(404).send("No user found");
-      }
-      res.send(user);
-    } catch (e) {
-      res.status(500).send(e);
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      res.status(404).send("No user found");
     }
+    res.send({
+      id: user._id,
+      email: user.email,
+      name: user.name,
+      phone: user.phone,
+      image: user.image,
+      bio: user.bio
+    });
+  } catch (e) {
+    res.status(500).send(e);
   }
-);
+});
 
 router.delete(
   "/:id",

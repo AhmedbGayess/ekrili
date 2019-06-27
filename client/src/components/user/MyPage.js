@@ -1,10 +1,10 @@
 import React from "react";
 import UserInfo from "./UserInfo";
 
-const UserPage = () => (
+const MyPage = () => (
   <div className="container">
     <UserInfo />
   </div>
 );
 
-export default UserPage;
+export default MyPage;

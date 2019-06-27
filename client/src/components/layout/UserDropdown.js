@@ -35,7 +35,7 @@ class UserDropdown extends React.Component {
         <ul className="dropdown__list">
           <li className="dropdown__list-item">
             <Link
-              to="/user-page"
+              to="/my-page"
               onClick={close}
               className="dropdown__list-item-link"
             >
