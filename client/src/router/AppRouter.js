@@ -3,7 +3,6 @@ import { Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { createBrowserHistory } from "history";
 import Home from "../components/home/Home";
-import AdminLogin from "../components/auth/AdminLogin";
 import PrivateRoute from "./PrivateRoute";
 import AdminRouter from "./AdminRouter";
 import Navbar from "../components/layout/Navbar";
@@ -208,7 +207,6 @@ class AppRouter extends React.Component {
             <Route path="/browse-ads/:page" component={AdsPage} exact />
             <Route path="/ad/:id" component={AdPage} exact />
             <Route path="/user/:id/:page" component={Profile} exact />
-            <Route path="/admin-login" component={AdminLogin} exact />
             <Route path="/admin" component={AdminRouter} />
           </Switch>
         </Router>
