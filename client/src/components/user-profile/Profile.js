@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getUser } from "../../store/actions/users";
 import { getUserAds } from "../../store/actions/ads";
@@ -36,15 +37,22 @@ class Profile extends React.Component {
     if (userLoading) {
       userContent = "";
     } else if (!user) {
-      userContent = <h3 className="no-user">Cet utilisateur n'existe pas</h3>;
+      userContent = (
+        <div className="no-ad">
+          <h3 className="no-ad__message">Cet utilisateur n'existe pas.</h3>
+          <Link to="/" className="no-ad__link">
+            Retourner à la page d'acceuil
+          </Link>
+        </div>
+      );
     } else {
       userContent = <ProfileInfo user={user} />;
     }
 
     let adsContent;
-    if (adsLoading) {
+    if (adsLoading || userAds === null) {
       adsContent = <Loader />;
-    } else if (!userAds) {
+    } else if (userAds.length === 0) {
       adsContent = <NoAd />;
     } else if (userAds.length > 0 && user) {
       adsContent = (
@@ -61,6 +69,10 @@ class Profile extends React.Component {
           )}
         </div>
       );
+    }
+
+    if (!user && !userLoading) {
+      adsContent = "";
     }
     return (
       <div>
