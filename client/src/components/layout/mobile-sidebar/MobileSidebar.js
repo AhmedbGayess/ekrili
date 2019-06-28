@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import SearchBar from "../SearchBar";
 
 class MobileSidebar extends React.Component {
   componentDidMount() {

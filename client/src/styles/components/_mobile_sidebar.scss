@@ -91,7 +91,7 @@
     ul {
       li {
         .mobile-sidebar__link {
-          font-size: 13px;
+          font-size: 14px;
         }
       }
     }
@@ -118,11 +118,11 @@
 
 @media (max-width: 400px) {
   .mobile-sidebar {
-    width: 85%;
+    width: 80%;
     ul {
       li {
         .mobile-sidebar__link {
-          font-size: 12px;
+          font-size: 13px;
         }
       }
     }
