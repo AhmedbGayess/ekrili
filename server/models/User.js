@@ -43,7 +43,8 @@ const UserSchema = new mongoose.Schema(
       default: ""
     },
     image: {
-      type: String
+      type: String,
+      default: ""
     },
     favorites: [
       {

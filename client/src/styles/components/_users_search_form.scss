@@ -1,0 +1,16 @@
+.users-search {
+  margin: 1rem 0;
+  display: flex;
+
+  &__input {
+    flex: 1;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid $medium-color;
+    outline: none;
+
+    &:focus {
+      border-color: $primary-color;
+    }
+  }
+}

@@ -1,12 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getUsers } from "../../store/actions/users";
+import { getUsers, searchUsers } from "../../store/actions/users";
 import Loader from "../common/Loader";
 import Pagination from "../ads/Pagination";
 import UserRow from "./UserRow";
+import UsersSearchFrom from "./UsersSearchForm";
 
 class AdminUsersPage extends React.Component {
+  state = {
+    search: ""
+  };
+
   componentDidMount() {
     this.nextUsers();
   }
@@ -16,6 +21,15 @@ class AdminUsersPage extends React.Component {
       this.nextUsers();
     }
   }
+
+  onSearchChange = (e) => {
+    this.setState({ search: e.target.value });
+  };
+
+  onSubmitSearch = (e) => {
+    e.preventDefault();
+    this.props.searchUsers(this.state.search);
+  };
 
   nextUsers = () => {
     const skip = this.props.match.params.page * 20 - 20;
@@ -32,6 +46,11 @@ class AdminUsersPage extends React.Component {
     }
     return (
       <div className="container my-3">
+        <UsersSearchFrom
+          onChange={this.onSearchChange}
+          value={this.state.search}
+          onSubmit={this.onSubmitSearch}
+        />
         <div className="users-table">
           <div className="users-table__header">
             <div className="users-table__header__cell">ID</div>
@@ -54,7 +73,8 @@ class AdminUsersPage extends React.Component {
 
 AdminUsersPage.propTypes = {
   users: PropTypes.object.isRequired,
-  getUsers: PropTypes.func.isRequired
+  getUsers: PropTypes.func.isRequired,
+  searchUsers: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -63,5 +83,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { getUsers }
+  { getUsers, searchUsers }
 )(AdminUsersPage);

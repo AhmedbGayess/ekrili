@@ -282,4 +282,34 @@ router.delete(
   }
 );
 
+router.get(
+  "/search/user",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const searchQuery = req.query.search ? req.query.search.trim() : "";
+    const regexQuery = new RegExp(`.*${searchQuery}.*`, "i");
+    try {
+      const users = await User.find({
+        $or: [
+          { name: regexQuery },
+          { email: regexQuery },
+          { phone: regexQuery }
+        ]
+      });
+
+      const count = await User.find({
+        $or: [
+          { name: regexQuery },
+          { email: regexQuery },
+          { phone: regexQuery }
+        ]
+      }).countDocuments();
+
+      res.send({ users, count });
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  }
+);
+
 module.exports = router;

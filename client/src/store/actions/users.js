@@ -37,6 +37,19 @@ export const deleteUser = (id) => async () => {
   }
 };
 
+export const searchUsers = (search) => async (dispatch) => {
+  dispatch(setUsersLoading());
+  try {
+    const { data } = await axios.get(`/users/search/user?search=${search}`);
+    dispatch({
+      type: "SET_USERS",
+      payload: data
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const setUsersLoading = () => ({
   type: "USERS_LOADING"
 });
