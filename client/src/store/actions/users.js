@@ -15,10 +15,10 @@ export const getUser = (id) => async (dispatch) => {
   }
 };
 
-export const getUsers = () => async (dispatch) => {
+export const getUsers = (skip) => async (dispatch) => {
   dispatch(setUsersLoading());
   try {
-    const { data } = await axios.get("/users/all");
+    const { data } = await axios.get(`/users/all?skip=${skip}`);
     dispatch({
       type: "SET_USERS",
       payload: data

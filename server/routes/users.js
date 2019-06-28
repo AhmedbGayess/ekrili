@@ -158,13 +158,15 @@ router.get(
       }
       const skip = parseInt(req.query.skip) || 0;
       const users = await User.find()
-        .limit(10)
+        .limit(20)
         .skip(skip)
         .sort({ createdAt: -1 });
       if (!users) {
         return res.status(404).send("No users found");
       }
-      res.send(users);
+
+      const count = await User.find().countDocuments();
+      res.send({ users, count });
     } catch (e) {
       res.status(500).send(e);
     }

@@ -9,6 +9,7 @@ import EditSubCategory from "../components/admin-subcategories/EditSubCategory";
 import AdminSubCategories from "../components/admin-subcategories/AdminSubCategories";
 import AdminAdsPage from "../components/admin-ads/AdminAdsPage";
 import AdminAdPage from "../components/admin-ads/AdminAdPage";
+import AdminUsersPage from "../components/admin-users/AdminUsersPage";
 
 const AdminRouter = () => (
   <div className="admin-container">
@@ -39,6 +40,7 @@ const AdminRouter = () => (
       />
       <AdminRoute path="/admin/ads/:page" component={AdminAdsPage} exact />
       <AdminRoute path="/admin/ad/:id" component={AdminAdPage} exact />
+      <AdminRoute path="/admin/users/:page" component={AdminUsersPage} exact />
     </Switch>
   </div>
 );

@@ -68,7 +68,7 @@ const AdminSidebar = ({ logout }) => (
       </li>
       <li>
         <NavLink
-          to="/admin/users"
+          to="/admin/users/1"
           className="admin-nav-link"
           activeClassName="admin-nav-link-active"
           exact

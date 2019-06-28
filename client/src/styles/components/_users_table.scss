@@ -1,0 +1,30 @@
+.users-table {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 2rem;
+  &__header {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: $primary-color;
+    color: #fff;
+
+    &__cell {
+      padding: 1.5rem 1rem;
+      border-right: 1px solid #fff;
+    }
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid $dark-color;
+    color: $primary-color;
+
+    &:not(:last-child) {
+      border-bottom: none;
+    }
+    &__cell {
+      padding: 0.5rem;
+    }
+  }
+}

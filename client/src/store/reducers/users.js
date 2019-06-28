@@ -1,7 +1,8 @@
 const initialState = {
   user: null,
   users: null,
-  loading: false
+  loading: false,
+  count: 0
 };
 
 export default (state = initialState, action) => {
@@ -20,7 +21,8 @@ export default (state = initialState, action) => {
     case "SET_USERS":
       return {
         ...state,
-        users: [...action.payload],
+        users: [...action.payload.users],
+        count: action.payload.count,
         loading: false
       };
     case "STOP_USERS_LOADING":
