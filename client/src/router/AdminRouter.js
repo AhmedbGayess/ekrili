@@ -10,6 +10,7 @@ import AdminSubCategories from "../components/admin-subcategories/AdminSubCatego
 import AdminAdsPage from "../components/admin-ads/AdminAdsPage";
 import AdminAdPage from "../components/admin-ads/AdminAdPage";
 import AdminUsersPage from "../components/admin-users/AdminUsersPage";
+import Profile from "../components/user-profile/Profile";
 
 const AdminRouter = () => (
   <div className="admin-container">
@@ -41,6 +42,7 @@ const AdminRouter = () => (
       <AdminRoute path="/admin/ads/:page" component={AdminAdsPage} exact />
       <AdminRoute path="/admin/ad/:id" component={AdminAdPage} exact />
       <AdminRoute path="/admin/users/:page" component={AdminUsersPage} exact />
+      <AdminRoute path="/admin/user/:id" component={Profile} exact />
     </Switch>
   </div>
 );

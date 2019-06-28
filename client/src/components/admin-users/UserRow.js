@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const UserRow = ({ user }) => (
-  <Link className="users-table__body">
+  <Link to={`/admin/user/${user._id}`} className="users-table__body">
     <div className="users-table__body__cell">{user._id}</div>
     <div className="users-table__body__cell">{user.name}</div>
     <div className="users-table__body__cell">{user.email}</div>

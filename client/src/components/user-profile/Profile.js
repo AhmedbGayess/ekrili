@@ -2,15 +2,20 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { getUser } from "../../store/actions/users";
+import { getUser, deleteUser } from "../../store/actions/users";
 import { getUserAds } from "../../store/actions/ads";
 import Loader from "../common/Loader";
 import AdsList from "../ads/AdsList";
 import Pagination from "../ads/Pagination";
 import ProfileInfo from "./ProfieInfo";
 import NoAd from "../ads/NoAd";
+import DeleteModal from "../common/DeleteModal";
 
 class Profile extends React.Component {
+  state = {
+    deleteModalOpen: false
+  };
+
   componentDidMount() {
     this.props.getUser(this.props.match.params.id);
     this.nextAds();
@@ -28,8 +33,18 @@ class Profile extends React.Component {
     this.props.getUserAds(id, 20, skip);
   };
 
+  toggleDeleteModal = () => {
+    this.setState((prevProps) => ({
+      deleteModalOpen: !prevProps.deleteModalOpen
+    }));
+  };
+
+  deleteUser = () => {
+    this.props.deleteUser(this.props.match.params.id);
+  };
+
   render() {
-    const { ads, users } = this.props;
+    const { ads, users, admin } = this.props;
     const { ads: userAds, loading: adsLoading, count } = ads;
     const { user, loading: userLoading } = users;
 
@@ -46,7 +61,27 @@ class Profile extends React.Component {
         </div>
       );
     } else {
-      userContent = <ProfileInfo user={user} />;
+      userContent = (
+        <div>
+          {admin && this.props.match.path.includes("admin") && (
+            <div className="profile-info__delete">
+              <button
+                className="profile-info__delete__button btn-secondary"
+                onClick={this.toggleDeleteModal}
+              >
+                Supprimer utilisateur
+              </button>
+              <DeleteModal
+                modalOpen={this.state.deleteModalOpen}
+                toggleModal={this.toggleDeleteModal}
+                deleteItem={this.deleteUser}
+                item="cet utliisateur"
+              />
+            </div>
+          )}
+          <ProfileInfo user={user} />
+        </div>
+      );
     }
 
     let adsContent;
@@ -87,15 +122,18 @@ Profile.propTypes = {
   users: PropTypes.object.isRequired,
   ads: PropTypes.object.isRequired,
   getUser: PropTypes.func.isRequired,
-  getUserAds: PropTypes.func.isRequired
+  deleteUser: PropTypes.func.isRequired,
+  getUserAds: PropTypes.func.isRequired,
+  admin: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
   users: state.users,
-  ads: state.ads
+  ads: state.ads,
+  admin: state.auth.user.admin
 });
 
 export default connect(
   mapStateToProps,
-  { getUser, getUserAds }
+  { getUser, getUserAds, deleteUser }
 )(Profile);

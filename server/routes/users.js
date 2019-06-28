@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const User = require("../models/User");
+const Ad = require("../models/Ad");
 
 const router = express.Router();
 
@@ -200,10 +201,12 @@ router.delete(
       if (!req.user.admin) {
         return res.status(401).send();
       }
-      const user = await User.findByIdAndDelete(req.params.id);
+      const user = await User.findById(req.params.id);
       if (!user) {
         res.status(404).send("No user found");
       }
+      await Ad.deleteMany({ user: user._id });
+      await user.remove();
       res.send(user);
     } catch (e) {
       res.status(500).send(e);

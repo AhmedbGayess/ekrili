@@ -30,6 +30,17 @@
     text-align: center;
     margin-bottom: 3rem;
   }
+
+  &__delete {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: flex-end;
+    &__button {
+      color: $tertiary-color;
+      border-color: $tertiary-color;
+      display: block;
+    }
+  }
 }
 
 @media (max-width: 1000px) {

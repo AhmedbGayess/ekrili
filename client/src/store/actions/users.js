@@ -31,7 +31,7 @@ export const getUsers = (skip) => async (dispatch) => {
 export const deleteUser = (id) => async () => {
   try {
     await axios.delete(`/users/${id}`);
-    history.push("/admin/users");
+    history.push("/admin/users/1");
   } catch (e) {
     console.log(e);
   }
