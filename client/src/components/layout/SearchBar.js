@@ -13,7 +13,9 @@ class SearchBar extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    history.push(`/browse-ads/1?title=${this.state.title}`);
+    history.push(
+      `/browse-ads/1?title=${this.state.title}&sortBy=updatedAt:desc`
+    );
     this.setState({ title: "" });
     if (this.props.screen === "mobile") {
       this.props.close();
@@ -29,11 +31,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       <form onSubmit={this.onSubmit}>
-        <div
-          className={`searchbar-container searchbar-container-${
-            this.props.screen
-          }`}
-        >
+        <div className="searchbar-container">
           <input
             name="title"
             value={this.state.title}
@@ -44,9 +42,7 @@ class SearchBar extends React.Component {
             onKeyPress={this.onBlurInput}
           />
           <IoIosSearch
-            className={`searchbar-container-icon searchbar-container-icon-${
-              this.props.screen
-            }`}
+            className="searchbar-container-icon"
             onClick={this.onSubmit}
           />
         </div>

@@ -46,9 +46,6 @@ class MobileSidebar extends React.Component {
       >
         <ul>
           <li>
-            <SearchBar screen="mobile" close={close} />
-          </li>
-          <li>
             <Link
               to="/browse-ads/1"
               className="mobile-sidebar__link"

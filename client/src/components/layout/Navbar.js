@@ -72,8 +72,8 @@ class Navbar extends React.Component {
       >
         <div className="navbar-logo-container">
           <NavLink to="/">Placeholder</NavLink>
-          {!homePath && <SearchBar screen="large" />}
         </div>
+        {!homePath && <SearchBar screen="large" />}
         <NavbarList
           loggedIn={loggedIn}
           openHelpDropdown={this.openHelpDropdown}
