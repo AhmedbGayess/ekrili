@@ -37,9 +37,9 @@
 
 @media (max-width: 1100px) {
   .dropdown {
-    top: 3.3rem;
+    top: 1.8rem;
     font-size: 14px;
-    right: 10px;
+    right: 3px;
 
     &__list-item {
       &-link {
@@ -49,8 +49,9 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .dropdown {
+    top: 1.5rem;
     width: 12rem;
   }
 }

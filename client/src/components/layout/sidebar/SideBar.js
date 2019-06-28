@@ -63,7 +63,7 @@ class SideBar extends React.Component {
         <ul className="sidebar__list">
           <Link
             className="sidebar__list-item"
-            to="/browse-ads/1"
+            to="/browse-ads/1?sortBy=updatedAt:desc"
             onClick={close}
           >
             Toutes les catégories
