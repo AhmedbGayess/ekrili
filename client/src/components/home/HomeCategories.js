@@ -6,13 +6,17 @@ import CategoryCard from "../categories/CategoryCard";
 
 const HomeCategories = ({ categories }) => {
   const categoriesCards = categories.map((category) => (
-    <Link key={category._id} to={`/browse-ads/1?category=${category._id}`}>
+    <Link
+      key={category._id}
+      to={`/browse-ads/1?category=${category._id}`}
+      className="home-categories__list__item"
+    >
       <CategoryCard category={category} />
     </Link>
   ));
   return (
-    <div className="container">
-      <div className="home-categories">
+    <div className="home-categories">
+      <div className="container">
         <h1 className="home-categories__title">Les catégories</h1>
         <div className="home-categories__list">{categoriesCards}</div>
       </div>
