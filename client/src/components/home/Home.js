@@ -1,55 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import HomeSearch from "./HomeSearch";
+import HomeCategories from "./HomeCategories";
 
 const Home = ({ toggleSignupModal }) => (
   <div>
     <HomeSearch toggleSignupModal={toggleSignupModal} />
-    <div className="container">
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-      <p>hi</p>
-    </div>
+    <HomeCategories />
   </div>
 );
 

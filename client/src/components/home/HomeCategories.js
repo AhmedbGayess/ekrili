@@ -1,0 +1,31 @@
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import CategoryCard from "../categories/CategoryCard";
+
+const HomeCategories = ({ categories }) => {
+  const categoriesCards = categories.map((category) => (
+    <Link key={category._id} to={`/browse-ads/1?category=${category._id}`}>
+      <CategoryCard category={category} />
+    </Link>
+  ));
+  return (
+    <div className="container">
+      <div className="home-categories">
+        <h1 className="home-categories__title">Les catégories</h1>
+        <div className="home-categories__list">{categoriesCards}</div>
+      </div>
+    </div>
+  );
+};
+
+HomeCategories.propTypes = {
+  categories: PropTypes.array.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  categories: state.categories.categories
+});
+
+export default connect(mapStateToProps)(HomeCategories);
