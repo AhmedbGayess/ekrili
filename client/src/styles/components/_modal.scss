@@ -1,6 +1,7 @@
 .ReactModalPortal > div {
   opacity: 0;
   z-index: 5000;
+  overflow-y: auto;
 }
 
 .ReactModalPortal .ReactModal__Overlay {
@@ -28,9 +29,8 @@
   &-content {
     background: #fff;
     border-radius: 4px;
-    max-width: 35rem;
-    margin-top: 3rem;
     max-width: 30rem;
+    margin: 2rem 0;
 
     &__header {
       background: $secondary-color;
@@ -47,6 +47,7 @@
       font-weight: 600;
       font-weight: 600;
       margin-bottom: 10px;
+      text-align: justify;
     }
 
     &__close {
@@ -73,5 +74,125 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .modal {
+    &-content {
+      max-width: 21rem;
+
+      &__header {
+        padding: 0.5rem 1rem;
+      }
+
+      &__title {
+        font-size: 24px;
+        margin-bottom: 0.5rem;
+      }
+
+      &__description {
+        font-size: 13px;
+      }
+
+      &__close {
+        font-size: 1.5rem;
+        top: 0.5rem;
+        right: 0.5rem;
+      }
+
+      &__form-container {
+        padding: 0 1rem;
+      }
+    }
+    &-change {
+      padding: 0.5rem;
+      flex-direction: column;
+
+      p {
+        margin-bottom: 0.3rem;
+      }
+    }
+
+    .auth-form {
+      margin: 0.5rem 0;
+
+      .input-container {
+        .input-label {
+          font-size: 13px;
+        }
+
+        .form-input {
+          height: 38px;
+        }
+
+        .input-error {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .modal {
+    &-content {
+      max-width: 19rem;
+      &__title {
+        font-size: 20px;
+        margin-bottom: 0rem;
+      }
+
+      &__description {
+        font-size: 12px;
+      }
+
+      &__close {
+        font-size: 1.5rem;
+        top: 0.2rem;
+        right: 0.2rem;
+      }
+
+      &__form-container {
+        padding: 0 1rem;
+      }
+    }
+    &-change {
+      p {
+        font-size: 13px;
+      }
+
+      .btn-secondary {
+        padding: 0.5rem;
+        font-size: 13px;
+      }
+    }
+    .auth-form {
+      .input-container {
+        .input-label {
+          font-size: 12px;
+        }
+
+        .form-input {
+          height: 28px;
+        }
+      }
+      .btn-primary {
+        padding: 0.5rem;
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+@media (max-height: 800px) {
+  .modal-content {
+    margin: 1rem 0;
+  }
+}
+
+@media (max-height: 700px) {
+  .modal-content {
+    margin: 0.5rem 0;
   }
 }
