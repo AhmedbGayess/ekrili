@@ -128,19 +128,37 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .home-search {
+    margin-top: -120px;
+    height: 600px;
     &-center {
       width: 90%;
+      top: 55%;
+    }
+
+    &-title {
+      font-size: 1.7rem;
     }
     &-input {
-      height: 50px;
+      height: 40px;
       font-size: 14px;
     }
     &-container {
       &-icon {
-        top: 13px;
+        top: 7px;
       }
+    }
+    &-post {
+      flex-direction: column;
+      p {
+        color: #fff;
+        margin: 0 0 0.5rem;
+      }
+    }
+
+    &-button {
+      padding: 0.8rem;
     }
   }
 }
