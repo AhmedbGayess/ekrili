@@ -5,13 +5,10 @@
     margin-left: 0.3rem;
   }
   &__list {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 1rem;
-    justify-items: center;
-
-    &__item {
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
   }
 }
 
@@ -26,8 +23,7 @@
 @media (max-width: 800px) {
   .home-categories {
     &__list {
-      grid-template-columns: repeat(500, 1fr);
-      grid-gap: 2rem;
+      flex-wrap: nowrap;
       overflow-x: scroll;
       &::-webkit-scrollbar {
         display: none;
