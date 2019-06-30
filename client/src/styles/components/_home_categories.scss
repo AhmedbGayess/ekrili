@@ -1,10 +1,8 @@
 .home-categories {
   padding: 2rem 0;
-  // background: $secondary-color;
   &__title {
     margin-bottom: 1rem;
     margin-left: 0.3rem;
-    // color: #fff;
   }
   &__list {
     display: grid;
@@ -13,9 +11,6 @@
     justify-items: center;
 
     &__item {
-      &:last-child {
-        align-self: auto;
-      }
     }
   }
 }
