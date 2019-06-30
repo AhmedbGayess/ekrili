@@ -74,7 +74,9 @@ export const updateUserInfo = (userData) => async (dispatch) => {
 
 export const setUserImage = (image) => async (dispatch) => {
   try {
-    const { data } = await axios.post(`/users/image/${image}`);
+    const logged = localStorage.keep_logged;
+    const stayLogged = logged === "true";
+    const { data } = await axios.post(`/users/image/${image}`, { stayLogged });
     localStorage.setItem("token", data.token);
     setAuthToken(data.token);
     const decoded = jwt_decode(data.token);
@@ -87,7 +89,10 @@ export const setUserImage = (image) => async (dispatch) => {
 
 export const deleteUserImage = () => async (dispatch) => {
   try {
-    const { data } = await axios.delete("/users/delete/image");
+    const logged = localStorage.keep_logged;
+    const { data } = await axios.delete(
+      `/users/delete/image?stayLogged=${logged}`
+    );
     localStorage.setItem("token", data.token);
     setAuthToken(data.token);
     const decoded = jwt_decode(data.token);

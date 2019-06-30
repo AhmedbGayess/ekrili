@@ -68,7 +68,9 @@ const EditUserForm = withFormik({
     )
   }),
   async handleSubmit(values, { props }) {
-    const success = await props.updateUserInfo(values);
+    const logged = localStorage.keep_logged;
+    const stayLogged = logged === "true";
+    const success = await props.updateUserInfo({ ...values, stayLogged });
     if (success) {
       props.toggleEdit();
     }

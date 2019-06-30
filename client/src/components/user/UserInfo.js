@@ -52,7 +52,7 @@ class UserInfo extends React.Component {
   };
 
   onDeleteImage = async () => {
-    await axios.delete(`/upload/${this.props.user.image}`);
+    // await axios.delete(`/upload/${this.props.user.image}`);
     await this.props.deleteUserImage();
     this.toggleDeleteModal();
   };

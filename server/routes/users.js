@@ -59,14 +59,17 @@ router.post("/login", async (req, res) => {
           bio: user.bio
         };
 
-        jwt.sign(
-          payload,
-          process.env.JWT_SECRET,
-          { expiresIn: 7200 },
-          (err, token) => {
-            res.json({ token });
-          }
-        );
+        let expiresIn;
+
+        if (req.body.stayLogged) {
+          expiresIn = {};
+        } else {
+          expiresIn = { expiresIn: 7200 };
+        }
+
+        jwt.sign(payload, process.env.JWT_SECRET, expiresIn, (err, token) => {
+          res.json({ token });
+        });
       } else {
         return res.status(400).send({ login: "Email or password incorrect" });
       }
@@ -130,10 +133,16 @@ router.patch(
               bio: updatedUser.bio
             };
 
+            if (req.body.stayLogged) {
+              expiresIn = {};
+            } else {
+              expiresIn = { expiresIn: 7200 };
+            }
+
             jwt.sign(
               payload,
               process.env.JWT_SECRET,
-              { expiresIn: 7200 },
+              expiresIn,
               (err, token) => {
                 res.json({ token });
               }
@@ -233,15 +242,16 @@ router.post(
         phone: user.phone,
         image: user.image
       };
+      let expiresIn;
+      if (req.body.stayLogged) {
+        expiresIn = {};
+      } else {
+        expiresIn = { expiresIn: 7200 };
+      }
 
-      jwt.sign(
-        payload,
-        process.env.JWT_SECRET,
-        { expiresIn: 7200 },
-        (err, token) => {
-          res.json({ token });
-        }
-      );
+      jwt.sign(payload, process.env.JWT_SECRET, expiresIn, (err, token) => {
+        res.json({ token });
+      });
     } catch (e) {
       res.status(500).send(e);
     }
@@ -252,6 +262,12 @@ router.delete(
   "/delete/image",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
+    let expiresIn;
+    if (req.query.stayLogged === "true") {
+      expiresIn = {};
+    } else {
+      expiresIn = { expiresIn: 7200 };
+    }
     try {
       const user = await User.findById(req.user.id);
       if (!user) {
@@ -268,14 +284,9 @@ router.delete(
         image: user.image
       };
 
-      jwt.sign(
-        payload,
-        process.env.JWT_SECRET,
-        { expiresIn: 7200 },
-        (err, token) => {
-          res.json({ token });
-        }
-      );
+      jwt.sign(payload, process.env.JWT_SECRET, expiresIn, (err, token) => {
+        res.json({ token });
+      });
     } catch (e) {
       res.status(500).send(e);
     }
