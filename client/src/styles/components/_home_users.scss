@@ -19,6 +19,13 @@
         margin-bottom: 0.5rem;
       }
 
+      &__icon {
+        height: 100px;
+        width: 100px;
+        display: block;
+        margin: 1rem auto;
+      }
+
       &__description {
         text-align: justify;
         text-align-last: center;

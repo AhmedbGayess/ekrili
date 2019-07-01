@@ -1,0 +1,45 @@
+.home-protect {
+  background: $tertiary-color;
+  padding: 2rem 0;
+  color: #fff;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__description {
+    text-align: justify;
+    text-align-last: center;
+  }
+
+  &__icon {
+    height: 100px;
+    width: 100px;
+    display: block;
+    margin: 1rem auto;
+  }
+}
+
+@media (max-width: 800px) {
+  .home-protect {
+    &__title {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .home-protect {
+    &__title {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .home-protect {
+    &__title {
+      font-size: 1.4rem;
+    }
+  }
+}
