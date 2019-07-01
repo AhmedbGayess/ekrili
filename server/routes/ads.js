@@ -257,6 +257,9 @@ router.patch(
         return res.status(404).send("No ad found");
       }
       updates.forEach((update) => (ad[update] = req.body[update]));
+
+      ad.weekPrice = Math.floor(req.body.price * 7);
+      ad.monthPrice = Math.floor(req.body.price * 30);
       await ad.save();
       res.send(ad);
     } catch (e) {
