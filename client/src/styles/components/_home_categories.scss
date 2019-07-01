@@ -2,7 +2,7 @@
   padding: 2rem 0;
   &__title {
     margin-bottom: 1rem;
-    margin-left: 0.3rem;
+    margin-left: 1rem;
   }
   &__list {
     display: flex;
@@ -14,6 +14,9 @@
 
 @media (max-width: 1200px) {
   .home-categories {
+    &__title {
+      margin-left: 2rem;
+    }
     &__list {
       grid-template-columns: repeat(5, 1fr);
     }
@@ -22,6 +25,10 @@
 
 @media (max-width: 800px) {
   .home-categories {
+    &__title {
+      margin-left: 0;
+    }
+
     &__list {
       flex-wrap: nowrap;
       overflow-x: scroll;
@@ -36,6 +43,22 @@
   .home-categories {
     &__title {
       font-size: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .home-categories {
+    &__title {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (max-width: 370px) {
+  .home-categories {
+    &__title {
+      font-size: 1rem;
     }
   }
 }

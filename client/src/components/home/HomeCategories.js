@@ -17,7 +17,9 @@ const HomeCategories = ({ categories }) => {
   return (
     <div className="home-categories">
       <div className="container">
-        <h1 className="home-categories__title">Que cherchez vous à louer?</h1>
+        <h1 className="home-categories__title">
+          De quoi avez vous besoin aujourd'hui?
+        </h1>
         <div className="home-categories__list">{categoriesCards}</div>
       </div>
     </div>
