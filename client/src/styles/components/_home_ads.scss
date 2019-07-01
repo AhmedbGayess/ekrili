@@ -1,0 +1,47 @@
+.home-ads {
+  padding: 2rem 0;
+
+  &__title {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    grid-gap: 1rem;
+    justify-items: center;
+
+    .ad-card {
+      margin: 0 1rem;
+    }
+  }
+}
+
+@media (max-width: 630px) {
+  .home-ads {
+    &__title {
+      font-size: 1.5rem;
+    }
+
+    &__list {
+      .ad-card {
+        margin: 0 0.4rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .home-ads__title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 370px) {
+  .home-ads__title {
+    font-size: 1rem;
+  }
+}

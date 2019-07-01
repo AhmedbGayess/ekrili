@@ -4,13 +4,15 @@ import HomeSearch from "./HomeSearch";
 import HomeCategories from "./HomeCategories";
 import HomeUsers from "./HomeUsers";
 import HomeProtect from "./HomeProtect";
+import HomeLastAds from "./HomeLastAds";
 
 const Home = ({ toggleSignupModal }) => (
   <div>
     <HomeSearch toggleSignupModal={toggleSignupModal} />
+    <HomeCategories />
     <HomeUsers />
     <HomeProtect />
-    <HomeCategories />
+    <HomeLastAds />
   </div>
 );
 
