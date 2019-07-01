@@ -11,11 +11,11 @@ class HomeLastAds extends React.Component {
 
   render() {
     const { ads, loading } = this.props.ads;
-    let adsList;
+    let content;
     if (loading || ads === null) {
-      adsList = "";
+      content = "";
     } else if (ads.length > 0) {
-      adsList = ads.map((ad) => (
+      const adsList = ads.map((ad) => (
         <AdCard
           key={ad._id}
           title={ad.title}
@@ -25,13 +25,14 @@ class HomeLastAds extends React.Component {
           image={ad.images[0]}
         />
       ));
+      content = (
+        <div className="home-ads">
+          <h1 className="home-ads__title">Les dernières annonces</h1>
+          <div className="home-ads__list">{adsList}</div>
+        </div>
+      );
     }
-    return (
-      <div className="home-ads">
-        <h1 className="home-ads__title">Les dernières annonces</h1>
-        <div className="home-ads__list">{adsList}</div>
-      </div>
-    );
+    return content;
   }
 }
 
