@@ -53,6 +53,15 @@ export const editCategory = (categoryData, id) => async (dispatch) => {
   }
 };
 
+export const deleteCategory = (id) => async () => {
+  try {
+    await axios.delete(`/categories/${id}`);
+    history.push("/admin/categories");
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const setCategoriesLoading = () => ({
   type: "CATEGORIES_LOADING"
 });

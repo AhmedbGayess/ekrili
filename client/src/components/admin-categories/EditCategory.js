@@ -6,17 +6,21 @@ import CategoryForm from "./CategoryForm";
 import {
   addCategory,
   getCategory,
-  editCategory
+  editCategory,
+  deleteCategory
 } from "../../store/actions/categories";
 import Loader from "../common/Loader";
+import DeleteModal from "../common/DeleteModal";
 
 class EditCategory extends React.Component {
   state = {
     image: "",
-    loading: false
+    loading: false,
+    deleteModalOpen: false
   };
 
   componentDidMount() {
+    console.log("chmnkea");
     const categoryId = this.props.match.params.id;
     if (categoryId) {
       Promise.resolve(this.props.getCategory(categoryId)).then(() => {
@@ -24,11 +28,6 @@ class EditCategory extends React.Component {
           image: this.props.categories.category.image
         });
       });
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.match.params !== prevProps.match.params) {
     }
   }
 
@@ -62,6 +61,16 @@ class EditCategory extends React.Component {
       .delete(`/upload/${this.state.image}`)
       .then(() => this.setState({ image: "" }))
       .catch((err) => console.log(err));
+  };
+
+  toggleDeleteModal = () => {
+    this.setState((prevProps) => ({
+      deleteModalOpen: !prevProps.deleteModalOpen
+    }));
+  };
+
+  deleteCategory = () => {
+    this.props.deleteCategory(this.props.match.params.id);
   };
 
   render() {
@@ -104,6 +113,20 @@ class EditCategory extends React.Component {
           {categoryId ? "MODIFIER CATÉGORIE" : "AJOUTER UNE CATÉGORIE"}
         </h1>
         {content}
+        {this.props.match.params.id && (
+          <button
+            className="btn-secondary ad-delete"
+            onClick={this.toggleDeleteModal}
+          >
+            Supprimer
+          </button>
+        )}
+        <DeleteModal
+          modalOpen={this.state.deleteModalOpen}
+          toggleModal={this.toggleDeleteModal}
+          deleteItem={this.deleteCategory}
+          item="cette catégorie"
+        />
       </div>
     );
   }
@@ -113,6 +136,7 @@ EditCategory.propTypes = {
   addCategory: PropTypes.func.isRequired,
   getCategory: PropTypes.func.isRequired,
   editCategory: PropTypes.func.isRequired,
+  deleteCategory: PropTypes.func.isRequired,
   categories: PropTypes.shape({}).isRequired
 };
 
@@ -122,5 +146,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { addCategory, getCategory, editCategory }
+  { addCategory, getCategory, editCategory, deleteCategory }
 )(EditCategory);

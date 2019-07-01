@@ -5,16 +5,19 @@ import PropTypes from "prop-types";
 import {
   addSubCategory,
   getSubCategory,
-  editSubCategory
+  editSubCategory,
+  deleteSubCategory
 } from "../../store/actions/subCategories";
 import { getCategories } from "../../store/actions/categories";
 import SubCategoryForm from "./SubCategoryForm";
 import Loader from "../common/Loader";
+import DeleteModal from "../common/DeleteModal";
 
 class EditCategory extends React.Component {
   state = {
     image: "",
-    loading: false
+    loading: false,
+    deleteModalOpen: false
   };
 
   componentDidMount() {
@@ -62,6 +65,16 @@ class EditCategory extends React.Component {
       .catch((err) => console.log(err));
   };
 
+  toggleDeleteModal = () => {
+    this.setState((prevProps) => ({
+      deleteModalOpen: !prevProps.deleteModalOpen
+    }));
+  };
+
+  deleteSubCategory = () => {
+    this.props.deleteSubCategory(this.props.match.params.id);
+  };
+
   render() {
     const { categories } = this.props.categories;
     const subCategoryId = this.props.match.params.id;
@@ -104,6 +117,20 @@ class EditCategory extends React.Component {
       <div className="container">
         <h1 className="my-2 text-center">AJOUTER UNE SOUS-CATÉGORIE</h1>
         {content}
+        {this.props.match.params.id && (
+          <button
+            className="btn-secondary ad-delete"
+            onClick={this.toggleDeleteModal}
+          >
+            Supprimer
+          </button>
+        )}
+        <DeleteModal
+          modalOpen={this.state.deleteModalOpen}
+          toggleModal={this.toggleDeleteModal}
+          deleteItem={this.deleteSubCategory}
+          item="cette sous-catégorie"
+        />
       </div>
     );
   }
@@ -113,7 +140,8 @@ EditCategory.propTypes = {
   addSubCategory: PropTypes.func.isRequired,
   getCategories: PropTypes.func.isRequired,
   editSubCategory: PropTypes.func.isRequired,
-  getSubCategory: PropTypes.func.isRequired
+  getSubCategory: PropTypes.func.isRequired,
+  deleteSubCategory: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -127,6 +155,7 @@ export default connect(
     addSubCategory,
     getCategories,
     editSubCategory,
-    getSubCategory
+    getSubCategory,
+    deleteSubCategory
   }
 )(EditCategory);

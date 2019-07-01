@@ -119,7 +119,7 @@ class AppRouter extends React.Component {
     const { categories } = this.props;
     let app;
 
-    if (categories.length === 0 || this.props.subCategories.length === 0) {
+    if (categories === null || this.props.subCategories === null) {
       app = <Loader />;
     } else {
       app = (

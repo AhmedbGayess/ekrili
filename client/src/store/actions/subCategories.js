@@ -69,6 +69,15 @@ export const editSubCategory = (subCategoryData, id) => async (dispatch) => {
   }
 };
 
+export const deleteSubCategory = (id) => async () => {
+  try {
+    await axios.delete(`/sub-categories/${id}`);
+    history.push("/admin/subcategories");
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const setSubCategoriesLoading = () => ({
   type: "SUBCATEGORIES_LOADING"
 });

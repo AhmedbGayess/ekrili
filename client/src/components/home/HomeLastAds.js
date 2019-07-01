@@ -12,8 +12,8 @@ class HomeLastAds extends React.Component {
   render() {
     const { ads, loading } = this.props.ads;
     let content;
-    if (loading || ads === null) {
-      content = "";
+    if (loading || ads === null || ads.length === 0) {
+      content = <p />;
     } else if (ads.length > 0) {
       const adsList = ads.map((ad) => (
         <AdCard

@@ -1,7 +1,9 @@
 const express = require("express");
 const passport = require("passport");
+const fs = require("fs");
 const SubCategory = require("../models/SubCategory");
 const Category = require("../models/Category");
+const Ad = require("../models/Ad");
 
 const router = express.Router();
 
@@ -96,23 +98,27 @@ router.patch(
   }
 );
 
-// router.delete(
-//   "/:id",
-//   passport.authenticate("jwt", { session: false }),
-//   async (req, res) => {
-//     try {
-//       if (!req.user.admin) {
-//         return res.status(401).send();
-//       }
-//       const subCategory = await SubCategory.findByIdAndDelete(req.params.id);
-//       if (!subCategory) {
-//         res.status(404).send("No subcategory found");
-//       }
-//       res.send(subCategory);
-//     } catch (e) {
-//       res.status(500).send(e);
-//     }
-//   }
-// );
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      if (!req.user.admin) {
+        return res.status(401).send();
+      }
+
+      const subCategory = await SubCategory.findById(req.params.id);
+      if (!subCategory) {
+        res.status(404).send("No subcategory found");
+      }
+      fs.unlinkSync(`./uploads/${subCategory.image}`);
+      await Ad.deleteMany({ subCategory: req.params.id });
+      await subCategory.remove();
+      res.send(subCategory);
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  }
+);
 
 module.exports = router;
