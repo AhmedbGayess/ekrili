@@ -9,6 +9,7 @@ const Image = require("../models/Image");
 const Ad = require("../models/Ad");
 const Category = require("../models/Category");
 const SubCategory = require("../models/SubCategory");
+const User = require("../models/User");
 
 const router = new express.Router();
 
@@ -104,10 +105,15 @@ router.delete("/unused/delete", async (req, res) => {
     subcategories.forEach((subcategory) =>
       subcategoriesImages.push(subcategory.image)
     );
+    const usersImages = [];
+    const users = await User.find();
+    users.forEach((user) => usersImages.push(user.image));
+    const filteredUsersImages = usersImages.filter((image) => image.length > 0);
     const usedImages = [
       ...adsImages,
       ...categoryImages,
-      ...subcategoriesImages
+      ...subcategoriesImages,
+      ...filteredUsersImages
     ];
     const images = [];
     const imagesObj = await Image.find();
