@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
     case "ADD_SUBCATEGORY":
       return {
         ...state,
-        subCategories: [action.payload, ...state.subCategories]
+        subCategories: [...state.subCategories, action.payload]
       };
     case "SET_SUBCATEGORIES":
       return {
