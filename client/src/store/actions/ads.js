@@ -38,32 +38,6 @@ export const getAds = (query) => async (dispatch) => {
   }
 };
 
-export const getAdsByCategory = (id) => async (dispatch) => {
-  try {
-    dispatch(setAdsLoading());
-    const { data } = await axios.get(`/ads/category/${id}`);
-    dispatch({
-      type: "SET_ADS",
-      payload: data
-    });
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const getAdsBySubcategory = (id) => async (dispatch) => {
-  try {
-    dispatch(setAdsLoading());
-    const { data } = await axios.get(`/ads/subcategory/${id}`);
-    dispatch({
-      type: "SET_ADS",
-      payload: data
-    });
-  } catch (e) {
-    console.log(e);
-  }
-};
-
 export const getOwnAds = (limit, skip) => async (dispatch) => {
   try {
     dispatch(setAdsLoading());

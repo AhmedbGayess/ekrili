@@ -1,0 +1,23 @@
+.dashboard {
+  &__counts {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    &__card {
+      padding: 3rem;
+      text-align: center;
+      border: 1px solid $medium-color;
+
+      h3 {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  &__delete {
+    display: block;
+    width: 30%;
+    margin: 2rem auto;
+  }
+}

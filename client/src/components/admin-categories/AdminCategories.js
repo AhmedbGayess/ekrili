@@ -33,7 +33,7 @@ class AdminCategories extends React.Component {
 }
 
 AdminCategories.propTypes = {
-  categories: PropTypes.shape({}).isRequired
+  categories: PropTypes.object.isRequired
 };
 
 const mapStatToProps = (state) => ({
