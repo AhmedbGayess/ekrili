@@ -92,39 +92,50 @@ router.delete(
   }
 );
 
-router.delete("/unused/delete", async (req, res) => {
-  try {
-    const adsImages = [];
-    const ads = await Ad.find();
-    ads.forEach((ad) => adsImages.push(...ad.images));
-    const categoryImages = [];
-    const categories = await Category.find();
-    categories.forEach((category) => categoryImages.push(category.image));
-    const subcategoriesImages = [];
-    const subcategories = await SubCategory.find();
-    subcategories.forEach((subcategory) =>
-      subcategoriesImages.push(subcategory.image)
-    );
-    const usersImages = [];
-    const users = await User.find();
-    users.forEach((user) => usersImages.push(user.image));
-    const filteredUsersImages = usersImages.filter((image) => image.length > 0);
-    const usedImages = [
-      ...adsImages,
-      ...categoryImages,
-      ...subcategoriesImages,
-      ...filteredUsersImages
-    ];
-    const images = [];
-    const imagesObj = await Image.find();
-    imagesObj.forEach((obj) => images.push(obj.image));
-    const unusedImages = images.filter((image) => !usedImages.includes(image));
-    await Image.deleteMany({ image: { $nin: usedImages } });
-    unusedImages.forEach((image) => fs.unlinkSync(`./uploads/${image}`));
-    res.send("success");
-  } catch (err) {
-    res.send(err);
+router.delete(
+  "/unused/delete",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      if (!req.user.admin) {
+        return res.status(401).send();
+      }
+      const adsImages = [];
+      const ads = await Ad.find();
+      ads.forEach((ad) => adsImages.push(...ad.images));
+      const categoryImages = [];
+      const categories = await Category.find();
+      categories.forEach((category) => categoryImages.push(category.image));
+      const subcategoriesImages = [];
+      const subcategories = await SubCategory.find();
+      subcategories.forEach((subcategory) =>
+        subcategoriesImages.push(subcategory.image)
+      );
+      const usersImages = [];
+      const users = await User.find();
+      users.forEach((user) => usersImages.push(user.image));
+      const filteredUsersImages = usersImages.filter(
+        (image) => image.length > 0
+      );
+      const usedImages = [
+        ...adsImages,
+        ...categoryImages,
+        ...subcategoriesImages,
+        ...filteredUsersImages
+      ];
+      const images = [];
+      const imagesObj = await Image.find();
+      imagesObj.forEach((obj) => images.push(obj.image));
+      const unusedImages = images.filter(
+        (image) => !usedImages.includes(image)
+      );
+      await Image.deleteMany({ image: { $nin: usedImages } });
+      unusedImages.forEach((image) => fs.unlinkSync(`./uploads/${image}`));
+      res.send("success");
+    } catch (err) {
+      res.send(err);
+    }
   }
-});
+);
 
 module.exports = router;
