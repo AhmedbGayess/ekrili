@@ -6,6 +6,9 @@ const fs = require("fs");
 const Jimp = require("jimp");
 const uuidv4 = require("uuid");
 const Image = require("../models/Image");
+const Ad = require("../models/Ad");
+const Category = require("../models/Category");
+const SubCategory = require("../models/SubCategory");
 
 const router = new express.Router();
 
@@ -87,5 +90,35 @@ router.delete(
     }
   }
 );
+
+router.delete("/unused/delete", async (req, res) => {
+  try {
+    const adsImages = [];
+    const ads = await Ad.find();
+    ads.forEach((ad) => adsImages.push(...ad.images));
+    const categoryImages = [];
+    const categories = await Category.find();
+    categories.forEach((category) => categoryImages.push(category.image));
+    const subcategoriesImages = [];
+    const subcategories = await SubCategory.find();
+    subcategories.forEach((subcategory) =>
+      subcategoriesImages.push(subcategory.image)
+    );
+    const usedImages = [
+      ...adsImages,
+      ...categoryImages,
+      ...subcategoriesImages
+    ];
+    const images = [];
+    const imagesObj = await Image.find();
+    imagesObj.forEach((obj) => images.push(obj.image));
+    const unusedImages = images.filter((image) => !usedImages.includes(image));
+    await Image.deleteMany({ image: { $nin: usedImages } });
+    unusedImages.forEach((image) => fs.unlinkSync(`./uploads/${image}`));
+    res.send("success");
+  } catch (err) {
+    res.send(err);
+  }
+});
 
 module.exports = router;
