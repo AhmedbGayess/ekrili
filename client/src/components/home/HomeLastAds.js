@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getAds } from "../../store/actions/ads";
 import AdCard from "../ads/AdCard";
@@ -16,14 +17,15 @@ class HomeLastAds extends React.Component {
       content = <p />;
     } else if (ads.length > 0) {
       const adsList = ads.map((ad) => (
-        <AdCard
-          key={ad._id}
-          title={ad.title}
-          price={ad.price}
-          governorate={ad.governorate}
-          delegation={ad.delegation}
-          image={ad.images[0]}
-        />
+        <Link key={ad._id} to={`/ad/${ad._id}`}>
+          <AdCard
+            title={ad.title}
+            price={ad.price}
+            governorate={ad.governorate}
+            delegation={ad.delegation}
+            image={ad.images[0]}
+          />
+        </Link>
       ));
       content = (
         <div className="home-ads">
