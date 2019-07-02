@@ -85,7 +85,7 @@ class AppRouter extends React.Component {
   };
 
   setSubCategories = (category) => {
-    const subCategories = this.props.subCategories.filter(
+    const subCategories = this.props.subCategories.subCategories.filter(
       (subCategory) => subCategory.category === category
     );
     this.setState({ subCategories: [...subCategories] });
