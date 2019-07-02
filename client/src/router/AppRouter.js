@@ -22,6 +22,7 @@ import FavoritesPage from "../components/favorites-page/FavoritesPage";
 import UserAdsPage from "../components/user-ads/UserAdsPage";
 import UpdateAd from "../components/create-ad/UpdateAd";
 import Profile from "../components/user-profile/Profile";
+import Footer from "../components/layout/Footer";
 
 export const history = createBrowserHistory();
 
@@ -209,6 +210,26 @@ class AppRouter extends React.Component {
             <Route path="/user/:id/:page" component={Profile} exact />
             <Route path="/admin" component={AdminRouter} />
           </Switch>
+          <Route
+            path={[
+              "/",
+              "/create-ad",
+              "/edit-ad/:id",
+              "/browse-ads/:page",
+              "/ad/:id",
+              "/my-page",
+              "/my-favorites/:page",
+              "/my-ads/:page",
+              "/user/:id/:page"
+            ]}
+            render={() => (
+              <Footer
+                toggleLoginModal={this.toggleLoginModal}
+                toggleSignupModal={this.toggleSignupModal}
+              />
+            )}
+            exact
+          />
         </Router>
       );
     }
