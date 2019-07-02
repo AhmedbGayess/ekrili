@@ -40,13 +40,6 @@ const HomeSearchForm = ({
       value={delegation}
       onChange={onDelegationChange}
     />
-    <HomeSelectInput
-      name="delegation"
-      label="Délégation"
-      choices={delegations}
-      value={delegation}
-      onChange={onDelegationChange}
-    />
     <button className="btn-primary home-search-button">Chercher</button>
   </form>
 );

@@ -201,13 +201,6 @@ class AdsFilters extends React.Component {
               value={delegation}
               onChange={this.onChange}
             />
-            <FilterInput
-              name="delegation"
-              label="Délégation"
-              choices={delegations}
-              value={delegation}
-              onChange={this.onChange}
-            />
           </div>
         </div>
       </div>
