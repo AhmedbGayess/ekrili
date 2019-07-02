@@ -8,7 +8,7 @@ const Footer = ({ isAuthenticated, toggleLoginModal, toggleSignupModal }) => (
     <div className="container">
       <div className="footer__sections">
         <div className="footer__section">
-          <p className="footer__section__title">Informations</p>
+          <p className="footer__section__title">À propos</p>
           <ul className="footer__section__list">
             <li>
               <Link to="/" className="footer__section__list__link">
@@ -80,17 +80,17 @@ const Footer = ({ isAuthenticated, toggleLoginModal, toggleSignupModal }) => (
           </a>
         </div>
       </div>
-      <p className="footer__copyright">
-        © Ekriha.com - Créé par{" "}
-        <a
-          href="https://wwww.ahmedbengayess.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Ahmed Ben Gayess
-        </a>
-      </p>
     </div>
+    <p className="footer__copyright">
+      © Ekriha.com - Créé par{" "}
+      <a
+        href="https://www.ahmedbengayess.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ahmed Ben Gayess
+      </a>
+    </p>
   </footer>
 );
 

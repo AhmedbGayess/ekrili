@@ -15,7 +15,7 @@ export const addSubCategory = (subCategoryData) => async (dispatch) => {
 };
 
 export const getSubCategories = () => async (dispatch) => {
-  dispatch(setSubCategoriesLoading);
+  dispatch(setSubCategoriesLoading());
   try {
     const { data } = await axios.get("/sub-categories");
     dispatch({
@@ -28,7 +28,7 @@ export const getSubCategories = () => async (dispatch) => {
 };
 
 export const getCategorySubCategories = (id) => async (dispatch) => {
-  dispatch(setSubCategoriesLoading);
+  dispatch(setSubCategoriesLoading());
   try {
     const { data } = await axios.get(`/sub-categories//${id}`);
     dispatch({

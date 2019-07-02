@@ -13,6 +13,7 @@ import AdContact from "./AdContact";
 
 class AdPage extends React.Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.checkIfFavorite(this.props.match.params.id);
     this.props.getAd(this.props.match.params.id);
   }
@@ -31,7 +32,7 @@ class AdPage extends React.Component {
     } else if (Object.keys(ad).length > 0) {
       const isOwner = user.id === ad.user;
       pageContent = (
-        <div className="container my-2">
+        <div className="container">
           <AdPath category={ad.category} subCategory={ad.subCategory} />
           <div className="ad">
             <AdImages

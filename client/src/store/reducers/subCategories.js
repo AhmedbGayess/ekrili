@@ -1,5 +1,5 @@
 const initialState = {
-  subCategories: [],
+  subCategories: null,
   subCategory: {},
   loading: false
 };

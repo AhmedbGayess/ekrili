@@ -117,10 +117,15 @@ class AppRouter extends React.Component {
       mobileCategoriesOpen,
       mobileSubCategoriesOpen
     } = this.state;
-    const { categories } = this.props;
+    const { categories } = this.props.categories;
     let app;
 
-    if (categories === null || this.props.subCategories === null) {
+    if (
+      this.props.categories.loading ||
+      categories === null ||
+      this.props.subCategories.loading ||
+      this.props.subCategories === null
+    ) {
       app = <Loader />;
     } else {
       app = (
@@ -239,8 +244,8 @@ class AppRouter extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  categories: state.categories.categories,
-  subCategories: state.subCategories.subCategories
+  categories: state.categories,
+  subCategories: state.subCategories
 });
 
 export default connect(

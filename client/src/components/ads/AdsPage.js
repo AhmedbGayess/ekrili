@@ -14,6 +14,8 @@ class AdsPage extends React.Component {
     sortBy: ""
   };
   componentDidMount() {
+    window.scrollTo(0, 0);
+
     const query = this.props.location.search
       ? `${this.props.location.search}&skip=${this.props.match.params.page *
           20 -

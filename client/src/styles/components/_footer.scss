@@ -24,7 +24,7 @@
         cursor: pointer;
 
         &:hover {
-          color: $primary-color;
+          color: darken($fourth-color, 20%);
         }
       }
     }
@@ -32,11 +32,12 @@
 
   &__copyright {
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 1.7rem;
     color: #fff;
+    font-size: 14px;
 
     a {
-      color: $primary-color;
+      color: darken($fourth-color, 20%);
     }
   }
 }
@@ -66,7 +67,12 @@
     }
 
     &__section {
+      margin: 0 auto;
       text-align: justify;
+      text-align: center;
+      &__title {
+        margin-bottom: 0.5rem;
+      }
       &:not(:last-child) {
         margin-bottom: 1rem;
       }
@@ -75,13 +81,14 @@
         margin-top: 0;
       }
 
-      &__title {
-        font-size: 1rem;
-      }
-
       &__list__link {
         font-size: 0.85rem;
+        padding: 0;
       }
+    }
+
+    &__copyright {
+      font-size: 12px;
     }
   }
 }

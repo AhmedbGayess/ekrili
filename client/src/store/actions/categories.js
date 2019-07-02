@@ -15,7 +15,7 @@ export const addCategory = (categoryData) => async (dispatch) => {
 };
 
 export const getCategories = () => async (dispatch) => {
-  dispatch(setCategoriesLoading);
+  dispatch(setCategoriesLoading());
   try {
     const { data } = await axios.get("/categories");
     dispatch({
@@ -28,7 +28,7 @@ export const getCategories = () => async (dispatch) => {
 };
 
 export const getCategory = (id) => async (dispatch) => {
-  dispatch(setCategoriesLoading);
+  dispatch(setCategoriesLoading());
   try {
     const { data } = await axios.get(`/categories/${id}`);
     dispatch({

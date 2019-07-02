@@ -6,15 +6,23 @@ import HomeUsers from "./HomeUsers";
 import HomeProtect from "./HomeProtect";
 import HomeLastAds from "./HomeLastAds";
 
-const Home = ({ toggleSignupModal }) => (
-  <div>
-    <HomeSearch toggleSignupModal={toggleSignupModal} />
-    <HomeCategories />
-    <HomeUsers />
-    <HomeProtect />
-    <HomeLastAds />
-  </div>
-);
+class Home extends React.Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
+  render() {
+    return (
+      <div>
+        <HomeSearch toggleSignupModal={this.props.toggleSignupModal} />
+        <HomeCategories />
+        <HomeUsers />
+        <HomeProtect />
+        <HomeLastAds />
+      </div>
+    );
+  }
+}
 
 Home.propTypes = {
   toggleSignupModal: PropTypes.func.isRequired
