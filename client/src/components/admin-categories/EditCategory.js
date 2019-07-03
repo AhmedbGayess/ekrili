@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import CategoryForm from "./CategoryForm";
 import {
   addCategory,
-  getCategory,
   editCategory,
   deleteCategory
 } from "../../store/actions/categories";
@@ -14,20 +13,19 @@ import DeleteModal from "../common/DeleteModal";
 
 class EditCategory extends React.Component {
   state = {
-    image: "",
     loading: false,
-    deleteModalOpen: false
+    deleteModalOpen: false,
+    category: null,
+    image: ""
   };
 
   componentDidMount() {
-    console.log("chmnkea");
     const categoryId = this.props.match.params.id;
     if (categoryId) {
-      Promise.resolve(this.props.getCategory(categoryId)).then(() => {
-        this.setState({
-          image: this.props.categories.category.image
-        });
-      });
+      const category = this.props.categories.find(
+        (cat) => cat._id === categoryId
+      );
+      this.setState({ category, image: category.image });
     }
   }
 
@@ -75,21 +73,20 @@ class EditCategory extends React.Component {
 
   render() {
     const categoryId = this.props.match.params.id;
+    const { loading, deleteModalOpen, category, image } = this.state;
     let content;
     if (categoryId) {
-      const { loading, category } = this.props.categories;
-
-      if (loading || Object.keys(category).length === 0) {
+      if (this.state.category === null) {
         content = <Loader />;
       } else {
         content = (
           <CategoryForm
-            image={this.state.image}
+            image={image}
             onDrop={this.onDrop}
             onSubmit={this.props.editCategory}
             label="Nom de la catégorie"
             deleteImage={this.deleteImage}
-            loading={this.state.loading}
+            loading={loading}
             categoryName={category.name}
             id={categoryId}
           />
@@ -98,12 +95,12 @@ class EditCategory extends React.Component {
     } else {
       content = (
         <CategoryForm
-          image={this.state.image}
+          image={image}
           onDrop={this.onDrop}
           onSubmit={this.props.addCategory}
           label="Nom de la catégorie"
           deleteImage={this.deleteImage}
-          loading={this.state.loading}
+          loading={loading}
         />
       );
     }
@@ -122,7 +119,7 @@ class EditCategory extends React.Component {
           </button>
         )}
         <DeleteModal
-          modalOpen={this.state.deleteModalOpen}
+          modalOpen={deleteModalOpen}
           toggleModal={this.toggleDeleteModal}
           deleteItem={this.deleteCategory}
           item="cette catégorie"
@@ -134,17 +131,16 @@ class EditCategory extends React.Component {
 
 EditCategory.propTypes = {
   addCategory: PropTypes.func.isRequired,
-  getCategory: PropTypes.func.isRequired,
   editCategory: PropTypes.func.isRequired,
   deleteCategory: PropTypes.func.isRequired,
-  categories: PropTypes.shape({}).isRequired
+  categories: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  categories: state.categories
+  categories: state.categories.categories
 });
 
 export default connect(
   mapStateToProps,
-  { addCategory, getCategory, editCategory, deleteCategory }
+  { addCategory, editCategory, deleteCategory }
 )(EditCategory);

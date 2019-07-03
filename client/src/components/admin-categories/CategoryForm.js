@@ -48,7 +48,7 @@ CategoryInputs.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   deleteImage: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   id: PropTypes.string
 };

@@ -4,7 +4,6 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import {
   addSubCategory,
-  getSubCategory,
   editSubCategory,
   deleteSubCategory
 } from "../../store/actions/subCategories";
@@ -15,21 +14,19 @@ import DeleteModal from "../common/DeleteModal";
 
 class EditCategory extends React.Component {
   state = {
-    image: "",
     loading: false,
-    deleteModalOpen: false
+    deleteModalOpen: false,
+    subCategory: null,
+    image: ""
   };
 
   componentDidMount() {
-    this.props.getCategories();
-
     const subCategoryId = this.props.match.params.id;
     if (subCategoryId) {
-      Promise.resolve(this.props.getSubCategory(subCategoryId)).then(() => {
-        this.setState({
-          image: this.props.subCategories.subCategory.image
-        });
-      });
+      const subCategory = this.props.subCategories.find(
+        (sub) => sub._id === subCategoryId
+      );
+      this.setState({ subCategory, image: subCategory.image });
     }
   }
 
@@ -76,23 +73,22 @@ class EditCategory extends React.Component {
   };
 
   render() {
-    const { categories } = this.props.categories;
+    const { categories } = this.props;
     const subCategoryId = this.props.match.params.id;
+    const { subCategory, loading, deleteModalOpen, image } = this.state;
     let content;
     if (subCategoryId) {
-      const { loading, subCategory } = this.props.subCategories;
-
-      if (loading || Object.keys(subCategory).length === 0) {
+      if (this.state.subCategory === null) {
         content = <Loader />;
       } else {
         content = (
           <SubCategoryForm
-            image={this.state.image}
+            image={image}
             onDrop={this.onDrop}
             onSubmit={this.props.editSubCategory}
             label="Nom de la sous-catégorie"
             deleteImage={this.deleteImage}
-            loading={this.state.loading}
+            loading={loading}
             categories={categories}
             subCategoryName={subCategory.name}
             category={subCategory.category}
@@ -103,12 +99,12 @@ class EditCategory extends React.Component {
     } else {
       content = (
         <SubCategoryForm
-          image={this.state.image}
+          image={image}
           onDrop={this.onDrop}
           onSubmit={this.props.addSubCategory}
           label="Nom de la sous-catégorie"
           deleteImage={this.deleteImage}
-          loading={this.state.loading}
+          loading={loading}
           categories={categories}
         />
       );
@@ -126,7 +122,7 @@ class EditCategory extends React.Component {
           </button>
         )}
         <DeleteModal
-          modalOpen={this.state.deleteModalOpen}
+          modalOpen={deleteModalOpen}
           toggleModal={this.toggleDeleteModal}
           deleteItem={this.deleteSubCategory}
           item="cette sous-catégorie"
@@ -140,13 +136,14 @@ EditCategory.propTypes = {
   addSubCategory: PropTypes.func.isRequired,
   getCategories: PropTypes.func.isRequired,
   editSubCategory: PropTypes.func.isRequired,
-  getSubCategory: PropTypes.func.isRequired,
-  deleteSubCategory: PropTypes.func.isRequired
+  deleteSubCategory: PropTypes.func.isRequired,
+  subCategories: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  subCategories: state.subCategories,
-  categories: state.categories
+  subCategories: state.subCategories.subCategories,
+  categories: state.categories.categories
 });
 
 export default connect(
@@ -155,7 +152,6 @@ export default connect(
     addSubCategory,
     getCategories,
     editSubCategory,
-    getSubCategory,
     deleteSubCategory
   }
 )(EditCategory);

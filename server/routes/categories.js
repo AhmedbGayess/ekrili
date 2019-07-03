@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const fs = require("fs");
 const Category = require("../models/Category");
+const SubCategory = require("../models/SubCategory");
 const Ad = require("../models/Ad");
 
 const router = express.Router();
@@ -95,6 +96,7 @@ router.delete(
       }
       fs.unlinkSync(`./uploads/${category.image}`);
       await Ad.deleteMany({ category: req.params.id });
+      await SubCategory.deleteMany({ category: req.params.id });
       await category.remove();
       res.send(category);
     } catch (e) {

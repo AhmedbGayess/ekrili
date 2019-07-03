@@ -27,19 +27,6 @@ export const getCategories = () => async (dispatch) => {
   }
 };
 
-export const getCategory = (id) => async (dispatch) => {
-  dispatch(setCategoriesLoading());
-  try {
-    const { data } = await axios.get(`/categories/${id}`);
-    dispatch({
-      type: "SET_CATEGORY",
-      payload: data
-    });
-  } catch (e) {
-    console.log(e);
-  }
-};
-
 export const editCategory = (categoryData, id) => async (dispatch) => {
   try {
     const { data } = await axios.patch(`/categories/${id}`, categoryData);
@@ -53,9 +40,13 @@ export const editCategory = (categoryData, id) => async (dispatch) => {
   }
 };
 
-export const deleteCategory = (id) => async () => {
+export const deleteCategory = (id) => async (dispatch) => {
   try {
     await axios.delete(`/categories/${id}`);
+    dispatch({
+      type: "DELETE_CATEGORY",
+      payload: id
+    });
     history.push("/admin/categories");
   } catch (e) {
     console.log(e);

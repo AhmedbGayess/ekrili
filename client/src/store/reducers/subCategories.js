@@ -1,6 +1,5 @@
 const initialState = {
   subCategories: null,
-  subCategory: {},
   loading: false
 };
 
@@ -22,16 +21,9 @@ export default (state = initialState, action) => {
         subCategories: [...action.payload],
         loading: false
       };
-    case "SET_SUBCATEGORY":
-      return {
-        ...state,
-        subCategory: action.payload,
-        loading: false
-      };
     case "EDIT_SUBCATEGORY":
       return {
         ...state,
-        subCategory: action.payload,
         subCategories: state.subCategories.map((subCategory) => {
           if (subCategory._id === action.payload._id) {
             return {
@@ -41,6 +33,20 @@ export default (state = initialState, action) => {
             return subCategory;
           }
         })
+      };
+    case "DELETE_SUBCATEGORY":
+      return {
+        ...state,
+        subCategories: state.subCategories.filter(
+          (subCategory) => subCategory._id !== action.payload
+        )
+      };
+    case "DELETE_CATEGORY":
+      return {
+        ...state,
+        subCategories: state.subCategories.filter(
+          (subCategory) => subCategory.category !== action.payload
+        )
       };
     default:
       return state;

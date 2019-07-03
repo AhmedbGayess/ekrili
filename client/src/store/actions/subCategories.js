@@ -40,19 +40,6 @@ export const getCategorySubCategories = (id) => async (dispatch) => {
   }
 };
 
-export const getSubCategory = (id) => async (dispatch) => {
-  dispatch(setSubCategoriesLoading);
-  try {
-    const { data } = await axios.get(`/sub-categories/single/${id}`);
-    dispatch({
-      type: "SET_SUBCATEGORY",
-      payload: data
-    });
-  } catch (e) {
-    console.log(e);
-  }
-};
-
 export const editSubCategory = (subCategoryData, id) => async (dispatch) => {
   try {
     const { data } = await axios.patch(
@@ -69,9 +56,13 @@ export const editSubCategory = (subCategoryData, id) => async (dispatch) => {
   }
 };
 
-export const deleteSubCategory = (id) => async () => {
+export const deleteSubCategory = (id) => async (dispatch) => {
   try {
     await axios.delete(`/sub-categories/${id}`);
+    dispatch({
+      type: "DELETE_SUBCATEGORY",
+      payload: id
+    });
     history.push("/admin/subcategories");
   } catch (e) {
     console.log(e);

@@ -1,6 +1,5 @@
 const initialState = {
   categories: null,
-  category: {},
   loading: false
 };
 
@@ -22,16 +21,9 @@ export default (state = initialState, action) => {
         categories: [...action.payload],
         loading: false
       };
-    case "SET_CATEGORY":
-      return {
-        ...state,
-        category: action.payload,
-        loading: false
-      };
     case "EDIT_CATEGORY":
       return {
         ...state,
-        category: action.payload,
         categories: state.categories.map((category) => {
           if (category._id === action.payload._id) {
             return {
@@ -42,6 +34,13 @@ export default (state = initialState, action) => {
             return category;
           }
         })
+      };
+    case "DELETE_CATEGORY":
+      return {
+        ...state,
+        categories: state.categories.filter(
+          (category) => category._id !== action.payload
+        )
       };
     default:
       return state;
