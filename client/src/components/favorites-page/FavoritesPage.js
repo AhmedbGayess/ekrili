@@ -6,9 +6,11 @@ import { getFavorites, clearFavorites } from "../../store/actions/favorites";
 import Loader from "../common/Loader";
 import AdCard from "../ads/AdCard";
 import Pagination from "../ads/Pagination";
+import NoAd from "../ads/NoAd";
 
 class FavoritesPage extends React.Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.getNextFavorites();
   }
 
@@ -50,6 +52,8 @@ class FavoritesPage extends React.Component {
           />
         </div>
       );
+    } else if (favorites.length === 0) {
+      pageContent = <NoAd />;
     }
     return (
       <div className="favorites-page">

@@ -6,9 +6,11 @@ import { getOwnAds } from "../../store/actions/ads";
 import Loader from "../common/Loader";
 import AdCard from "../ads/AdCard";
 import Pagination from "../ads/Pagination";
+import NoAd from "../ads/NoAd";
 
 class UserAdsPage extends React.Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.nextAds();
   }
 
@@ -51,6 +53,8 @@ class UserAdsPage extends React.Component {
           />
         </div>
       );
+    } else if (ads.length === 0) {
+      pageContent = <NoAd />;
     }
     return (
       <div className="favorites-page">
