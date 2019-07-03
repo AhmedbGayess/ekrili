@@ -131,7 +131,7 @@ router.delete(
       );
       await Image.deleteMany({ image: { $nin: usedImages } });
       unusedImages.forEach((image) => fs.unlinkSync(`./uploads/${image}`));
-      res.send({ usedImages, imagesObj, unusedImages });
+      res.send("success");
     } catch (err) {
       res.send(err);
     }
