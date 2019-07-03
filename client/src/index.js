@@ -4,6 +4,8 @@ import "./styles/styles.scss";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+ReactGA.initialize(process.env.REACT_APP_GA);
+
 ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
