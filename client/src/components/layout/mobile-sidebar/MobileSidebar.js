@@ -81,16 +81,33 @@ class MobileSidebar extends React.Component {
           </li>
           {!isAuthenticated && (
             <li>
-              <button className="btn-primary" onClick={this.login}>
+              <button
+                className="btn-primary mobile-sidebar__button"
+                onClick={this.login}
+              >
                 Se connecter
               </button>
             </li>
           )}
           {!isAuthenticated && (
             <li>
-              <button className="btn-primary" onClick={this.signup}>
+              <button
+                className="btn-primary mobile-sidebar__button"
+                onClick={this.signup}
+              >
                 S'inscrire
               </button>
+            </li>
+          )}
+          {isAuthenticated && (
+            <li>
+              <Link
+                to="/create-ad"
+                className="btn-primary mobile-sidebar__button"
+                onClick={close}
+              >
+                Ajouter une annonce
+              </Link>
             </li>
           )}
         </ul>
