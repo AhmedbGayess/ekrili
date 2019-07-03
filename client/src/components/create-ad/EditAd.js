@@ -21,6 +21,10 @@ class Ad extends React.Component {
     monthPrice: ""
   };
 
+  componentDidMount() {
+    this.scroll();
+  }
+
   nextStep = () => {
     if (this.state.step < 4) {
       this.setState((prevState) => ({ step: prevState.step + 1 }));
