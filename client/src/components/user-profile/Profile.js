@@ -92,7 +92,9 @@ class Profile extends React.Component {
     } else if (userAds.length > 0 && user) {
       adsContent = (
         <div>
-          <h2 className="profile-info__title">Les annonces de {user.name}</h2>
+          <h2 className="profile-info__title">Les annonces de </h2>
+          <h2 className="profile-info__title">{user.name}</h2>
+
           <AdsList ads={userAds} />
           {count > 20 && (
             <Pagination

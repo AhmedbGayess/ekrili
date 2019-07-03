@@ -28,7 +28,9 @@
   &__title {
     color: $tertiary-color;
     text-align: center;
-    margin-bottom: 3rem;
+    &:last-of-type {
+      margin-bottom: 3rem;
+    }
   }
 
   &__delete {

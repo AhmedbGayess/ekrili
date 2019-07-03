@@ -10,6 +10,7 @@ import MobileNavList from "./MobileNavList";
 import NavbarList from "./NavbarList";
 import avatar from "../../images/avatar.png";
 import SearchBar from "./SearchBar";
+import logo from "../../images/logo.png";
 
 class Navbar extends React.Component {
   state = {
@@ -70,9 +71,11 @@ class Navbar extends React.Component {
           "navbar-page": !homePath
         })}
       >
-        <div className="navbar-logo-container">
-          <NavLink to="/">Placeholder</NavLink>
-        </div>
+        {/* <div className="navbar-logo-container"> */}
+        <NavLink to="/">
+          <img src={logo} alt="logo" className="navbar__logo" />
+        </NavLink>
+        {/* </div> */}
         {!homePath && <SearchBar screen="large" />}
         <NavbarList
           loggedIn={loggedIn}
