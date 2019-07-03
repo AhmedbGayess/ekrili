@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./styles/styles.scss";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import ReactGA from "react-ga";
 
 ReactGA.initialize(process.env.REACT_APP_GA);
 
