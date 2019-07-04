@@ -1,6 +1,6 @@
 .home-users {
   background: $secondary-color;
-  padding: 2rem 0;
+  padding: 4rem 0;
   color: #fff;
   &__title {
     text-align: center;
@@ -36,6 +36,8 @@
 
 @media (max-width: 800px) {
   .home-users {
+    padding: 3rem 0;
+
     &__title {
       font-size: 1.7rem;
     }

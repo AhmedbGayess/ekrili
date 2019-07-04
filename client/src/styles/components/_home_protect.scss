@@ -1,6 +1,6 @@
 .home-protect {
   background: $fourth-color;
-  padding: 2rem 0;
+  padding: 4rem 0;
   color: #fff;
 
   &__title {
@@ -22,6 +22,7 @@
 
 @media (max-width: 800px) {
   .home-protect {
+    padding: 3rem 0;
     &__title {
       font-size: 1.7rem;
     }
