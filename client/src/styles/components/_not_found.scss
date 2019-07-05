@@ -1,0 +1,45 @@
+.not-found {
+  background: $secondary-color;
+  padding: 5rem 0 15rem 0;
+  margin-bottom: 6rem;
+
+  &__title {
+    font-size: 7rem;
+    color: darken($primary-color, 20%);
+  }
+
+  &__text {
+    color: #fff;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .not-found {
+    padding: 3rem 0 10rem 0;
+
+    &__title {
+      font-size: 4.5rem;
+    }
+
+    &__text {
+      color: #fff;
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .not-found {
+    text-align: center;
+    margin-bottom: 2rem;
+    &__title {
+      font-size: 3rem;
+    }
+
+    &__text {
+      font-size: 1.1rem;
+    }
+  }
+}

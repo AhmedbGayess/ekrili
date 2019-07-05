@@ -24,6 +24,7 @@ import UserAdsPage from "../components/user-ads/UserAdsPage";
 import UpdateAd from "../components/create-ad/UpdateAd";
 import Profile from "../components/user-profile/Profile";
 import Footer from "../components/layout/Footer";
+import NotFoundPage from "../components/not-found/NotFoundPage";
 
 export const history = createBrowserHistory();
 history.listen((location) => {
@@ -220,6 +221,7 @@ class AppRouter extends React.Component {
             <Route path="/ad/:id" component={AdPage} exact />
             <Route path="/user/:id/:page" component={Profile} exact />
             <Route path="/admin" component={AdminRouter} />
+            <Route component={NotFoundPage} />
           </Switch>
           <Route
             path={[
