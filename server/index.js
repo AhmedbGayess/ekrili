@@ -26,6 +26,8 @@ app.use("/sub-categories", subCategoriesRouter);
 app.use("/ads", adsRouter);
 app.use("/upload", uploadsRouter);
 
+app.use(express.static(__dirname + "/static", { dotfiles: "allow" }));
+
 app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.get("*", (req, res) => {
