@@ -221,7 +221,25 @@ class AppRouter extends React.Component {
             <Route path="/ad/:id" component={AdPage} exact />
             <Route path="/user/:id/:page" component={Profile} exact />
             <Route path="/admin" component={AdminRouter} />
-            <Route component={NotFoundPage} />
+            <Route
+              render={() => (
+                <NotFoundPage
+                  loginModalOpen={loginModalOpen}
+                  signupModalOpen={signupModalOpen}
+                  toggleLoginModal={this.toggleLoginModal}
+                  toggleSignupModal={this.toggleSignupModal}
+                  switchToSignup={this.switchToSignup}
+                  switchToLogin={this.switchToLogin}
+                  location={history.location.pathname}
+                  openSidebar={this.openSidebar}
+                  sidebarOpen={sidebarOpen}
+                  openMobileSidebar={this.openMobileSidebar}
+                  mobileOpen={mobileSidebarOpen}
+                  mobileCategoriesOpen={mobileCategoriesOpen}
+                  mobileSubCategoriesOpen={mobileSubCategoriesOpen}
+                />
+              )}
+            />
           </Switch>
           <Route
             path={[
