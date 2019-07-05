@@ -75,7 +75,7 @@ class MobileSidebar extends React.Component {
             </Link>
           </li>
           <li>
-            <Link to="/" className="mobile-sidebar__link">
+            <Link to="/contact" className="mobile-sidebar__link">
               Nous contacter
             </Link>
           </li>

@@ -5,7 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import ReactGA from "react-ga";
 
-ReactGA.initialize(process.env.REACT_APP_GA);
+ReactGA.initialize("UA-143331340-1");
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

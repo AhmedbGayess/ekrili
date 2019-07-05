@@ -1,0 +1,61 @@
+.contact {
+  margin: 5rem 0 15rem 0;
+
+  &__title {
+    font-size: 4rem;
+    color: darken($primary-color, 20%);
+    margin-bottom: 2rem;
+  }
+
+  &__text {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  &__mail {
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+    color: $primary-color;
+  }
+}
+
+@media (max-width: 800px) {
+  .contact {
+    &__title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    &__text {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    &__mail {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .contact {
+    margin: 3rem 0 7rem 0;
+    &__title {
+      text-align: center;
+      font-size: 2.3rem;
+      margin-bottom: 1rem;
+    }
+
+    &__text {
+      font-size: 1rem;
+      text-align: justify;
+      text-align-last: center;
+      margin-bottom: 3rem;
+    }
+
+    &__mail {
+      font-size: 1rem;
+    }
+  }
+}

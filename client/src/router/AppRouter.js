@@ -25,6 +25,7 @@ import UpdateAd from "../components/create-ad/UpdateAd";
 import Profile from "../components/user-profile/Profile";
 import Footer from "../components/layout/Footer";
 import NotFoundPage from "../components/not-found/NotFoundPage";
+import Contact from "../components/contact/Contact";
 
 export const history = createBrowserHistory();
 history.listen((location) => {
@@ -147,7 +148,8 @@ class AppRouter extends React.Component {
               "/my-page",
               "/my-favorites/:page",
               "/my-ads/:page",
-              "/user/:id/:page"
+              "/user/:id/:page",
+              "/contact"
             ]}
             render={() => (
               <Navbar
@@ -221,6 +223,7 @@ class AppRouter extends React.Component {
             <Route path="/ad/:id" component={AdPage} exact />
             <Route path="/user/:id/:page" component={Profile} exact />
             <Route path="/admin" component={AdminRouter} />
+            <Route path="/contact" component={Contact} exact />
             <Route
               render={() => (
                 <NotFoundPage
@@ -251,7 +254,8 @@ class AppRouter extends React.Component {
               "/my-page",
               "/my-favorites/:page",
               "/my-ads/:page",
-              "/user/:id/:page"
+              "/user/:id/:page",
+              "/contact"
             ]}
             render={() => (
               <Footer
