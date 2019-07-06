@@ -1,7 +1,5 @@
 const express = require("express");
 const path = require("path");
-const https = require("https");
-const fs = require("fs");
 require("./db/mongoose");
 const cors = require("cors");
 const passport = require("passport");
@@ -37,13 +35,4 @@ app.get("*", (req, res) => {
 });
 
 const port = process.env.PORT || 5000;
-https
-  .createServer(
-    {
-      key: fs.readFileSync("./key.pem"),
-      cert: fs.readFileSync("./cert.pem"),
-      passphrase: process.env.SSL_KEY
-    },
-    app
-  )
-  .listen(port, () => console.log(`Server is up on port ${port}`));
+app.listen(port, () => console.log(`Server is up on port ${port}`));
