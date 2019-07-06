@@ -1,5 +1,7 @@
 const express = require("express");
 const path = require("path");
+const https = require("https");
+const fs = require("fs");
 require("./db/mongoose");
 const cors = require("cors");
 const passport = require("passport");
@@ -26,8 +28,6 @@ app.use("/sub-categories", subCategoriesRouter);
 app.use("/ads", adsRouter);
 app.use("/upload", uploadsRouter);
 
-app.use(express.static(__dirname + "/static", { dotfiles: "allow" }));
-
 app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.get("*", (req, res) => {
@@ -37,4 +37,13 @@ app.get("*", (req, res) => {
 });
 
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Server is up on port ${port}`));
+https
+  .createServer(
+    {
+      key: fs.readFileSync("./key.pem"),
+      cert: fs.readFileSync("./cert.pem"),
+      passphrase: process.env.SSL_KEY
+    },
+    app
+  )
+  .listen(port, () => console.log(`Server is up on port ${port}`));
