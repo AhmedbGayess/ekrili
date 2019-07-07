@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
 import { getOwnAds } from "../../store/actions/ads";
 import Loader from "../common/Loader";
@@ -58,6 +59,9 @@ class UserAdsPage extends React.Component {
     }
     return (
       <div className="favorites-page">
+        <Helmet>
+          <title>Ekriha.com | Vos annonces</title>
+        </Helmet>
         <h1 className="favorites-page__title">VOS ANNONCES</h1>
         <div>{pageContent}</div>
       </div>

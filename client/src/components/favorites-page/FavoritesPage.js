@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
 import { getFavorites, clearFavorites } from "../../store/actions/favorites";
 import Loader from "../common/Loader";
@@ -57,6 +58,9 @@ class FavoritesPage extends React.Component {
     }
     return (
       <div className="favorites-page">
+        <Helmet>
+          <title>Ekriha.com | Vos favoris</title>
+        </Helmet>
         <h1 className="favorites-page__title">VOS FAVORIS</h1>
         <div>{pageContent}</div>
       </div>

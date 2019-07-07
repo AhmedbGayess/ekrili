@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
 import { getUser, deleteUser } from "../../store/actions/users";
 import { getUserAds } from "../../store/actions/ads";
@@ -17,6 +18,7 @@ class Profile extends React.Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.getUser(this.props.match.params.id);
     this.nextAds();
   }
@@ -63,6 +65,9 @@ class Profile extends React.Component {
     } else {
       userContent = (
         <div>
+          <Helmet>
+            <title>Ekriha.com | Profil de {user.name}</title>
+          </Helmet>
           {admin && this.props.match.path.includes("admin") && (
             <div className="profile-info__delete">
               <button

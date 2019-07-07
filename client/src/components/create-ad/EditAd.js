@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withFormik, Form } from "formik";
 import * as Yup from "yup";
+import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
 import { createAd, editAd } from "../../store/actions/ads";
 import EditAdProgress from "./EditAdProgress";
@@ -167,6 +168,9 @@ class Ad extends React.Component {
     }
     return (
       <div className="container">
+        <Helmet>
+          <title>Ekriha.com | Votre annonce</title>
+        </Helmet>
         <EditAdProgress step={step} />
         <div className="create-ad">
           <div>

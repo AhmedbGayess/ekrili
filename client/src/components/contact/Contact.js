@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 
 const Contact = () => {
   useEffect(() => {
@@ -7,6 +8,9 @@ const Contact = () => {
 
   return (
     <div className="contact">
+      <Helmet>
+        <title>Ekriha.com | Contact</title>
+      </Helmet>
       <div className="container">
         <h1 className="contact__title">Nous Contacter</h1>
         <p className="contact__text">

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
 import { getAds } from "../../store/actions/ads";
 import Pagination from "./Pagination";
 import Loader from "../common/Loader";
@@ -88,6 +89,9 @@ class AdsPage extends React.Component {
 
     return (
       <div>
+        <Helmet>
+          <title>Ekriha.com | Les annonces</title>
+        </Helmet>
         <AdsFilters
           queryString={this.props.location.search}
           link="/browse-ads/1"

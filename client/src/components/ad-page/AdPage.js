@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
 import { getAd } from "../../store/actions/ads";
 import { checkIfFavorite, addToFavorites } from "../../store/actions/favorites";
@@ -33,6 +34,10 @@ class AdPage extends React.Component {
       const isOwner = user.id === ad.user;
       pageContent = (
         <div className="container">
+          <Helmet>
+            <title>Ekriha.com | {ad.title}</title>
+            <meta name="description" content={ad.description} />
+          </Helmet>
           <AdPath category={ad.category} subCategory={ad.subCategory} />
           <div className="ad">
             <AdImages
