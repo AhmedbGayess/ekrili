@@ -13,13 +13,13 @@ const SignupFields = ({ errors, touched, error }) => (
       error={errors.name}
       touched={touched.name}
     />
-    {/* <FormInputField
+    <FormInputField
       name="email"
       type="email"
       label="Adresse e-mail"
       error={errors.email}
       touched={touched.email}
-    /> */}
+    />
     <FormInputField
       name="phone"
       type="text"
