@@ -34,11 +34,7 @@ class HelpDropdown extends React.Component {
       >
         <ul className="dropdown__list">
           <li className="dropdown__list-item">
-            <Link
-              to="/admin-login"
-              onClick={close}
-              className="dropdown__list-item-link"
-            >
+            <Link to="/" onClick={close} className="dropdown__list-item-link">
               Comment ça marche
             </Link>
           </li>
