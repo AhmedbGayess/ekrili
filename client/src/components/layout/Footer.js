@@ -10,7 +10,7 @@ const Footer = ({ isAuthenticated, toggleLoginModal, toggleSignupModal }) => (
         <p className="footer__section__title">À propos</p>
         <ul className="footer__section__list">
           <li>
-            <Link to="/" className="footer__section__list__link">
+            <Link to="/how-it-works" className="footer__section__list__link">
               Comment ça marche
             </Link>
           </li>

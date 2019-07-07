@@ -65,7 +65,7 @@ class MobileSidebar extends React.Component {
             </p>
           </li>
           <li>
-            <Link to="/" className="mobile-sidebar__link">
+            <Link to="/how-it-works" className="mobile-sidebar__link">
               Comment ça marche?
             </Link>
           </li>

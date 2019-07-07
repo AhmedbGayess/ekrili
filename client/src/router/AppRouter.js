@@ -26,6 +26,7 @@ import Profile from "../components/user-profile/Profile";
 import Footer from "../components/layout/Footer";
 import NotFoundPage from "../components/not-found/NotFoundPage";
 import Contact from "../components/contact/Contact";
+import How from "../components/how/How";
 
 export const history = createBrowserHistory();
 history.listen((location) => {
@@ -149,7 +150,8 @@ class AppRouter extends React.Component {
               "/my-favorites/:page",
               "/my-ads/:page",
               "/user/:id/:page",
-              "/contact"
+              "/contact",
+              "/how-it-works"
             ]}
             render={() => (
               <Navbar
@@ -224,6 +226,7 @@ class AppRouter extends React.Component {
             <Route path="/user/:id/:page" component={Profile} exact />
             <Route path="/admin" component={AdminRouter} />
             <Route path="/contact" component={Contact} exact />
+            <Route path="/how-it-works" component={How} exact />
             <Route
               render={() => (
                 <NotFoundPage
@@ -255,7 +258,8 @@ class AppRouter extends React.Component {
               "/my-favorites/:page",
               "/my-ads/:page",
               "/user/:id/:page",
-              "/contact"
+              "/contact",
+              "/how-it-works"
             ]}
             render={() => (
               <Footer
