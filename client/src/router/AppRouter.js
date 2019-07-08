@@ -27,6 +27,7 @@ import Footer from "../components/layout/Footer";
 import NotFoundPage from "../components/not-found/NotFoundPage";
 import Contact from "../components/contact/Contact";
 import How from "../components/how/How";
+import AboutUs from "../components/about-us/AboutUs";
 
 export const history = createBrowserHistory();
 history.listen((location) => {
@@ -151,7 +152,8 @@ class AppRouter extends React.Component {
               "/my-ads/:page",
               "/user/:id/:page",
               "/contact",
-              "/how-it-works"
+              "/how-it-works",
+              "/about-us"
             ]}
             render={() => (
               <Navbar
@@ -228,6 +230,13 @@ class AppRouter extends React.Component {
             <Route path="/contact" component={Contact} exact />
             <Route path="/how-it-works" component={How} exact />
             <Route
+              path="/about-us"
+              render={() => (
+                <AboutUs toggleLoginModal={this.toggleLoginModal} />
+              )}
+              exact
+            />
+            <Route
               render={() => (
                 <NotFoundPage
                   loginModalOpen={loginModalOpen}
@@ -259,7 +268,8 @@ class AppRouter extends React.Component {
               "/my-ads/:page",
               "/user/:id/:page",
               "/contact",
-              "/how-it-works"
+              "/how-it-works",
+              "/about-us"
             ]}
             render={() => (
               <Footer
