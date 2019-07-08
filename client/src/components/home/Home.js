@@ -14,7 +14,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <HomeSearch toggleSignupModal={this.props.toggleSignupModal} />
+        <HomeSearch toggleLoginModal={this.props.toggleLoginModal} />
         <HomeCategories />
         <HomeUsers />
         <HomeProtect />
@@ -25,7 +25,7 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-  toggleSignupModal: PropTypes.func.isRequired
+  toggleLoginModal: PropTypes.func.isRequired
 };
 
 export default Home;

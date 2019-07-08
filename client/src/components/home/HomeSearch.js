@@ -71,7 +71,7 @@ class HomeSearch extends React.Component {
             {!this.props.isAuthenticated && (
               <button
                 className="btn-secondary"
-                onClick={this.props.toggleSignupModal}
+                onClick={this.props.toggleLoginModal}
               >
                 Publier une annonce
               </button>
@@ -90,7 +90,7 @@ class HomeSearch extends React.Component {
 
 HomeSearch.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
-  toggleSignupModal: PropTypes.func.isRequired
+  toggleLoginModal: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
