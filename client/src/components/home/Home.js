@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import HomeSearch from "./HomeSearch";
 import HomeCategories from "./HomeCategories";
 import HomeUsers from "./HomeUsers";
-import HomeProtect from "./HomeProtect";
 import HomeLastAds from "./HomeLastAds";
 
 class Home extends React.Component {
@@ -17,7 +16,6 @@ class Home extends React.Component {
         <HomeSearch toggleLoginModal={this.props.toggleLoginModal} />
         <HomeCategories />
         <HomeUsers />
-        <HomeProtect />
         <HomeLastAds />
       </div>
     );
